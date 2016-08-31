@@ -1,2 +1,1 @@
 libmozdata>=0.1.0
-requests[security]>=2.7.0
