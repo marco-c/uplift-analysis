@@ -1,7 +1,3 @@
 *~
-*.pyc
-*.pyo
-.coverage
-htmlcov/
 config.ini
 .ipynb_checkpoints/
