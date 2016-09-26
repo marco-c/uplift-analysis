@@ -1,5 +1,25 @@
 Marco will extract the following metrics
 
+- changes_size: number of lines added/removed by the patch (excluding test files);
+- test_changes_size: number of lines added/removed by the patch (only in test files);
+- modules_num: the number of modules touched by the patch (the modules are defined in this page: https://wiki.mozilla.org/Modules/All)
+- code_churn_overall: number of patches applied to the files touched by the patch in their entire history before the patch;
+- code_churn_last_3_releases: as before, but for the time frame [3 releases before the date of the patch, date of the patch[;
+- developer_familiarity_overall: as before, but whose author was the developer of the patch;
+- developer_familiarity_last_3_releases: as before, but whose author was the developer of the patch in the restricted time frame;
+- reviewer_familiarity_overall: as before, but whose author was the reviewer of the patch;
+- reviewer_familiarity_last_3_releases: as before, but whose author was the reviewer of the patch in the restricted time frame;
+- backout_num: number of times the patches in the bug have been backed out for test failures;
+- blocks: number of bugs that the bug is blocking;
+- depends_on: number of bugs that the bug depends on;
+- comments: number of comments in the bug;
+- r-ed_patches: number of times the patches in the bug have been rejected in a review;
+- in-testsuite: whether there are tests that cover the code modified by the patch;
+- landing_delta: time delta between when the patch was released in Nightly and the uplift request (in theory, the more it's been in Nightly, the more manual testing it has received);
+- response_delta: time delta between the uplift request and the uplift response (accepted/rejected);
+- release_delta: time delta between the uplift request and the following release date.
+
+
 
 Le will extract the following metrics
 
