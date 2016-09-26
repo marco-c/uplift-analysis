@@ -1,0 +1,18 @@
+Marco will extract the following metrics
+
+
+Le will extract the following metrics
+
+Code complexity metrics:
+LOC
+Number of functions
+Cyclomatic complexity
+Maximum nesting level
+Comment ratio
+
+SNA metrics:
+PageRank
+Betweenness
+Closeness
+Indegree
+Outdegree
