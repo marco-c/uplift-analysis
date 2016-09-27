@@ -155,7 +155,7 @@ if __name__ == '__main__':
     commit_date_dict = loadCommitDate('commit_date.csv')
 
     try:
-        with open('results.json', 'r') as f:
+        with open('bug_inducing_commits.json', 'r') as f:
             results = json.load(f)
     except:
         results = dict()
@@ -177,7 +177,7 @@ if __name__ == '__main__':
                 print bug_inducing_commits
             results[bug_id] = list(bug_inducing_commits)
         if DEBUG == False:
-            with open('results.json', 'w') as f:
+            with open('bug_inducing_commits.json', 'w') as f:
                 json.dump(results, f)
 
     if DEBUG == False:
