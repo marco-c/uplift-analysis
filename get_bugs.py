@@ -9,8 +9,9 @@ from libmozdata import bugzilla
 from libmozdata import patchanalysis
 
 bugs = []
+
 try:
-    with gzip.GzipFile('all_bugs.json.gz', 'rb') as f:
+    with open('all_bugs.json', 'r') as f:
         bugs += json.load(f)
 except IOError:
     pass
@@ -18,9 +19,12 @@ except IOError:
 print('Loaded ' + str(len(bugs)) + ' bugs.')
 
 # All RESOLVED/VERIFIED FIXED bugs in the Firefox and Core products between 2014-07-22 (release date of 31.0) and 2016-08-24 (release date of 48.0.2).
-search_query = 'product=Core&product=Firefox&'
-'bug_status=RESOLVED&bug_status=VERIFIED&resolution=FIXED&'
-'f1=creation_ts&o1=greaterthan&v1=2014-07-22&f2=creation_ts&o2=lessthan&v1=2016-08-24'
+search_query = 'product=Core&product=Firefox&' +\
+'bug_status=RESOLVED&bug_status=VERIFIED&resolution=FIXED&' +\
+'f1=creation_ts&o1=greaterthan&v1=2014-07-22&f2=creation_ts&o2=lessthan&v1=2016-08-24&' +\
+'limit=500&order=bug_id&f3=bug_id&o3=greaterthan&v3='
+
+last_id = max([bug['id'] for bug in bugs])
 
 found = []
 finished = False
@@ -52,16 +56,18 @@ while not finished:
 
         bugs_dict[bugid]['history'] = bug['history']
 
-    bugzilla.Bugzilla(search_query + '&limit=500&offset=' + str(len(bugs)), bughandler=bughandler, commenthandler=commenthandler, historyhandler=historyhandler).get_data().wait()
+    bugzilla.Bugzilla(search_query + str(last_id), bughandler=bughandler, commenthandler=commenthandler, historyhandler=historyhandler).get_data().wait()
 
     found = [bug for bug in bugs_dict.values()]
+
+    last_id = max([last_id] + [bug['id'] for bug in found])
 
     print('Found ' + str(len(found)) + ' bugs.')
 
     bugs += found
 
     if len(bugs) % 5000 == 0 or len(found) < 500:
-        with gzip.GzipFile('all_bugs.json.gz', 'wb') as f:
+        with open('all_bugs.json', 'w') as f:
             json.dump(bugs, f)
 
     if len(found) < 500:
