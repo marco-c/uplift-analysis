@@ -66,7 +66,7 @@ while not finished:
 
     bugs += found
 
-    if len(bugs) % 5000 == 0 or len(found) < 500:
+    if len(found) != 0 and (len(bugs) % 5000 == 0 or len(found) < 500):
         with open('all_bugs.json', 'w') as f:
             json.dump(bugs, f)
 
