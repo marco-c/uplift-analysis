@@ -5,10 +5,6 @@ import json
 import gzip
 from pprint import pprint
 
-import libmozdata.config as config
-
-config.set_config(config.ConfigIni('mozdata.ini'))
-
 from libmozdata import bugzilla
 from libmozdata import patchanalysis
 
@@ -22,7 +18,9 @@ except IOError:
 print('Loaded ' + str(len(bugs)) + ' bugs.')
 
 # All RESOLVED/VERIFIED FIXED bugs in the Firefox and Core products between 2014-07-22 (release date of 31.0) and 2016-08-24 (release date of 48.0.2).
-search_query = 'product=Core&product=Firefox&bug_status=RESOLVED&bug_status=VERIFIED&resolution=FIXED&f1=creation_ts&o1=greaterthan&v1=2014-07-22&f2=creation_ts&o2=lessthan&v1=2016-08-24'
+search_query = 'product=Core&product=Firefox&'
+'bug_status=RESOLVED&bug_status=VERIFIED&resolution=FIXED&'
+'f1=creation_ts&o1=greaterthan&v1=2014-07-22&f2=creation_ts&o2=lessthan&v1=2016-08-24'
 
 found = []
 finished = False
@@ -62,7 +60,7 @@ while not finished:
 
     bugs += found
 
-    if len(bugs) % 5000 == 0:
+    if len(bugs) % 5000 == 0 or len(found) < 500:
         with gzip.GzipFile('all_bugs.json.gz', 'wb') as f:
             json.dump(bugs, f)
 
