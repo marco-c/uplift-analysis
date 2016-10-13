@@ -126,11 +126,19 @@ def bug_check_title(bug):
     ]
     return any(keyword in bug['summary'].lower() for keyword in keywords)
 
+# If the first comment in the bug contains these substrings, it's likely a bug.
 def check_first_comment(bug):
     keywords = [
         'steps to reproduce', 'crash',
     ]
     return any(keyword in bug['comments'][0]['text'].lower() for keyword in keywords)
+
+# If any of the comments in the bug contains these substirngs, it's likely a bug.
+def check_comments(bug):
+    keywords = [
+        'mozregression',
+    ]
+    return any(keyword in comment['text'].lower() for comment in bug['comments'] for keyword in keywords)
 
 bug_rules = [
     has_crash_signature,
@@ -140,6 +148,7 @@ bug_rules = [
     bug_check_keywords,
     bug_check_title,
     check_first_comment,
+    check_comments,
 ]
 
 
