@@ -115,28 +115,34 @@ def has_url(bug):
 # If the bug contains these keywords, it's definitely a bug.
 def bug_check_keywords(bug):
     keywords = [
-        'crash', 'regression', 'regressionwindow-wanted', 'jsbugmon'
+        'crash', 'regression', 'regressionwindow-wanted', 'jsbugmon',
+        'hang', 'topcrash', 'assertion', 'coverity', 'infra-failure',
+        'intermittent-failure', 'reproducible', 'stack-wanted',
+        'steps-wanted', 'testcase-wanted', 'testcase',
     ]
     return any(keyword in bug['keywords'] for keyword in keywords)
 
 # If the bug title contains these substrings, it's definitely a bug.
 def bug_check_title(bug):
     keywords = [
-        'failure', 'crash', 'bug', 'differential testing', 'error', 'addresssanitizer'
+        'failure', 'crash', 'bug', 'differential testing', 'error',
+        'addresssanitizer', 'hang', 'jsbugmon', 'leak', 'permaorange',
+        'random orange', 'intermittent', 'regression'
     ]
     return any(keyword in bug['summary'].lower() for keyword in keywords)
 
 # If the first comment in the bug contains these substrings, it's likely a bug.
 def check_first_comment(bug):
     keywords = [
-        'steps to reproduce', 'crash',
+        'steps to reproduce', 'crash', 'hang', 'assertion', 'failure',
+        'leak',
     ]
     return any(keyword in bug['comments'][0]['text'].lower() for keyword in keywords)
 
 # If any of the comments in the bug contains these substirngs, it's likely a bug.
 def check_comments(bug):
     keywords = [
-        'mozregression',
+        'mozregression', 'safemode', 'safe mode',
     ]
     return any(keyword in comment['text'].lower() for comment in bug['comments'] for keyword in keywords)
 
