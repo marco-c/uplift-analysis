@@ -86,12 +86,12 @@ print('Total number of bugs: ' + str(len(bugs)))
 # If the bug contains these keywords, it's very likely a feature.
 def feature_check_keywords(bug):
     keywords = [
-      'feature'
+        'feature'
     ]
     return any(keyword in bug['keywords'] for keyword in keywords)
 
 feature_rules = [
-  feature_check_keywords,
+    feature_check_keywords,
 ]
 
 
@@ -115,24 +115,31 @@ def has_url(bug):
 # If the bug contains these keywords, it's definitely a bug.
 def bug_check_keywords(bug):
     keywords = [
-      'crash', 'regression', 'regressionwindow-wanted', 'jsbugmon'
+        'crash', 'regression', 'regressionwindow-wanted', 'jsbugmon'
     ]
     return any(keyword in bug['keywords'] for keyword in keywords)
 
 # If the bug title contains these substrings, it's definitely a bug.
 def bug_check_title(bug):
     keywords = [
-      'failure', 'crash', 'bug', 'differential testing', 'error', 'addresssanitizer'
+        'failure', 'crash', 'bug', 'differential testing', 'error', 'addresssanitizer'
     ]
     return any(keyword in bug['summary'].lower() for keyword in keywords)
 
+def check_first_comment(bug):
+    keywords = [
+        'steps to reproduce', 'crash',
+    ]
+    return any(keyword in bug['comments'][0]['text'].lower() for keyword in keywords)
+
 bug_rules = [
-  has_crash_signature,
-  has_str,
-  has_regression_range,
-  has_url,
-  bug_check_keywords,
-  bug_check_title,
+    has_crash_signature,
+    has_str,
+    has_regression_range,
+    has_url,
+    bug_check_keywords,
+    bug_check_title,
+    check_first_comment,
 ]
 
 
