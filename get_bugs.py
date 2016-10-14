@@ -135,7 +135,7 @@ def bug_check_title(bug):
 def check_first_comment(bug):
     keywords = [
         'steps to reproduce', 'crash', 'hang', 'assertion', 'failure',
-        'leak', 'stack trace',
+        'leak', 'stack trace', 'regression',
     ]
     return any(keyword in bug['comments'][0]['text'].lower() for keyword in keywords)
 
