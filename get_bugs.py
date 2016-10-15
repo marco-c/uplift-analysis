@@ -3,6 +3,7 @@ import os
 import copy
 import json
 import gzip
+import math
 from pprint import pprint
 
 from libmozdata import bugzilla
@@ -10,11 +11,14 @@ from libmozdata import patchanalysis
 
 bugs = []
 
-try:
-    with open('all_bugs.json', 'r') as f:
-        bugs += json.load(f)
-except IOError:
-    pass
+i = 0
+while True:
+    try:
+        with open('all_bugs/all_bugs' + str(i) + '.json', 'r') as f:
+            bugs += json.load(f)
+        i += 1
+    except IOError:
+        break
 
 print('Loaded ' + str(len(bugs)) + ' bugs.')
 
@@ -67,8 +71,9 @@ while not finished:
     print('Total number of bugs: ' + str(len(bugs)))
 
     if len(found) != 0 and (len(bugs) % 5000 == 0 or len(found) < 500):
-        with open('all_bugs.json', 'w') as f:
-            json.dump(bugs, f)
+        for i in range(0, int(math.ceil(float(len(bugs)) / 1000))):
+            with open('all_bugs/all_bugs' + str(i) + '.json', 'w') as f:
+                json.dump(bugs[i*1000:(i+1)*1000], f)
 
     if len(found) < 500:
         finished = True
