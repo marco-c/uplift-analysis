@@ -18,7 +18,7 @@ except IOError:
 
 print('Loaded ' + str(len(bugs)) + ' bugs.')
 
-# All RESOLVED/VERIFIED FIXED bugs in the Firefox and Core products between 2014-07-22 (release date of 31.0) and 2016-08-24 (release date of 48.0.2).
+# All RESOLVED/VERIFIED FIXED bugs in the Firefox and Core products filed between 2014-07-22 (release date of 31.0) and 2016-08-24 (release date of 48.0.2).
 search_query = 'product=Core&product=Firefox&' +\
 'bug_status=RESOLVED&bug_status=VERIFIED&resolution=FIXED&' +\
 'f1=creation_ts&o1=greaterthan&v1=2014-07-22&f2=creation_ts&o2=lessthan&v1=2016-08-24&' +\
@@ -62,9 +62,9 @@ while not finished:
 
     last_id = max([last_id] + [bug['id'] for bug in found])
 
-    print('Found ' + str(len(found)) + ' bugs.')
-
     bugs += found
+
+    print('Total number of bugs: ' + str(len(bugs)))
 
     if len(found) != 0 and (len(bugs) % 5000 == 0 or len(found) < 500):
         with open('all_bugs.json', 'w') as f:
@@ -72,8 +72,6 @@ while not finished:
 
     if len(found) < 500:
         finished = True
-
-print('Total number of bugs: ' + str(len(bugs)))
 
 
 
