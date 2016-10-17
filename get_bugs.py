@@ -146,6 +146,8 @@ def check_first_comment(bug):
 def check_comments(bug):
     keywords = [
         'mozregression', 'safemode', 'safe mode',
+        # mozregression messages.
+        'Looks like the following bug has the changes which introduced the regression', 'First bad revision',
     ]
     return any(keyword in comment['text'].lower() for comment in bug['comments'] for keyword in keywords)
 
