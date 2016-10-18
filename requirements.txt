@@ -1,1 +1,1 @@
-libmozdata>=0.1.10
+libmozdata==0.1.13

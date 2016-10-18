@@ -35,7 +35,7 @@ finished = False
 while not finished:
     bugs_dict = dict()
 
-    def bughandler(bug, data):
+    def bughandler(bug):
         bugid = str(bug['id'])
 
         if bugid not in bugs_dict:
@@ -44,7 +44,7 @@ while not finished:
         for k, v in bug.items():
             bugs_dict[bugid][k] = v
 
-    def commenthandler(bug, bugid, data):
+    def commenthandler(bug, bugid):
         bugid = str(bugid)
 
         if bugid not in bugs_dict:
@@ -52,7 +52,7 @@ while not finished:
 
         bugs_dict[bugid]['comments'] = bug['comments']
 
-    def historyhandler(bug, data):
+    def historyhandler(bug):
         bugid = str(bug['id'])
 
         if bugid not in bugs_dict:
