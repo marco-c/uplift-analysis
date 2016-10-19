@@ -94,8 +94,15 @@ def feature_check_keywords(bug):
     ]
     return any(keyword in bug['keywords'] for keyword in keywords)
 
+# If the Severity (Importance) field's value is "enhancement", it's likely not a bug
+def check_severity_enhance(bug):
+    if bug['severity'] == 'enhancement':
+        return True
+    return False
+
 feature_rules = [
     feature_check_keywords,
+    check_severity_enhance,
 ]
 
 
@@ -129,7 +136,8 @@ def bug_check_keywords(bug):
 # If the bug title contains these substrings, it's definitely a bug.
 def bug_check_title(bug):
     keywords = [
-        'failure', 'crash', 'bug', 'differential testing', 'error',
+        'failur', 'fail', 'npe', 'except', 'broken', 
+        'crash', 'bug', 'differential testing', 'error',
         'addresssanitizer', 'hang', 'jsbugmon', 'leak', 'permaorange',
         'random orange', 'intermittent', 'regression'
     ]
@@ -152,6 +160,12 @@ def check_comments(bug):
     ]
     return any(keyword in comment['text'].lower() for comment in bug['comments'] for keyword in keywords)
 
+# If the Severity (Importance) field's value is "major", it's likely a bug
+def check_severity_major(bug):
+    if bug['severity'] == 'major':
+        return True
+    return False
+
 bug_rules = [
     has_crash_signature,
     has_str,
@@ -161,8 +175,8 @@ bug_rules = [
     bug_check_title,
     check_first_comment,
     check_comments,
+    check_severity_major,
 ]
-
 
 
 actual_bugs = [bug for bug in bugs if any(rule(bug) for rule in bug_rules) and not any(rule(bug) for rule in feature_rules)]
