@@ -129,7 +129,7 @@ def bug_check_keywords(bug):
         'crash', 'regression', 'regressionwindow-wanted', 'jsbugmon',
         'hang', 'topcrash', 'assertion', 'coverity', 'infra-failure',
         'intermittent-failure', 'reproducible', 'stack-wanted',
-        'steps-wanted', 'testcase-wanted', 'testcase',
+        'steps-wanted', 'testcase-wanted', 'testcase', 'crashreportid',
     ]
     return any(keyword in bug['keywords'] for keyword in keywords)
 
