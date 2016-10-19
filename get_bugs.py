@@ -22,11 +22,12 @@ while True:
 
 print('Loaded ' + str(len(bugs)) + ' bugs.')
 
-# All RESOLVED/VERIFIED FIXED bugs in the Firefox and Core products filed between 2014-07-22 (release date of 31.0) and 2016-08-24 (release date of 48.0.2).
+# All RESOLVED/VERIFIED FIXED bugs in the Firefox and Core products filed and resolved between 2014-07-22 (release date of 31.0) and 2016-08-24 (release date of 48.0.2).
 search_query = 'product=Core&product=Firefox&' +\
 'bug_status=RESOLVED&bug_status=VERIFIED&resolution=FIXED&' +\
-'f1=creation_ts&o1=greaterthan&v1=2014-07-22&f2=creation_ts&o2=lessthan&v1=2016-08-24&' +\
-'limit=500&order=bug_id&f3=bug_id&o3=greaterthan&v3='
+'f1=creation_ts&o1=greaterthan&v1=2014-07-22&f2=creation_ts&o2=lessthan&v2=2016-08-24&' +\
+'f3=cf_last_resolved&o3=lessthan&v3=2016-08-24&' +\
+'limit=500&order=bug_id&f4=bug_id&o4=greaterthan&v4='
 
 last_id = max([bug['id'] for bug in bugs])
 
