@@ -4,6 +4,7 @@ import copy
 import json
 import gzip
 import math
+import re
 from pprint import pprint
 
 from libmozdata import bugzilla
@@ -139,7 +140,8 @@ def bug_check_title(bug):
         'failur', 'fail', 'npe', 'except', 'broken', 
         'crash', 'bug', 'differential testing', 'error',
         'addresssanitizer', 'hang', 'jsbugmon', 'leak', 'permaorange',
-        'random orange', 'intermittent', 'regression'
+        'random orange', 'intermittent', 'regression', 'test fix',
+        'heap overflow',
     ]
     return any(keyword in bug['summary'].lower() for keyword in keywords)
 
@@ -147,7 +149,8 @@ def bug_check_title(bug):
 def check_first_comment(bug):
     keywords = [
         'steps to reproduce', 'crash', 'hang', 'assertion', 'failure',
-        'leak', 'stack trace', 'regression',
+        'leak', 'stack trace', 'regression', 'test fix', 'heap overflow',
+        'STR:',
     ]
     return any(keyword in bug['comments'][0]['text'].lower() for keyword in keywords)
 
@@ -166,6 +169,9 @@ def check_severity_major(bug):
         return True
     return False
 
+def is_coverity_issue(bug):
+    return re.search('[CID ?[0-9]+]', bug['summary']) or re.search('[CID ?[0-9]+]', bug['whiteboard'])
+
 bug_rules = [
     has_crash_signature,
     has_str,
@@ -176,6 +182,7 @@ bug_rules = [
     check_first_comment,
     check_comments,
     check_severity_major,
+    is_coverity_issue,
 ]
 
 
