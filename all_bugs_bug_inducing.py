@@ -1,5 +1,4 @@
 import json, urllib2, re, csv, subprocess
-import pandas as pd
 import dateutil.parser
 import pytz
 import requests
@@ -147,6 +146,7 @@ def crashInducing(bug_open_date, bug_fix_commits, commit_date_dict):
 
 # Output results to csv
 def outputResults(result_list, outputfile):
+    import pandas as pd
     df = pd.DataFrame(result_list, columns=['bug_id', 'bug_inducing_commits'])
     df.to_csv(outputfile, index=False)
     return
