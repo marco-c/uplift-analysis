@@ -148,7 +148,7 @@ if __name__ == '__main__':
     HG_REPO_PATH = args.repo
 
     if args.type == 'all_bugs':
-        bugs = get_bugs.get_bugs()
+        bugs = get_bugs.get_all_bugs()
     elif args.type == 'uplift_bugs':
         bugs = get_bugs.get_uplift_bugs()
 

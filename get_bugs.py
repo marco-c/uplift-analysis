@@ -9,18 +9,14 @@ from pprint import pprint
 from libmozdata import bugzilla
 
 
-def get_uplift_bugs():
-    # TODO: Implement.
-    return []
-
-
-def get_bugs():
+# Assumes query doesn't use the f1 field.
+def __download_bugs(name, query):
     bugs = []
 
     i = 0
     while True:
         try:
-            with open('all_bugs/all_bugs' + str(i) + '.json', 'r') as f:
+            with open(name + '/' + name + str(i) + '.json', 'r') as f:
                 bugs += json.load(f)
             i += 1
         except IOError:
@@ -28,14 +24,17 @@ def get_bugs():
 
     print('Loaded ' + str(len(bugs)) + ' bugs.')
 
-    # All RESOLVED/VERIFIED FIXED bugs in the Firefox and Core products filed and resolved between 2014-07-22 (release date of 31.0) and 2016-08-24 (release date of 48.0.2).
-    search_query = 'product=Core&product=Firefox&' +\
-    'bug_status=RESOLVED&bug_status=VERIFIED&resolution=FIXED&' +\
-    'f1=creation_ts&o1=greaterthan&v1=2014-07-22&f2=creation_ts&o2=lessthan&v2=2016-08-24&' +\
-    'f3=cf_last_resolved&o3=lessthan&v3=2016-08-24&' +\
-    'limit=500&order=bug_id&f4=bug_id&o4=greaterthan&v4='
+    search_query = query + '&limit=500&order=bug_id&f1=bug_id&o1=greaterthan&v1='
 
-    last_id = max([bug['id'] for bug in bugs])
+    last_id = max([bug['id'] for bug in bugs]) if len(bugs) > 0 else 0
+
+    ATTACHMENT_INCLUDE_FIELDS = [
+        'flags', 'is_patch', 'creator', 'content_type',
+    ]
+
+    COMMENT_INCLUDE_FIELDS = [
+        'id', 'text', 'author', 'time',
+    ]
 
     found = []
     finished = False
@@ -59,6 +58,14 @@ def get_bugs():
 
             bugs_dict[bugid]['comments'] = bug['comments']
 
+        def attachmenthandler(bug, bugid):
+            bugid = str(bugid)
+
+            if bugid not in bugs_dict:
+                bugs_dict[bugid] = dict()
+
+            bugs_dict[bugid]['attachments'] = bug
+
         def historyhandler(bug):
             bugid = str(bug['id'])
 
@@ -67,7 +74,7 @@ def get_bugs():
 
             bugs_dict[bugid]['history'] = bug['history']
 
-        bugzilla.Bugzilla(search_query + str(last_id), bughandler=bughandler, commenthandler=commenthandler, historyhandler=historyhandler).get_data().wait()
+        bugzilla.Bugzilla(search_query + str(last_id), bughandler=bughandler, commenthandler=commenthandler, comment_include_fields=COMMENT_INCLUDE_FIELDS, attachmenthandler=attachmenthandler, attachment_include_fields=ATTACHMENT_INCLUDE_FIELDS, historyhandler=historyhandler).get_data().wait()
 
         found = [bug for bug in bugs_dict.values()]
 
@@ -79,19 +86,19 @@ def get_bugs():
 
         if len(found) != 0 and (len(bugs) % 5000 == 0 or len(found) < 500):
             for i in range(0, int(math.ceil(float(len(bugs)) / 1000))):
-                with open('all_bugs/all_bugs' + str(i) + '.json', 'w') as f:
+                with open(name + '/' + name + str(i) + '.json', 'w') as f:
                     json.dump(bugs[i*1000:(i+1)*1000], f)
 
         if len(found) < 500:
             finished = True
 
+    return bugs
 
 
+def __filter_bugs(bugs):
     # Example bug data: https://bugzilla.mozilla.org/rest/bug/679352
     # Example bug comments data: https://bugzilla.mozilla.org/rest/bug/679352/comment
     # Example bug history data: https://bugzilla.mozilla.org/rest/bug/679352/history
-
-
 
     # If the bug contains these keywords, it's very likely a feature.
     def feature_check_keywords(bug):
@@ -110,7 +117,6 @@ def get_bugs():
         feature_check_keywords,
         check_severity_enhance,
     ]
-
 
     # If the bug has a crash signature, it is definitely a bug.
     def has_crash_signature(bug):
@@ -190,11 +196,24 @@ def get_bugs():
         is_coverity_issue,
     ]
 
+    return [bug for bug in bugs if any(rule(bug) for rule in bug_rules) and not any(rule(bug) for rule in feature_rules)]
 
-    actual_bugs = [bug for bug in bugs if any(rule(bug) for rule in bug_rules) and not any(rule(bug) for rule in feature_rules)]
 
-    return actual_bugs
+def get_all_bugs():
+    # All RESOLVED/VERIFIED FIXED bugs in the Firefox and Core products filed and resolved between 2014-07-22 (release date of 31.0) and 2016-08-24 (release date of 48.0.2).
+    search_query = 'product=Core&product=Firefox&' +\
+    'bug_status=RESOLVED&bug_status=VERIFIED&resolution=FIXED&' +\
+    'f2=creation_ts&o2=greaterthan&v2=2014-07-22&f3=creation_ts&o3=lessthan&v3=2016-08-24&' +\
+    'f4=cf_last_resolved&o4=lessthan&v4=2016-08-24'
+
+    return __filter_bugs(__download_bugs('all_bugs', search_query))
+
+
+def get_uplift_bugs():
+    # TODO: Implement.
+    # bugs = get_all_bugs()
+    pass
 
 
 if __name__ == '__main__':
-    print('Total number of actual bugs: ' + str(len(get_bugs())))
+    print('Total number of actual bugs: ' + str(len(get_all_bugs())))
