@@ -6,9 +6,13 @@ import gzip
 import math
 import re
 from pprint import pprint
-
 from libmozdata import bugzilla
-from libmozdata import patchanalysis
+
+
+def get_uplift_bugs():
+    # TODO: Implement.
+    return []
+
 
 def get_bugs():
     bugs = []

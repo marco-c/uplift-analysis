@@ -2,6 +2,7 @@ import json, urllib2, re, csv, subprocess
 import dateutil.parser
 import pytz
 import requests
+import argparse
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 from libmozdata import patchanalysis
@@ -152,9 +153,19 @@ def outputResults(result_list, outputfile):
     return
 
 if __name__ == '__main__':
-    DEBUG = False
-    HG_REPO_PATH = '~/Documenti/workspace/mozilla-central/'
-    bugs = get_bugs.get_bugs()
+    parser = argparse.ArgumentParser(description='')
+    parser.add_argument('repo', action='store', help='the path to the repository')
+    parser.add_argument('-t', '--type', action='store', default='all_bugs', choices=['all_bugs', 'uplift_bugs'])
+    parser.add_argument('-d', '--debug', action='store_true', help='whether to perform a dry-run to debug problems')
+    args = parser.parse_args()
+
+    HG_REPO_PATH = args.repo
+
+    if args.type == 'all_bugs':
+        bugs = get_bugs.get_bugs()
+    elif args.type == 'uplift_bugs':
+        bugs = get_bugs.get_uplift_bugs()
+
     commit_date_dict = loadCommitDate('commit_date.csv')
 
     try:
@@ -168,9 +179,11 @@ if __name__ == '__main__':
     i = len(results)
     for bug in remaining_bugs:
         i += 1
-        if i > 5 and DEBUG:
+        if i > 5 and args.debug:
             break
+
         print(str(i) + ' out of ' + str(len(bugs)) + ': ' + str(bug['id']))
+
         bug_open_date = get_date(bug['creation_time'])
         if bug_open_date:
             bug_fix_commits, _ = patchanalysis.get_commits_for_bug(bug)
@@ -179,10 +192,11 @@ if __name__ == '__main__':
             if len(bug_inducing_commits):
                 print bug_inducing_commits
             results[bug['id']] = list(bug_inducing_commits)
-        if DEBUG == False:
+
+        if not args.debug:
             with open('all_bugs_bug_inducing_commits.json', 'w') as f:
                 json.dump(results, f)
 
-    if DEBUG == False:
+    if not args.debug:
         result_list = [[bug_id, '^'.join(bug_inducing_commits)] for bug_id, bug_inducing_commits in results.items()]
         outputResults(result_list, 'all_bugs_bug_inducing_commits.csv')
