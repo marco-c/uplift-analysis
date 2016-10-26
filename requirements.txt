@@ -1,1 +1,2 @@
 libmozdata==0.1.13
+pandas==0.19.0
