@@ -1,10 +1,10 @@
-import json, urllib2, re, csv, subprocess
+import json
+import re
+import csv
+import subprocess
 import dateutil.parser
 import pytz
-import requests
 import argparse
-from requests.adapters import HTTPAdapter
-from requests.packages.urllib3.util.retry import Retry
 from libmozdata import patchanalysis
 
 import get_bugs
@@ -33,20 +33,6 @@ def loadBugCommitMapping(filename):
                 if len(commits):
                     bug_commit_mapping[bug_id] = commits
     return bug_commit_mapping
-
-# Extract a bug's creation date
-def bugOpenDate(bug_id):
-    retries = Retry(total=256, backoff_factor=1, status_forcelist=[429, 500])
-
-    s = requests.Session()
-    s.mount('https://bugzilla.mozilla.org', HTTPAdapter(max_retries=retries))
-
-    r = s.get('https://bugzilla.mozilla.org/rest/bug/' + bug_id + '?include_fields=creation_time')
-    if r.status_code != 200:
-        print(r.text)
-        raise Exception(r)
-
-    return r.json()['bugs'][0]['creation_time']
 
 # Load commit date.
 # Generate the file via this command: hg log --template '{node|short}\t{date|isodate}\n' > commit_date.csv)
