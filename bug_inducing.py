@@ -60,7 +60,7 @@ def changedLines(commit_id, file_path):
     diff_res = shellCommand('hg -R %s diff -c %s %s' %(HG_REPO_PATH,commit_id,file_path))
     # extract changed lines
     for line in diff_res.split('\n'):
-        if re.search(r'@@[\+\-\,0-9\s]+@@', line):
+        if re.match(r'@@[\+\-\,0-9\s]+@@', line):
             changed_range = re.findall(r'@@(.+)@@', line)[0].strip()
             deleted_range = changed_range.split(' ')[0][1:].split(',')
             deleted_delta_cnt = 0
