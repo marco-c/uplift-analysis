@@ -199,14 +199,16 @@ def __filter_bugs(bugs):
     return [bug for bug in bugs if any(rule(bug) for rule in bug_rules) and not any(rule(bug) for rule in feature_rules)]
 
 
-def get_all_bugs():
-    # All RESOLVED/VERIFIED FIXED bugs in the Firefox and Core products filed and resolved between 2014-07-22 (release date of 31.0) and 2016-08-24 (release date of 48.0.2).
-    search_query = 'product=Core&product=Firefox&' +\
+# All RESOLVED/VERIFIED FIXED bugs in the Firefox and Core products filed and resolved between 2014-07-22 (release date of 31.0) and 2016-08-24 (release date of 48.0.2).
+def __get_all_bugs_query():
+    return 'product=Core&product=Firefox&' +\
     'bug_status=RESOLVED&bug_status=VERIFIED&resolution=FIXED&' +\
     'f2=creation_ts&o2=greaterthan&v2=2014-07-22&f3=creation_ts&o3=lessthan&v3=2016-08-24&' +\
     'f4=cf_last_resolved&o4=lessthan&v4=2016-08-24'
 
-    return __filter_bugs(__download_bugs('all_bugs', search_query))
+
+def get_all_bugs():
+    return __filter_bugs(__download_bugs('all_bugs', __get_all_bugs_query()))
 
 
 def get_uplift_bugs():
