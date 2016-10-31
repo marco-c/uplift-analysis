@@ -130,7 +130,7 @@ def __filter_bugs(bugs):
     def has_regression_range(bug):
         return 'cf_has_regression_range' in bug and bug['cf_has_regression_range'] == 'yes'
 
-    # If the bug has a URL, it's very likely a bug that the reported experienced
+    # If the bug has a URL, it's very likely a bug that the reporter experienced
     # on the given URL.
     def has_url(bug):
         return bug['url'] != ''
@@ -159,7 +159,7 @@ def __filter_bugs(bugs):
     # If the first comment in the bug contains these substrings, it's likely a bug.
     def check_first_comment(bug):
         keywords = [
-            'steps to reproduce', 'crash', 'hang', 'assertion', 'failure',
+            'steps to reproduce', 'crash', ' hang ', 'assertion', 'failure',
             'leak', 'stack trace', 'regression', 'test fix', 'heap overflow',
             'STR:',
         ]
