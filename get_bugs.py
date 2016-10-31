@@ -159,9 +159,9 @@ def __filter_bugs(bugs):
     # If the first comment in the bug contains these substrings, it's likely a bug.
     def check_first_comment(bug):
         keywords = [
-            'steps to reproduce', 'crash', ' hang ', 'assertion', 'failure',
-            'leak', 'stack trace', 'regression', 'test fix', 'heap overflow',
-            'STR:',
+            'steps to reproduce', 'crash', 'assertion', 'failure', 'leak', 'stack trace', 'regression', 'test fix',
+            ' hang ', ' hangs ', ' hang.', ' hang,', ' hangs.', ' hangs,',
+            'heap overflow', 'STR:',
         ]
         return any(keyword in bug['comments'][0]['text'].lower() for keyword in keywords)
 
