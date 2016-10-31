@@ -57,7 +57,7 @@ def changedLines(commit_id, file_path):
     deleted_delta_cnt = -1
     deleted_line_set = set()
     # request diff from the Hg repository
-    diff_res = shellCommand('hg -R %s diff -c %s %s' %(HG_REPO_PATH,commit_id,file_path))
+    diff_res = shellCommand(HG_BIN + ' -R %s diff -c %s %s' %(HG_REPO_PATH,commit_id,file_path))
     # extract changed lines
     for line in diff_res.split('\n'):
         if re.match(r'@@[\+\-\,0-9\s]+@@', line):
@@ -109,7 +109,7 @@ def hgAnnotate(commit_id, file_list):
             deleted_line_set = changedLines(commit_id, file_path)
             # blame the parent revision, and select the "-" lines' corresponding revision numbers
             parent_commit = commit_id + '^'
-            blame_res = shellCommand('hg -R %s annotate -r %s %s -c -l -w -b -B' %(HG_REPO_PATH,parent_commit,file_path))  
+            blame_res = shellCommand(HG_BIN + ' -R %s annotate -r %s %s -c -l -w -b -B' %(HG_REPO_PATH,parent_commit,file_path))  
             candidate_set = filterCandidate(blame_res, deleted_line_set)
     return candidate_set
 
@@ -118,7 +118,7 @@ def crashInducing(bug_open_date, bug_fix_commits, commit_date_dict):
     bug_inducing_commits = set()
     for commit_id in bug_fix_commits:
         # extract a commit's modified and deleted files, and its parent sha
-        cmd_out = shellCommand('hg -R %s log -r %s --template "{file_mods}\n{file_dels}"' %(HG_REPO_PATH,commit_id))
+        cmd_out = shellCommand(HG_BIN + ' -R %s log -r %s --template "{file_mods}\n{file_dels}"' %(HG_REPO_PATH,commit_id))
         items = cmd_out.split('\n')
         changed_files = set(items[0].split(' ') + items[1].split(' '))
         # apply SZZ algorithm
@@ -142,10 +142,12 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='')
     parser.add_argument('repo', action='store', help='the path to the repository')
     parser.add_argument('-t', '--type', action='store', default='all_bugs', choices=['all_bugs', 'uplift_bugs'])
+    parser.add_argument('-m', '--mercurial-bin', action='store', default='hg', help='path to the \'hg\' binary')
     parser.add_argument('-d', '--debug', action='store_true', help='whether to perform a dry-run to debug problems')
     args = parser.parse_args()
 
     HG_REPO_PATH = args.repo
+    HG_BIN = args.mercurial_bin
 
     if args.type == 'all_bugs':
         bugs = get_bugs.get_all_bugs()
@@ -155,7 +157,7 @@ if __name__ == '__main__':
     commit_date_dict = loadCommitDate('commit_date.csv')
 
     try:
-        with open('all_bugs_bug_inducing_commits.json', 'r') as f:
+        with open(args.type + '_bug_inducing_commits.json', 'r') as f:
             results = json.load(f)
     except:
         results = dict()
@@ -180,9 +182,9 @@ if __name__ == '__main__':
             results[bug['id']] = list(bug_inducing_commits)
 
         if not args.debug:
-            with open('all_bugs_bug_inducing_commits.json', 'w') as f:
+            with open(args.type + '_bug_inducing_commits.json', 'w') as f:
                 json.dump(results, f)
 
     if not args.debug:
         result_list = [[bug_id, '^'.join(bug_inducing_commits)] for bug_id, bug_inducing_commits in results.items()]
-        outputResults(result_list, 'all_bugs_bug_inducing_commits.csv')
+        outputResults(result_list, args.type + '_bug_inducing_commits.csv')
