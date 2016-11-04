@@ -2,11 +2,14 @@ import os
 import json
 import pickle
 import gzip
+import argparse
 from datetime import (datetime, timedelta)
 from libmozdata import patchanalysis
 from libmozdata import hgmozilla
 from libmozdata import utils
 from libmozdata.bugzilla import Bugzilla
+
+import get_bugs
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Mine commit metrics')
@@ -45,10 +48,19 @@ if __name__ == '__main__':
         except IOError:
             pass
 
+    if args.type == 'all_bugs':
+        other_preloaded_bugs = get_bugs.get_all_bugs()
+    elif args.type == 'uplift_bugs':
+        other_preloaded_bugs = get_bugs.get_uplift_bugs()
+
     def load_bug(channel, bug_id):
         # Try loading from the pickle.
         for bug in preloaded_bugs[channel]:
-            if str(bug['id']) == str(bug_id):
+            if int(bug['id']) == int(bug_id):
+                return bug
+
+        for bug in other_preloaded_bugs:
+            if int(bug['id']) == int(bug_id):
                 return bug
 
         return None
@@ -87,5 +99,5 @@ if __name__ == '__main__':
         except Exception as e:
             print('Error with bug ' + str(bug_id) + ': ' + str(e))
 
-    with open(os.path.join(DIR, 'analyzed_commits.json'), 'w') as f:
-        json.dump(analyzed_commits, f)
+        with open(os.path.join(DIR, 'analyzed_commits.json'), 'w') as f:
+            json.dump(analyzed_commits, f)
