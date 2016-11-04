@@ -139,7 +139,7 @@ def outputResults(result_list, outputfile):
     return
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='')
+    parser = argparse.ArgumentParser(description='Bug-inducing analysis')
     parser.add_argument('repo', action='store', help='the path to the repository')
     parser.add_argument('-t', '--type', action='store', default='all_bugs', choices=['all_bugs', 'uplift_bugs'])
     parser.add_argument('-m', '--mercurial-bin', action='store', default='hg', help='path to the \'hg\' binary')
