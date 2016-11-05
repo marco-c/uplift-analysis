@@ -7,7 +7,7 @@ import get_bugs
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Mine commit metrics')
-    parser.add_argument('type', action='store', choices=['generate', 'validate'])
+    parser.add_argument('type', action='store', choices=['generate', 'validate', 'diff'])
     parser.add_argument('-n', '--num', action='store', choices=['1', '2'])
     args = parser.parse_args()
 
@@ -49,3 +49,19 @@ if __name__ == '__main__':
 
         with open('all_bugs/bugs_to_validate_' + args.num + '.json', 'w') as f:
             json.dump(bugs, f)
+    elif args.type == 'diff':
+        with open('all_bugs/bugs_to_validate_1.json', 'r') as f:
+            bugs_1 = json.load(f)
+        with open('all_bugs/bugs_to_validate_2.json', 'r') as f:
+            bugs_2 = json.load(f)
+
+        diff = 0
+
+        for i in range(0, len(bugs_1)):
+            if bugs_1[i]['correct'] != bugs_2[i]['correct']:
+                print(str(bugs_1[i]['id']) + ', 1 ' + str(bugs_1[i]['correct']) + ', 2 ' + str(bugs_2[i]['correct']))
+                diff += 1
+
+        print('Diff on ' + str(diff) + ' bugs.')
+        print('Precision1: ' + str(len([e for e in bugs_1 if e['correct']])) + ' / ' + str(len(bugs_1)) + ' = ' + '{:.3%}'.format(float(len([e for e in bugs_1 if e['correct']])) / len(bugs_1)))
+        print('Precision2: ' + str(len([e for e in bugs_2 if e['correct']])) + ' / ' + str(len(bugs_2)) + ' = ' + '{:.3%}'.format(float(len([e for e in bugs_2 if e['correct']])) / len(bugs_2)))
