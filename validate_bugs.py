@@ -62,6 +62,21 @@ if __name__ == '__main__':
                 print(str(bugs_1[i]['id']) + ', 1 ' + str(bugs_1[i]['correct']) + ', 2 ' + str(bugs_2[i]['correct']))
                 diff += 1
 
+        true_positives_1 = len([bug for bug in bugs_1 if bug['is_bug'] and bug['correct']])
+        true_negatives_1 = len([bug for bug in bugs_1 if not bug['is_bug'] and bug['correct']])
+        false_positives_1 = len([bug for bug in bugs_1 if bug['is_bug'] and not bug['correct']])
+        false_negatives_1 = len([bug for bug in bugs_1 if not bug['is_bug'] and not bug['correct']])
+        true_positives_2 = len([bug for bug in bugs_2 if bug['is_bug'] and bug['correct']])
+        true_negatives_2 = len([bug for bug in bugs_2 if not bug['is_bug'] and bug['correct']])
+        false_positives_2 = len([bug for bug in bugs_2 if bug['is_bug'] and not bug['correct']])
+        false_negatives_2 = len([bug for bug in bugs_2 if not bug['is_bug'] and not bug['correct']])
+
         print('Diff on ' + str(diff) + ' bugs.')
-        print('Precision1: ' + str(len([e for e in bugs_1 if e['correct']])) + ' / ' + str(len(bugs_1)) + ' = ' + '{:.3%}'.format(float(len([e for e in bugs_1 if e['correct']])) / len(bugs_1)))
-        print('Precision2: ' + str(len([e for e in bugs_2 if e['correct']])) + ' / ' + str(len(bugs_2)) + ' = ' + '{:.3%}'.format(float(len([e for e in bugs_2 if e['correct']])) / len(bugs_2)))
+        print('Accuracy1: {:.3%}'.format(float(true_positives_1 + true_negatives_1) / len(bugs_1)))
+        print('Precision1: {:.3%}'.format(float(true_positives_1) / (true_positives_1 + false_positives_1)))
+        print('Recall1: {:.3%}'.format(float(true_positives_1) / (true_positives_1 + false_negatives_1)))
+        print('Specificity1: {:.3%}'.format(float(true_negatives_1) / (true_negatives_1 + false_positives_1)))
+        print('Accuracy2: {:.3%}'.format(float(true_positives_2 + true_negatives_2) / len(bugs_2)))
+        print('Precision2: {:.3%}'.format(float(true_positives_2) / (true_positives_2 + false_positives_2)))
+        print('Recall2: {:.3%}'.format(float(true_positives_2) / (true_positives_2 + false_negatives_2)))
+        print('Specificity2: {:.3%}'.format(float(true_negatives_2) / (true_negatives_2 + false_positives_2)))
