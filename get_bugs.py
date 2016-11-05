@@ -160,7 +160,7 @@ def __filter_bugs(bugs):
     def check_first_comment(bug):
         keywords = [
             'steps to reproduce', 'crash', 'assertion', 'failure', 'leak', 'stack trace', 'regression',
-            'test fix', ' hang', 'hang ', 'heap overflow', 'STR:',
+            'test fix', ' hang', 'hang ', 'heap overflow', 'str:',
         ]
         return any(keyword in bug['comments'][0]['text'].lower() for keyword in keywords)
 
