@@ -1,42 +1,42 @@
 bug_id,is_bug,le,marco,marco_comments,le_comments,"decision(bug/feaure)"
-1047180,True,True,False,This one looks like a bug in the parsing of mp4 files.,So we can consider it as a bug
-1052536,False,False,True,"This is actually a bug, but a bug in the build system, not Firefox itself (should we consider them as bugs?)",I suggest to ask Foutse
-1055787,False,False,True,"This is a bug from the title, but it doesn’t have any patches attached and was closed in favor of another bug. So in practice it isn’t a bug.","perhaps, we should consider it as a bug?"
-1060148,True,True,False,"This is in theory a bug, but a bug in an addon and not Firefox (as before, it doesn’t have patches attached).",I suggest to ask Foutse
-1072632,False,True,False,"This looks like a bug to me, probably the code that the patch is adding was wrongly removed before.","I supposed it as a bug, but I'm not sure"
-1092979,False,False,True,This is just adding a test for another bug.,"So it isn't a bug, right?"
-1107960,False,True,False,"This is a bug, but was fixed somewhere else (so probably shouldn’t be considered a bug, you’re right)",ok
-1124535,True,False,True,This is a bug to fix a failing assertion,ok
-1129244,False,True,False,This looks like a bug to me (the function should have been wrapped with those macros but wasn’t),I agree
-1132463,False,True,False,This is a user-interface bug,ok
-1141230,True,True,False,This is a test-only change,ok
-1144973,False,True,False,This is a bug because the function mentioned was not doing what it was supposed to do,ok
-1146462,False,True,False,This is a bug because something was not cleaned up properly,ok
-1153952,False,True,False,This is a user-interface bug,ok
-1157628,False,False,True,This is just a code style change,ok
-1161389,False,True,False,"This is a bug (see comment 2, the person is giving steps to reproduce, etc.)",I agree
-1162771,True,False,True,This is a bug (touch events not working well for some video elements),ok
-1164582,True,True,False,This is adding some more error reporting,ok
-1167423,False,False,True,"This is adding some null-checks (not because of a bug found in the wild, but for prevention)",ok
-1168630,False,True,False,See https://bugzilla.mozilla.org/show_bug.cgi?id=1166326#c16,I suggest we discuss on it
-1172697,False,True,False,"This is a bug in how some URLs are interpreted (probably not a regression though, it’s probably never worked before)",ok
-1172721,False,True,False,"This is a user-interface bug, although with no patches attached, so perhaps could be ignored completely",ok
-1178233,False,True,False,This is a service worker bug,ok
-1192109,False,True,False,This is adding some includes that were missing (so causing the build to fail),"so it's a bug, right?"
-1193864,False,True,False,This is fixing an error that caused the compilation to fail,"a bug?"
-1214786,False,True,False,From comment 1: “if you try to access that site firefox is going to crash.”,"a bug as well?"
-1215167,False,False,True,"This is changing the behavior for addons, but is not fixing a preexisting bug",ok
-1220702,False,False,True,"I think this is applying some modifications to match a JavaScript standard, but it wasn’t a bug","the first commenter said, mostly places where we return identical JSON for two programs that do not behave the same. I'm not sure if it's as a bug"
-1223445,False,True,False,This was a memory leak,"Do you think it's a bug at Mozilla?"
-1227113,False,False,True,This is just a code style change (changing indentation),ok
-1230939,True,False,True,This was an issue found by a static analyzer,ok
-1233857,False,True,False,This was a performance regression,ok
-1238911,True,False,True,This was an issue found by a static analyzer,ok
-1241332,False,False,True,"This seems like a performance improvement, but not a regression",I'm not sure if too much latency means a bug
-1249201,False,False,True,"This seems like an improvement (always show carets when scrolling), but not a bug",ok
-1254247,False,False,True,"This is a modification in the static analyzer, but not in Firefox itself",ok
+1047180,True,True,False,This one looks like a bug in the parsing of mp4 files.,So we can consider it as a bug,bug
+1052536,False,False,True,"This is actually a bug, but a bug in the build system, not Firefox itself (should we consider them as bugs?)",I suggest to ask Foutse,
+1055787,False,False,True,"This is a bug from the title, but it doesn’t have any patches attached and was closed in favor of another bug. So in practice it isn’t a bug.","perhaps, we should consider it as a bug?",
+1060148,True,True,False,"This is in theory a bug, but a bug in an addon and not Firefox (as before, it doesn’t have patches attached).",I suggest to ask Foutse,
+1072632,False,True,False,"This looks like a bug to me, probably the code that the patch is adding was wrongly,bug removed before.","I supposed it as a bug, but I'm not sure",bug
+1092979,False,False,True,This is just adding a test for another bug.,"So it isn't a bug, right?",feature
+1107960,False,True,False,"This is a bug, but was fixed somewhere else (so probably shouldn’t be considered a bug, you’re right)",ok,feature
+1124535,True,False,True,This is a bug to fix a failing assertion,ok,bug
+1129244,False,True,False,This looks like a bug to me (the function should have been wrapped with those macros but wasn’t),I agree,bug
+1132463,False,True,False,This is a user-interface bug,ok,bug
+1141230,True,True,False,This is a test-only change,ok,feature
+1144973,False,True,False,This is a bug because the function mentioned was not doing what it was supposed to do,ok,bug
+1146462,False,True,False,This is a bug because something was not cleaned up properly,ok,bug
+1153952,False,True,False,This is a user-interface bug,ok,bug
+1157628,False,False,True,This is just a code style change,ok,feature
+1161389,False,True,False,"This is a bug (see comment 2, the person is giving steps to reproduce, etc.)",I agree,bug
+1162771,True,False,True,This is a bug (touch events not working well for some video elements),ok,bug
+1164582,True,True,False,This is adding some more error reporting,ok,feature
+1167423,False,False,True,"This is adding some null-checks (not because of a bug found in the wild, but for prevention)",ok,feature
+1168630,False,True,False,See https://bugzilla.mozilla.org/show_bug.cgi?id=1166326#c16,I suggest we discuss on it,
+1172697,False,True,False,"This is a bug in how some URLs are interpreted (probably not a regression though, it’s probably never worked before)",ok,bug
+1172721,False,True,False,"This is a user-interface bug, although with no patches attached, so perhaps could be ignored completely",ok,bug
+1178233,False,True,False,This is a service worker bug,ok,bug
+1192109,False,True,False,This is adding some includes that were missing (so causing the build to fail),"so it's a bug, right?",
+1193864,False,True,False,This is fixing an error that caused the compilation to fail,"a bug?",
+1214786,False,True,False,From comment 1: “if you try to access that site firefox is going to crash.”,"a bug as well?",
+1215167,False,False,True,"This is changing the behavior for addons, but is not fixing a preexisting bug",ok,feature
+1220702,False,False,True,"I think this is applying some modifications to match a JavaScript standard, but it wasn’t a bug","the first commenter said, mostly places where we return identical JSON for two programs that do not behave the same. I'm not sure if it's as a bug",
+1223445,False,True,False,This was a memory leak,"Do you think it's a bug at Mozilla?",
+1227113,False,False,True,This is just a code style change (changing indentation),ok,feature
+1230939,True,False,True,This was an issue found by a static analyzer,ok,bug
+1233857,False,True,False,This was a performance regression,"do you think it's a bug?",
+1238911,True,False,True,This was an issue found by a static analyzer,ok,bug
+1241332,False,False,True,"This seems like a performance improvement, but not a regression",I'm not sure if too much latency means a bug,feature
+1249201,False,False,True,"This seems like an improvement (always show carets when scrolling), but not a bug",ok,feature
+1254247,False,False,True,"This is a modification in the static analyzer, but not in Firefox itself",ok,feature
 1264768,True,True,False,"I think this is applying some modifications to match a standard, but it wasn’t a bug",ok
 1265577,True,False,True,"It seems like a bug, see comment 3 and 4",I agree
 1268798,True,False,True,You’re probably right here,ok
-1278546,False,False,True,"This is changing the orientation of a UI element, I’m not sure if the wrong orientation was a regression or if it’s always been wrong","As a user, I may call it as a bug :-)"
-1296642,True,False,True,This was a regression (indeed it also has the ‘regression’ keyword),ok
+1278546,False,False,True,"This is changing the orientation of a UI element, I’m not sure if the wrong orientation was a regression or if it’s always been wrong","As a user, I may call it as a bug :-)",
+1296642,True,False,True,This was a regression (indeed it also has the ‘regression’ keyword),ok,bug
