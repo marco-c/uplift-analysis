@@ -339,6 +339,9 @@ bug_id,is_bug,correct
 1241084,True,True
 1181694,True,True
 1047180,True,True
+1052536,False,True
+1055787,False,True
+1060148,True,False
 1072632,False,False
 1092979,False,True
 1107960,False,True
@@ -354,6 +357,7 @@ bug_id,is_bug,correct
 1162771,True,True
 1164582,True,False
 1167423,False,True
+1168630,False,False
 1172697,False,False
 1172721,False,False
 1178233,False,False
@@ -361,6 +365,7 @@ bug_id,is_bug,correct
 1193864,False,False
 1214786,False,False
 1215167,False,True
+1220702,False,False
 1223445,False,False
 1227113,False,True
 1230939,True,True
@@ -372,4 +377,5 @@ bug_id,is_bug,correct
 1264768,True,False
 1265577,True,True
 1268798,True,False
+1278546,False,True
 1296642,True,True
