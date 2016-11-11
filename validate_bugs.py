@@ -54,6 +54,8 @@ if __name__ == '__main__':
             bugs_1 = json.load(f)
         with open('all_bugs/bugs_to_validate_2.json', 'r') as f:
             bugs_2 = json.load(f)
+        with open('all_bugs/bugs_to_validate_decision.json', 'r') as f:
+            bugs_decision = json.load(f)
 
         diff = 0
 
@@ -76,7 +78,19 @@ if __name__ == '__main__':
         print('Precision1: {:.3%}'.format(float(true_positives_1) / (true_positives_1 + false_positives_1)))
         print('Recall1: {:.3%}'.format(float(true_positives_1) / (true_positives_1 + false_negatives_1)))
         print('Specificity1: {:.3%}'.format(float(true_negatives_1) / (true_negatives_1 + false_positives_1)))
+        print('')
         print('Accuracy2: {:.3%}'.format(float(true_positives_2 + true_negatives_2) / len(bugs_2)))
         print('Precision2: {:.3%}'.format(float(true_positives_2) / (true_positives_2 + false_positives_2)))
         print('Recall2: {:.3%}'.format(float(true_positives_2) / (true_positives_2 + false_negatives_2)))
         print('Specificity2: {:.3%}'.format(float(true_negatives_2) / (true_negatives_2 + false_positives_2)))
+        print('')
+
+        true_positives_decision = len([bug for bug in bugs_decision if bug['is_bug'] and bug['correct']])
+        true_negatives_decision = len([bug for bug in bugs_decision if not bug['is_bug'] and bug['correct']])
+        false_positives_decision = len([bug for bug in bugs_decision if bug['is_bug'] and not bug['correct']])
+        false_negatives_decision = len([bug for bug in bugs_decision if not bug['is_bug'] and not bug['correct']])
+
+        print('Accuracy: {:.3%}'.format(float(true_positives_decision + true_negatives_decision) / len(bugs_decision)))
+        print('Precision: {:.3%}'.format(float(true_positives_decision) / (true_positives_decision + false_positives_decision)))
+        print('Recall: {:.3%}'.format(float(true_positives_decision) / (true_positives_decision + false_negatives_decision)))
+        print('Specificity: {:.3%}'.format(float(true_negatives_decision) / (true_negatives_decision + false_positives_decision)))

@@ -1,0 +1,1902 @@
+[
+  {
+    "bug_id": 1087488,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1101825,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1269776,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1251347,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1206958,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1120284,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1277983,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1249312,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1218597,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1294375,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1214506,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1239083,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1198124,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1124425,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1239128,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1126490,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1282150,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1206376,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1083501,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1218674,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1167477,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1288311,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1202296,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1253500,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1155198,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1157248,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1138818,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1204356,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1183894,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1080687,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1226912,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1188009,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1274567,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1200304,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1257649,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1159347,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1054901,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1167544,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1141108,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1124543,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1231040,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1083600,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1253590,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1292503,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1186017,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1286183,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1134783,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1274096,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1132789,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1167614,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1108228,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1243397,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1181961,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1151243,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1179935,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1282348,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1222958,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1167673,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1259847,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1286472,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1274193,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1151333,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1180008,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1245546,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1186160,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1173876,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1124738,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1257861,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1175944,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1287917,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1149358,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1235375,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1063354,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1116605,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1171903,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1237455,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1180122,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1272294,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1173992,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1284586,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1243628,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1132286,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1106428,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1147681,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1236395,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1071635,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1147412,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1045018,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1266221,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1235504,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1235521,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1239619,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1237580,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1131092,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1071721,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1276523,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1268340,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1245813,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1274486,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1231485,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1090174,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1180290,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1120899,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1176196,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1219205,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1182347,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1225367,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1272488,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1245870,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1067699,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1268404,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1272503,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1176256,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1188545,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1266375,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1151703,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1182428,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1274589,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1256165,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1137384,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1274602,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1192689,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1207084,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1113661,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1153825,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1055523,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1291045,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1123113,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1131308,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1097181,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1278778,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1174333,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1147714,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1106755,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1184585,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1117003,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1239889,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1182546,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1074008,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1151840,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1164135,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1137518,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1201008,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1274741,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1254268,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1293185,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1055622,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1184647,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1211273,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1129356,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1262480,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1135508,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1252260,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1229739,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1229742,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1143745,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1227720,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1248202,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1215438,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1283023,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1148750,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1266648,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1256411,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1135591,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1203180,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1102829,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1203184,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1252341,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1157289,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1186809,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1154045,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1147907,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1281028,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1209349,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1070089,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1257303,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1252368,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1092626,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1217559,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1164327,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1209384,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1125419,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1147951,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1216695,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1057879,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1123416,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1100911,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1088625,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1245375,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1055873,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1256588,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1285272,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1172645,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1260714,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1148078,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1072310,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1176775,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1111245,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1270997,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1049816,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1174755,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1047792,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1086708,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1088758,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1248503,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1053944,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1193213,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1250560,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1156366,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1275437,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1180944,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1187094,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1168666,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1101130,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1111326,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1156386,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1137957,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1150253,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1211957,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1267018,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1154389,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1271126,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1219939,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1142333,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1076597,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1293690,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1295741,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1271166,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1090950,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1166728,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1224077,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1111440,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1164693,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1121688,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1056155,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1215900,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1230065,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1166763,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1244590,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1279413,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1113530,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1148350,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1079541,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1228230,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1254855,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1250767,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1263058,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1263060,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1168853,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1113559,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1091037,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1275360,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1146339,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1197309,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1195504,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1168891,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1236476,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1254925,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1239300,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1191453,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1134120,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1093165,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1205854,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1263158,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1252925,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1189443,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1187401,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1240651,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1199704,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1127696,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1250917,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1220215,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1261179,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1177233,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1146520,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1216157,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1265318,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1138348,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1191598,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1117882,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1271484,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1068734,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1177279,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1271500,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1246927,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1162965,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1046231,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1083098,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1142503,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1144786,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1273587,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1146615,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1074942,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1253124,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1255181,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1072910,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1222417,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1042734,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1272452,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1199901,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1273647,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1201973,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1134391,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1140537,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1154881,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1242958,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1111891,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1242967,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1075049,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1201127,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1230704,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1079154,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1186796,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1220491,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1097615,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1083281,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1157011,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1238935,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1058718,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1210294,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1129249,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1118147,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1235959,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1126350,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1126352,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1277906,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1288147,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1132501,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1288150,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1257435,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1058783,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1134560,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1083361,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1187811,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1189860,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1042414,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1133565,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1241084,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1181694,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1047180,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1052536,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1055787,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1060148,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1072632,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1092979,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1107960,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1124535,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1129244,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1132463,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1141230,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1144973,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1146462,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1153952,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1157628,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1161389,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1162771,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1164582,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1167423,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1168630,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1172697,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1172721,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1178233,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1192109,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1193864,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1214786,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1215167,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1220702,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1223445,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1227113,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1230939,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1233857,
+    "is_bug": false,
+    "correct": false
+  },
+  {
+    "bug_id": 1238911,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1241332,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1249201,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1254247,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1264768,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1265577,
+    "is_bug": true,
+    "correct": true
+  },
+  {
+    "bug_id": 1268798,
+    "is_bug": true,
+    "correct": false
+  },
+  {
+    "bug_id": 1278546,
+    "is_bug": false,
+    "correct": true
+  },
+  {
+    "bug_id": 1296642,
+    "is_bug": true,
+    "correct": true
+  }
+]
