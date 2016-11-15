@@ -162,7 +162,8 @@ if __name__ == '__main__':
     except:
         results = dict()
 
-    remaining_bugs = [bug for bug in bugs if int(bug['id']) not in [int(bid) for bid in results.keys()]]
+    result_ids = set([int(bid) for bid in results.keys()])
+    remaining_bugs = [bug for bug in bugs if int(bug['id']) not in result_ids]
     print(str(len(remaining_bugs)) + ' bugs left to analyze.')
 
     i = len(results)
