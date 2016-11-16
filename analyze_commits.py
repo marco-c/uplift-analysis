@@ -66,12 +66,18 @@ if __name__ == '__main__':
         return None
 
 
-    analyzed_commits = {}
+    try:
+        with open(os.path.join(DIR, 'analyzed_commits.json'), 'r') as f:
+            analyzed_commits = json.load(f)
+    except:
+        analyzed_commits = dict()
 
-    i = 1
-    for commit in bug_inducing_uplifts:
-        print(str(i) + ' out of ' + str(len(bug_inducing_uplifts)))
+    remaining_uplifts = [commit for commit in bug_inducing_uplifts if commit not in analyzed_commits]
+
+    i = len(analyzed_commits)
+    for commit in remaining_uplifts:
         i += 1
+        print(str(i) + ' out of ' + str(len(bug_inducing_uplifts)))
 
         channel, bug_id = get_bug_from_commit(commit)
 
