@@ -95,6 +95,7 @@ if __name__ == '__main__':
             del info['uplift_comment']
             del info['users']
             del info['uplift_author']
+            del info['landings']
 
             # Transform timedelta objects to number of seconds (to make them JSON-serializable).
             info['landing_delta'] = int(info['landing_delta'].total_seconds())
