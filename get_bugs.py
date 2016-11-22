@@ -206,6 +206,10 @@ def __get_all_bugs_query():
     'f4=cf_last_resolved&o4=lessthan&v4=2016-08-24'
 
 
+def get_all():
+    return __download_bugs('all_bugs', __get_all_bugs_query())
+
+
 def get_all_bugs():
     return __filter_bugs(__download_bugs('all_bugs', __get_all_bugs_query()))
 
