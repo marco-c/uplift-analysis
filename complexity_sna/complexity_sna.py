@@ -10,7 +10,7 @@ def shellCommand(command_str):
 
 #   Remove path prefix
 def removePathPrefix(pathStr):
-    relative_path = pathStr.split('uplift/release/')[-1]
+    relative_path = pathStr.split('uplift/firefox/')[-1]
     return re.sub(r'^[\/\.]+', '', relative_path)
 
 #   Remove the extension of a file (to combine the .h and .cpp together)
