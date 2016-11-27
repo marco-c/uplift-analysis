@@ -38,6 +38,8 @@ if __name__ == '__main__':
 
     # The bug-inducing uplifts are given by the intersection between the uplifts and the bug-inducing commits.
     bug_inducing_uplifts = uplifts.intersection(bug_inducing_commits)
+    # The non bug-inducing uplifts are given by the difference between the uplifts and the bug-inducing commits.
+    non_bug_inducing_uplifts = uplifts.difference(bug_inducing_commits)
 
     preloaded_bugs = {}
     for channel in ['release', 'beta', 'aurora']:
@@ -72,12 +74,12 @@ if __name__ == '__main__':
     except:
         analyzed_commits = dict()
 
-    remaining_uplifts = [commit for commit in bug_inducing_uplifts if commit not in analyzed_commits]
+    remaining_uplifts = [commit for commit in uplifts if commit not in analyzed_commits]
 
     i = len(analyzed_commits)
     for commit in remaining_uplifts:
         i += 1
-        print(str(i) + ' out of ' + str(len(bug_inducing_uplifts)))
+        print(str(i) + ' out of ' + str(len(uplifts)))
 
         channel, bug_id = get_bug_from_commit(commit)
 
