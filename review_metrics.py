@@ -40,27 +40,29 @@ def reviewHistory(bug_item):
         for change_item in activity['changes']:
             added = change_item['added']
             if len(added):
-                if 'review' in added or 'feedback' in added:
+                if added.startswith('review') or added.startswith('feedback') or added.startswith('superreview'):
                     attach_id = change_item['attachment_id']
-                    if '?' in added:
-                        last_request_date = activity_date
-                        review_history_dict[attach_id] = {'request': activity_date}
-                        print '\t', attach_id, activity_date, added
-                    else:
-                        print '\t', attach_id, activity_date, added
-                        if attach_id in review_history_dict:
-                            if 'review' in added:
-                                if not '1st_review' in review_history_dict[attach_id]:
-                                    review_history_dict[attach_id]['1st_review'] = activity_date
-                            elif 'feedback' in added:
-                                if not '1st_feedback' in review_history_dict[attach_id]:
-                                    review_history_dict[attach_id]['1st_feedback'] = activity_date
+                    print '\t', attach_id, activity_date, added.split(', ')
+                    for added_flag in added.split(', '):
+                        if '?' in added_flag:
+                            last_request_date = activity_date
+                            if not attach_id in review_history_dict:
+                                review_history_dict[attach_id] = {'request': activity_date}
                         else:
-                            if 'review' in added:
-                                review_history_dict[attach_id] = {'request': last_request_date, '1st_review': activity_date}
-                            elif 'feedback' in added:
-                                review_history_dict[attach_id] = {'request': last_request_date, '1st_feedback': activity_date}
-
+                            if attach_id in review_history_dict:
+                                if 'review' in added_flag:
+                                    if not '1st_review' in review_history_dict[attach_id]:
+                                        review_history_dict[attach_id]['1st_review'] = activity_date
+                                elif 'feedback' in added_flag:
+                                    if not '1st_feedback' in review_history_dict[attach_id]:
+                                        review_history_dict[attach_id]['1st_feedback'] = activity_date
+                            else:
+                                if 'review' in added_flag:
+                                    review_history_dict[attach_id] = {'request': last_request_date, '1st_review': activity_date}
+                                elif 'feedback' in added_flag:
+                                    review_history_dict[attach_id] = {'request': last_request_date, '1st_feedback': activity_date}
+#                    if '?' in added:
+#                        last_request_date = activity_date
     pprint.pprint(review_history_dict)
     return review_history_dict
 
