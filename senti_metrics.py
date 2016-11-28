@@ -1,3 +1,4 @@
+from __future__ import division
 import json, re, subprocess, os, string
 import get_bugs
 import pandas as pd
@@ -63,8 +64,8 @@ def sentimentInText(comment_text):
 
 def sentiMetrics(commit_list):
     pos_list, neg_list, overall_list = list(), list(), list()
-    module_owner_neg = [0]
-    rel_manager_neg = [0]
+    module_owner_pos, module_owner_neg = [0], [0]
+    rel_manager_pos, rel_manager_neg = [0], [0]
     for a_comment in commit_list:
         comment_text = a_comment['text']
         commenter = a_comment['author']
@@ -76,13 +77,15 @@ def sentiMetrics(commit_list):
         neg_list.append(neg_senti)
         overall_list.append(int(senti_res[2]))
         if commenter in module_owners:
+            module_owner_pos.append(pos_senti)
             module_owner_neg.append(neg_senti)
         if commenter in rel_managers:
+            rel_manager_pos.append(pos_senti)
             rel_manager_neg.append(neg_senti)
     max_pos = max(pos_list)
-    max_neg = min(neg_list)
+    min_neg = min(neg_list)
     overall = sum(pos_list+neg_list)
-    return [max_pos, max_neg, overall, min(module_owner_neg), min(rel_manager_neg)]
+    return [max_pos, min_neg, overall, max(module_owner_pos), min(module_owner_neg), max(rel_manager_pos), min(rel_manager_neg)]
 
 if __name__ == '__main__':
     DEBUG = False
@@ -92,17 +95,25 @@ if __name__ == '__main__':
     print 'Loading bug reports ...'
     all_bugs = get_bugs.get_all()
     if DEBUG:
-        bug_list = all_bugs[:5]
+        bug_list = all_bugs[:10]
     else:
         bug_list = all_bugs
+    total_len = len(bug_list)
     
     print 'Extracting metrics ...'
     output_list = list()
+    i = 1
     for bug_item in bug_list:
         bug_id = bug_item['id']
+        print '%s %.1f%%' %(bug_id, i/total_len*100)
         senti_metrics = sentiMetrics(bug_item['comments'])
         output_list.append([bug_id] + senti_metrics)
-    df = pd.DataFrame(output_list, columns=['bug_id', 'max_pos', 'max_neg', 'overall', 'owner_neg', 'manager_neg'])
+        shellCommand('sudo sysctl -w vm.drop_caches=3')
+        i += 1
+    df = pd.DataFrame(output_list, columns=['bug_id', 'max_pos', 'min_neg', 'overall', 'owner_pos', 'owner_neg', 'manager_pos', 'manager_neg'])
     df.to_csv('metrics/senti_metrics.csv')
+    
+    if DEBUG:
+        print df
     
     print 'Done.'
