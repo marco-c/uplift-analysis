@@ -1,3 +1,4 @@
+from __future__ import division
 import json, re, string, pprint
 import get_bugs
 
@@ -42,7 +43,7 @@ def reviewHistory(bug_item):
             if len(added):
                 if added.startswith('review') or added.startswith('feedback') or added.startswith('superreview'):
                     attach_id = change_item['attachment_id']
-                    print '\t', attach_id, activity_date, added.split(', ')
+#                    print '\t', attach_id, activity_date, added.split(', ')
                     for added_flag in added.split(', '):
                         if '?' in added_flag:
                             last_request_date = activity_date
@@ -61,9 +62,7 @@ def reviewHistory(bug_item):
                                     review_history_dict[attach_id] = {'request': last_request_date, '1st_review': activity_date}
                                 elif 'feedback' in added_flag:
                                     review_history_dict[attach_id] = {'request': last_request_date, '1st_feedback': activity_date}
-#                    if '?' in added:
-#                        last_request_date = activity_date
-    pprint.pprint(review_history_dict)
+#    pprint.pprint(review_history_dict)
     return review_history_dict
 
 if __name__ == '__main__':
@@ -79,7 +78,7 @@ if __name__ == '__main__':
     ##### DEBUGING DATA #######
     bug_list = ()
     with open('all_bugs/all_bugs0.json') as f:
-        bug_list = json.load(f)[:50]
+        bug_list = json.load(f)[:5]
     ##### DEBUGING DATA #######
     
     print 'Extracting metrics ...'
@@ -87,18 +86,26 @@ if __name__ == '__main__':
     for bug_item in bug_list:
         bug_id = bug_item['id']
         print bug_id
+        total_patches, obsolete_cnt = 0, 0
         for attach_item in bug_item['attachments']:
 #            print attach_item
             if attach_item['is_patch']:
                 if attach_item['content_type'] == 'text/plain':
+                    total_patches += 1
+                    attach_id = attach_item['id']
                     attach_flags = attach_item['flags']
-                    if len(attach_flags):
+                    is_obsolete = attach_item['is_obsolete']
+                    if is_obsolete == 1:
+                        obsolete_cnt += 1
+                    elif len(attach_flags):
                         last_flag = attach_flags[-1]
                         reviewer = last_flag['setter']
                         review_date = re.sub(r'[^0-9]', '', last_flag['modification_date'])
                         review_status = last_flag['status']
-                        # TODO: attachment ID
-#                        print '\t', reviewer, review_status
+        if total_patches:
+            obsolete_patch_rate = round(obsolete_cnt/total_patches, 2)
+        else:
+            obsolete_patch_rate = round(0, 2)
         relatedComments(bug_item, '')
         review_history_dict = reviewHistory(bug_item)
 
