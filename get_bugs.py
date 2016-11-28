@@ -29,7 +29,7 @@ def __download_bugs(name, query):
     last_id = max([bug['id'] for bug in bugs]) if len(bugs) > 0 else 0
 
     ATTACHMENT_INCLUDE_FIELDS = [
-        'flags', 'is_patch', 'creator', 'content_type',
+        'id', 'is_obsolete', 'flags', 'is_patch', 'creator', 'content_type',
     ]
 
     COMMENT_INCLUDE_FIELDS = [
@@ -76,7 +76,7 @@ def __download_bugs(name, query):
 
         bugzilla.Bugzilla(search_query + str(last_id), bughandler=bughandler, commenthandler=commenthandler, comment_include_fields=COMMENT_INCLUDE_FIELDS, attachmenthandler=attachmenthandler, attachment_include_fields=ATTACHMENT_INCLUDE_FIELDS, historyhandler=historyhandler).get_data().wait()
 
-        found = [bug for bug in bugs_dict.values()]
+        found = list(bugs_dict.values())
 
         last_id = max([last_id] + [bug['id'] for bug in found])
 
