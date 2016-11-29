@@ -111,7 +111,7 @@ if __name__ == '__main__':
         shellCommand('sudo sysctl -w vm.drop_caches=3')
         i += 1
     df = pd.DataFrame(output_list, columns=['bug_id', 'max_pos', 'min_neg', 'overall', 'owner_pos', 'owner_neg', 'manager_pos', 'manager_neg'])
-    df.to_csv('metrics/senti_metrics.csv')
+    df.to_csv('metrics/senti_metrics.csv', index=False)
     
     if DEBUG:
         print df

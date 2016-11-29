@@ -100,7 +100,7 @@ def extractSourceCodeMetrics(rel_date_list, rel_list, commit_date_dict, category
                             if node in a_file:
                                 metrics = metric_dict[node]
                                 raw_list.append(metrics)
-                # compute median/sum value for a specific attachment
+                # compute average/sum value for a specific attachment
                 if len(raw_list):
                     df = pd.DataFrame(raw_list, columns=metric_names).apply(pd.to_numeric)
                     for metric_name in metric_names:
