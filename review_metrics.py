@@ -1,7 +1,9 @@
 from __future__ import division
 import json, re, string, pprint
 from datetime import datetime
+from numpy import mean
 import get_bugs
+import pandas as pd
 
 def relatedComments(bug_item, attach_id):
     total_times, total_words = 0, 0
@@ -26,30 +28,35 @@ def relatedComments(bug_item, attach_id):
 def dateDiff(d1_str, d2_str):
     d1 = datetime.strptime(d1_str, '%Y%m%d%H%M%S')
     d2 = datetime.strptime(d2_str, '%Y%m%d%H%M%S')
-    return round((d2 - d1).total_seconds()/3600, 2)
+    return (d2 - d1).total_seconds()/3600
 
 if __name__ == '__main__':
-    DEBUG = True
-            
-    '''print 'Loading bug reports ...'
-    all_bugs = get_bugs.get_all()
+    DEBUG = True    
+    # load bugs
     if DEBUG:
-        bug_list = all_bugs[:5]
+        bug_list = ()
+        with open('all_bugs/all_bugs0.json') as f:
+            bug_list = json.load(f)[:50]
     else:
-        bug_list = all_bugs'''
-    
-    ##### DEBUGING DATA #######
-    bug_list = ()
-    with open('all_bugs/all_bugs0.json') as f:
-        bug_list = json.load(f)[:50]
-    ##### DEBUGING DATA #######
-    
+        print 'Loading bug reports ...'
+        all_bugs = get_bugs.get_all()
+        if DEBUG:
+            bug_list = all_bugs[:5]
+        else:
+            bug_list = all_bugs
+    # extracting review metrics
     print 'Extracting metrics ...'
     output_list = list()
+    metric_names = ['bug_id', 'review_iterations', 'comment_times', 'comment_words', 'reviewers', 'reviewer_comment_rate', 
+                    'non_author_voters', 'neg_review_rate', 'response_delay', 'review_duration', 
+                    'feedback_count', 'neg_feedback_rate', 'feedback_delay']
     for bug_item in bug_list:
         bug_id = bug_item['id']
         print bug_id
         total_patches, obsolete_cnt = 0, 0
+        iteration_list, ct_list, cw_list, reviewer_cnt_list, reviewer_comm_list = list(), list(), list(), list(), list()
+        n_author_list, neg_review_list, review_delay_list, review_dur_list = list(), list(), list(), list()
+        fb_cnt_list, fb_neg_list, fb_delay_list = list(), list(), list()
         for attach_item in bug_item['attachments']:
             if attach_item['is_patch']:
                 if attach_item['content_type'] == 'text/plain':
@@ -64,9 +71,6 @@ if __name__ == '__main__':
                         obsolete_cnt += 1
                     # analyze patches (including the obsolete ones)
                     if len(attach_flags):
-                        # comment metrics
-                        total_comment_times, total_comment_words, commenter_set = relatedComments(bug_item, attach_id)
-                        
                         print 'attach:', attach_id
                         review_iterations = 0
                         feedback_cnt, neg_feedbacks = 0, 0
@@ -90,18 +94,24 @@ if __name__ == '__main__':
                                 if a_flag['status'] == '-':
                                     neg_feedbacks += 1
                                 feedback_cnt += 1
+                        iteration_list.append(review_iterations)
+                        fb_cnt_list.append(feedback_cnt)
+                        reviewer_cnt_list.append(len(reviewer_set))
                         # proportion of negative reviews
                         if pos_votes + neg_votes:
-                            neg_review_rate =  round(neg_votes/(pos_votes+neg_votes), 2)
+                            neg_review_rate =  neg_votes/(pos_votes+neg_votes)
                         else:
                             neg_review_rate = -1
+                        neg_review_list.append(neg_review_rate)
                         # proportion of negative feedbacks
                         if feedback_cnt:
-                            neg_feedback_rate = round(neg_feedbacks/feedback_cnt, 2)
+                            neg_feedback_rate = neg_feedbacks/feedback_cnt
                         else:
                             neg_feedback_rate = -1
+                        fb_neg_list.append(neg_feedback_rate)
                         # non author voters
-                        non_author_voters = len(reviewer_set - set([attach_author]))  
+                        non_author_voters = len(reviewer_set - set([attach_author]))
+                        n_author_list.append(non_author_voters)
                         # review delay and review duration
                         if first_review_date:
                             response_delay = dateDiff(attach_date, first_review_date)
@@ -109,15 +119,31 @@ if __name__ == '__main__':
                         else:
                             response_delay = -1
                             review_duration = -1
+                        review_delay_list.append(response_delay)
+                        review_dur_list.append(review_duration)
                         # feedback delay
                         if first_feedback_date:
                             feedback_delay = dateDiff(attach_date, first_feedback_date)
                         else:
                             feedback_delay = -1
-                        print feedback_delay
-                        print '-'*30
+                        fb_delay_list.append(feedback_delay)
+                        # comment metrics
+                        total_comment_times, total_comment_words, commenter_set = relatedComments(bug_item, attach_id)
+                        if len(reviewer_set):
+                            reviewer_comment_rate = len(reviewer_set-commenter_set) / len(reviewer_set)
+                        else:
+                            reviewer_comment_rate = 0
+                        reviewer_comm_list.append(reviewer_comment_rate)
+                        ct_list.append(total_comment_times)
+                        cw_list.append(total_comment_words)
         if total_patches:
-            obsolete_patch_rate = round(obsolete_cnt/total_patches, 2)
+            obsolete_patch_rate = obsolete_cnt/total_patches
         else:
-            obsolete_patch_rate = round(0, 2)
+            obsolete_patch_rate = 0
+        output_list.append([bug_id, mean(iteration_list), mean(ct_list), mean(cw_list), mean(reviewer_cnt_list), mean(reviewer_comm_list), 
+                            mean(n_author_list), mean(neg_review_list), mean(review_delay_list), mean(review_dur_list),
+                            mean(fb_cnt_list), mean(fb_neg_list), mean(fb_delay_list)])
+    # output results
+    df = pd.DataFrame(output_list, columns=metric_names).round(decimals=2).fillna(-1)
+    print df
         
