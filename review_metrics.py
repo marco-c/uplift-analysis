@@ -22,88 +22,11 @@ def relatedComments(bug_item, attach_id):
                 total_words += comment_words
     return total_times, total_words, commenter_set
 
-def requestAndFirstFlag(change_item, added, activity_date, review_history_dict, last_review_request_date):
-    attach_id = change_item['attachment_id']
-    if '?' in added:
-        last_review_request_date = activity_date
-        review_history_dict[attach_id] = {'request': activity_date}
-        print '\t', attach_id, activity_date, added
-    else:
-        print '\t', attach_id, activity_date, added
-        if attach_id in review_history_dict:
-            if not '1st_flag' in review_history_dict[attach_id]:
-                review_history_dict[attach_id]['1st_flag'] = activity_date
-        else:
-            review_history_dict[attach_id] = {'request': last_review_request_date, '1st_flag':activity_date}
-    return review_history_dict, last_review_request_date
-
 # Compute date interval between two date strings
 def dateDiff(d1_str, d2_str):
     d1 = datetime.strptime(d1_str, '%Y%m%d%H%M%S')
     d2 = datetime.strptime(d2_str, '%Y%m%d%H%M%S')
     return round((d2 - d1).total_seconds()/3600, 2)
-
-def reviewHistory(bug_item):
-    review_history_dict = dict()
-    last_request_date = None
-    reviewer_dict = dict()
-    reviewer_set, feedbacker_set = set(), set()
-    decision_dict = dict()
-    for activity in bug_item['history']:
-        activity_date = re.sub(r'[^0-9]', '', activity['when'])
-        activity_person = activity['who']
-        for change_item in activity['changes']:
-            added = change_item['added']
-            if len(added):
-                if added.startswith('review') or added.startswith('feedback') or added.startswith('superreview'):
-                    attach_id = change_item['attachment_id']
-#                    print '\t', attach_id, activity_date, added.split(', ')
-                    for added_flag in added.split(', '):
-                        if '?' in added_flag:
-                            last_request_date = activity_date
-                            if not attach_id in review_history_dict:
-                                review_history_dict[attach_id] = {'request': activity_date}
-                        else:
-                            if 'review' in added_flag:
-                                # count unique reviewers
-                                reviewer_set.add(activity_person)
-                                if attach_id in reviewer_dict:
-                                    reviewer_dict[attach_id].add(activity_person)
-                                else:
-                                    reviewer_dict[attach_id] = set([activity_person])
-                                # review decision (+/-)
-                                if '+' in added_flag:
-                                    if attach_id in decision_dict:
-                                        decision_dict[attach_id]['pos'] += 1
-                                    else:
-                                        decision_dict[attach_id] = {'pos': 1, 'neg': 0}
-                                else:
-                                    if attach_id in decision_dict:
-                                        decision_dict[attach_id]['neg'] += 1
-                                    else:
-                                        decision_dict[attach_id] = {'pos': 0, 'neg': 1}
-                                # find the 1st review
-                                if attach_id in review_history_dict:
-                                    if not '1st_review' in review_history_dict[attach_id]:
-                                        review_history_dict[attach_id]['1st_review'] = activity_date
-                                        review_history_dict[attach_id]['iteration'] = 1
-                                    else:
-                                        review_history_dict[attach_id]['iteration'] += 1
-                                else:
-                                    review_history_dict[attach_id] = {'request': last_request_date, '1st_review': activity_date, 'iteration': 1}
-                                # review iteration
-                            elif 'feedback' in added_flag:
-                                # count unique people who give feedbacks
-                                feedbacker_set.add(activity_person)
-                                # find the 1st feedback
-                                if attach_id in review_history_dict:
-                                    if not '1st_feedback' in review_history_dict[attach_id]:
-                                        review_history_dict[attach_id]['1st_feedback'] = activity_date
-                                else:
-                                    review_history_dict[attach_id] = {'request': last_request_date, '1st_feedback': activity_date}
-#    pprint.pprint(review_history_dict, indent=4)
-    return review_history_dict, len(reviewer_set), len(feedbacker_set), reviewer_dict, decision_dict
-
 
 if __name__ == '__main__':
     DEBUG = True
@@ -127,10 +50,7 @@ if __name__ == '__main__':
         bug_id = bug_item['id']
         print bug_id
         total_patches, obsolete_cnt = 0, 0
-        review_history_dict, reviewer_cnt, feedbacker_cnt, reviewer_dict, decision_dict = reviewHistory(bug_item)
-#        pprint.pprint(review_history_dict, indent=4)
         for attach_item in bug_item['attachments']:
-#            print attach_item
             if attach_item['is_patch']:
                 if attach_item['content_type'] == 'text/plain':
                     total_patches += 1
@@ -144,26 +64,8 @@ if __name__ == '__main__':
                         obsolete_cnt += 1
                     # analyze patches (including the obsolete ones)
                     if len(attach_flags):
-                        last_flag = attach_flags[-1]
-                        reviewer = last_flag['setter']
-                        last_review_date = re.sub(r'[^0-9]', '', last_flag['modification_date'])
-                        '''if attach_id in review_history_dict:
-                            request_date = review_history_dict[attach_id]['request']
-                            if '1st_review' in review_history_dict[attach_id]:
-                                first_review_date = review_history_dict[attach_id]['1st_review']
-                                response_delay = dateDiff(request_date, first_review_date)
-                                review_duration = dateDiff(request_date, last_review_date)
-                            if '1st_feedback' in review_history_dict[attach_id]:
-                                fist_feedback_date = review_history_dict[attach_id]['1st_feedback']'''
-                        
-                        '''if request_date == fist_feedback_date:
-                            feedback_delay = dateDiff(creation)
-                        feedback_delay = dateDiff(request_date, fist_feedback_date)
-                        print '\t', attach_id, feedback_delay'''
-                        
-                        last_review_status = last_flag['status']
+                        # comment metrics
                         total_comment_times, total_comment_words, commenter_set = relatedComments(bug_item, attach_id)
-                        
                         
                         print 'attach:', attach_id
                         review_iterations = 0
