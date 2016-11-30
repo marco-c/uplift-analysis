@@ -31,7 +31,7 @@ def dateDiff(d1_str, d2_str):
     return (d2 - d1).total_seconds()/3600
 
 if __name__ == '__main__':
-    DEBUG = True    
+    DEBUG = False    
     # load bugs
     if DEBUG:
         bug_list = ()
@@ -145,5 +145,7 @@ if __name__ == '__main__':
                             mean(fb_cnt_list), mean(fb_neg_list), mean(fb_delay_list)])
     # output results
     df = pd.DataFrame(output_list, columns=metric_names).round(decimals=2).fillna(-1)
-    print df
+    df.to_csv('independent_metrics/review_metrics.csv', index=False)
+    if DEBUG:
+        print df
         
