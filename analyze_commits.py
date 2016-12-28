@@ -3,6 +3,7 @@ import json
 import pickle
 import gzip
 import argparse
+import sys
 from datetime import (datetime, timedelta)
 from libmozdata import patchanalysis
 from libmozdata import hgmozilla
@@ -30,17 +31,6 @@ if __name__ == '__main__':
 
     uplifts = set(sum([elem['commits'] for elems in bugs_and_commits.values() for elem in elems], []))
 
-    # Load list of bug-inducing commits.
-    with open(os.path.join(DIR, 'bug_inducing_commits.json'), 'r') as f:
-        bug_inducing_commits_by_bug = json.load(f)
-
-    bug_inducing_commits = set(sum(bug_inducing_commits_by_bug.values(), []))
-
-    # The bug-inducing uplifts are given by the intersection between the uplifts and the bug-inducing commits.
-    bug_inducing_uplifts = uplifts.intersection(bug_inducing_commits)
-    # The non bug-inducing uplifts are given by the difference between the uplifts and the bug-inducing commits.
-    non_bug_inducing_uplifts = uplifts.difference(bug_inducing_commits)
-
     preloaded_bugs = {}
     for channel in ['release', 'beta', 'aurora']:
         preloaded_bugs[channel] = []
@@ -50,10 +40,7 @@ if __name__ == '__main__':
         except IOError:
             pass
 
-    if args.type == 'all_bugs':
-        other_preloaded_bugs = get_bugs.get_all_bugs()
-    elif args.type == 'uplift_bugs':
-        other_preloaded_bugs = get_bugs.get_uplift_bugs()
+    other_preloaded_bugs = get_bugs.get_all()
 
     def load_bug(channel, bug_id):
         # Try loading from the pickle.
@@ -78,10 +65,10 @@ if __name__ == '__main__':
 
     i = len(analyzed_commits)
     for commit in remaining_uplifts:
-        i += 1
-        print(str(i) + ' out of ' + str(len(uplifts)))
-
         channel, bug_id = get_bug_from_commit(commit)
+
+        i += 1
+        print(str(i) + ' out of ' + str(len(uplifts)) + ': ' + str(commit))
 
         bug = load_bug(channel, bug_id)
 
@@ -97,7 +84,8 @@ if __name__ == '__main__':
             del info['uplift_comment']
             del info['users']
             del info['uplift_author']
-            del info['landings']
+            if 'landings' in info:
+                del info['landings']
 
             # Transform timedelta objects to number of seconds (to make them JSON-serializable).
             info['landing_delta'] = int(info['landing_delta'].total_seconds())
