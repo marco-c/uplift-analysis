@@ -29,7 +29,7 @@ def __download_bugs(name, query):
     last_id = max([bug['id'] for bug in bugs]) if len(bugs) > 0 else 0
 
     ATTACHMENT_INCLUDE_FIELDS = [
-        'id', 'is_obsolete', 'flags', 'is_patch', 'creator', 'content_type',
+        'id', 'creation_time', 'is_obsolete', 'flags', 'is_patch', 'creator', 'content_type',
     ]
 
     COMMENT_INCLUDE_FIELDS = [
