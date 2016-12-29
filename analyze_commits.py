@@ -4,6 +4,7 @@ import pickle
 import gzip
 import argparse
 import sys
+import csv
 from datetime import (datetime, timedelta)
 from libmozdata import patchanalysis
 from libmozdata import hgmozilla
@@ -98,3 +99,26 @@ if __name__ == '__main__':
 
         with open(os.path.join(DIR, 'analyzed_commits.json'), 'w') as f:
             json.dump(analyzed_commits, f)
+
+    analyzed_bugs = {}
+    for commit in uplifts:
+        channel, bug_id = get_bug_from_commit(commit)
+
+        if commit in analyzed_commits:
+            data = analyzed_commits[commit]
+
+            if bug_id in analyzed_bugs:
+                for key in ['developer_familiarity_overall', 'code_churn_overall', 'backout_num', 'code_churn_last_3_releases', 'reviewer_familiarity_overall', 'changes_size', 'reviewer_familiarity_last_3_releases', 'changes_del', 'test_changes_size', 'modules_num', 'changes_add', 'developer_familiarity_last_3_releases']:
+                    analyzed_bugs[bug_id][key] += data[key]
+            else:
+                analyzed_bugs[bug_id] = {
+                    'bug_id': bug_id,
+                }
+                analyzed_bugs[bug_id].update(data)
+
+    with open(os.path.join(DIR, 'analyzed_bugs.csv'), 'w') as output_file:
+        keys = list(list(analyzed_bugs.values())[0].keys())
+        keys.remove('bug_id')
+        csv_writer = csv.DictWriter(output_file, ['bug_id'] + keys)
+        csv_writer.writeheader()
+        csv_writer.writerows(analyzed_bugs.values())
