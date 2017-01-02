@@ -105,7 +105,10 @@ if __name__ == '__main__':
         channel, bug_id = get_bug_from_commit(commit)
 
         if commit in analyzed_commits:
-            data = analyzed_commits[commit]
+            data = analyzed_commits[commit].copy()
+
+            if 'languages' in data:
+                del data['languages']
 
             if bug_id in analyzed_bugs:
                 for key in ['developer_familiarity_overall', 'code_churn_overall', 'backout_num', 'code_churn_last_3_releases', 'reviewer_familiarity_overall', 'changes_size', 'reviewer_familiarity_last_3_releases', 'changes_del', 'test_changes_size', 'modules_num', 'changes_add', 'developer_familiarity_last_3_releases']:
