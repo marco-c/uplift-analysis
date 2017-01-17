@@ -47,6 +47,6 @@ if __name__ == '__main__':
     with open('independent_metrics/basic.csv', 'w') as output_file:
         keys = list(list(analyzed_bugs.values())[0].keys())
         keys.remove('bug_id')
-        csv_writer = csv.DictWriter(output_file, ['bug_id'] + keys)
+        csv_writer = csv.DictWriter(output_file, ['bug_id'] + sorted(keys))
         csv_writer.writeheader()
         csv_writer.writerows(analyzed_bugs.values())
