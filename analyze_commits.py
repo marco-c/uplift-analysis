@@ -13,6 +13,49 @@ from libmozdata.bugzilla import Bugzilla
 
 import get_bugs
 
+author_cache = {
+    'andrei.br92@gmail.com': ['aoprea@mozilla.com'],
+    'bcheng.gt@gmail.com': ['brandon.cheng@protonmail.com'],
+    'jwein@mozilla.com': ['jaws@mozilla.com'],
+    'Olli.Pettay@helsinki.fi': ['bugs@pettay.fi'],
+    'karlt+@karlt.net': ['karlt@mozbugz.karlt.net'],
+    'mozilla@jorgk.com': ['jorgk@jorgk.com'],
+    'Boris Zbarsky': ['bzbarsky@mit.edu'],
+    'dholbert@cs.stanford.edu': ['dholbert@mozilla.com'],
+    'nnethercote@mozilla.com': ['n.nethercote@gmail.com'],
+    'billm@mozilla.com': ['wmccloskey@mozilla.com'],
+    'romain.gauthier@monkeypatch.me': ['rgauthier@mozilla.com'],
+    'dougt@dougt.org': ['doug.turner@gmail.com'],
+    'seth@mozilla.com': ['seth.bugzilla@blackhail.net'],
+    'dao@mozilla.com': ['dao+bmo@mozilla.com'],
+    'bsmith@mozilla.com': ['brian@briansmith.org'],
+    'georg.fritzsche@googlemail.com': ['gfritzsche@mozilla.com'],
+    'kevina@gnu.org': ['kevin.bugzilla@atkinson.dhs.org', 'kevin.firefox.bugzilla@atkinson.dhs.org'],
+    'Callek@gmail.com': ['bugspam.Callek@gmail.com'],
+    'gavin@gavinsharp.com': ['gavin.sharp@gmail.com'],
+    'jwalden@mit.edu': ['jeff.walden@gmail.com', 'jwalden+bmo@mit.edu', 'jwalden+fxhelp@mit.edu', 'jwalden+spammybugs@mit.edu'],
+    'mikeperry': ['mikepery@fscked.org', 'mikeperry.unused@gmail.com', 'mikeperry@torproject.org'],
+    'kgupta@mozilla.com': ['bugmail@mozilla.staktrace.com'],
+    'Shane Caraveo': ['shanec@ActiveState.com', 'mixedpuppy@gmail.com', 'scaraveo@mozilla.com'],
+    'scaraveo@mozilla.com': ['Shane Caraveo', 'shanec@ActiveState.com', 'mixedpuppy@gmail.com'],
+    'justin.lebar@gmail.com': ['justin.lebar+bug@gmail.com'],
+    'sylvestre@mozilla.com': ['sledru@mozilla.com'],
+    'mrbkap@gmail.com': ['mrbkap@mozilla.com'],
+    'archaeopteryx@coole-files.de': ['aryx.bugmail@gmx-topmail.de'],
+    'matspal@gmail.com': ['mats@mozilla.com'],
+    'neil@mozilla.com': ['enndeakin@gmail.com'],
+    'mfinkle@mozilla.com': ['mark.finkle@gmail.com'],
+    'dtownsend@oxymoronical.com': ['dtownsend@mozilla.com'],
+    'robert@ocallahan.org': ['roc@ocallahan.org'],
+    'andrei.eftimie@softvision.ro': ['andrei@eftimie.com'],
+    'sriram@mozilla.com': ['sriram.mozilla@gmail.com'],
+    'amccreight@mozilla.com': ['continuation@gmail.com'],
+    'mcsmurf@mcsmurf.de': ['bugzilla@mcsmurf.de', 'bugzilla2@mcsmurf.de'],
+    'sikeda@mozilla.com': ['sotaro.ikeda.g@gmail.com'],
+    'quanxunzhen@gmail.com': ['xidorn+moz@upsuper.org'],
+    'jones.chris.g@gmail.com': ['cjones.bugs@gmail.com', 'cjones@mozilla.com']
+}
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Mine commit metrics')
     parser.add_argument('type', action='store', default='all_bugs', choices=['all_bugs', 'uplift_bugs'])
@@ -74,7 +117,7 @@ if __name__ == '__main__':
         bug = load_bug(channel, bug_id)
 
         try:
-            info = patchanalysis.bug_analysis(bug if bug is not None else bug_id, channel)
+            info = patchanalysis.bug_analysis(bug if bug is not None else bug_id, channel, author_cache)
 
             # Remove unneeded info.
             info.update(info['patches'][commit])
@@ -99,29 +142,3 @@ if __name__ == '__main__':
 
         with open(os.path.join(DIR, 'analyzed_commits.json'), 'w') as f:
             json.dump(analyzed_commits, f)
-
-    analyzed_bugs = {}
-    for commit in uplifts:
-        channel, bug_id = get_bug_from_commit(commit)
-
-        if commit in analyzed_commits:
-            data = analyzed_commits[commit].copy()
-
-            if 'languages' in data:
-                del data['languages']
-
-            if bug_id in analyzed_bugs:
-                for key in ['developer_familiarity_overall', 'code_churn_overall', 'backout_num', 'code_churn_last_3_releases', 'reviewer_familiarity_overall', 'changes_size', 'reviewer_familiarity_last_3_releases', 'changes_del', 'test_changes_size', 'modules_num', 'changes_add', 'developer_familiarity_last_3_releases']:
-                    analyzed_bugs[bug_id][key] += data[key]
-            else:
-                analyzed_bugs[bug_id] = {
-                    'bug_id': bug_id,
-                }
-                analyzed_bugs[bug_id].update(data)
-
-    with open(os.path.join(DIR, 'analyzed_bugs.csv'), 'w') as output_file:
-        keys = list(list(analyzed_bugs.values())[0].keys())
-        keys.remove('bug_id')
-        csv_writer = csv.DictWriter(output_file, ['bug_id'] + keys)
-        csv_writer.writeheader()
-        csv_writer.writerows(analyzed_bugs.values())
