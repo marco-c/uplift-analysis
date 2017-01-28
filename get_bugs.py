@@ -214,11 +214,5 @@ def get_all_bugs():
     return __filter_bugs(__download_bugs('all_bugs', __get_all_bugs_query()))
 
 
-def get_uplift_bugs():
-    # TODO: Implement.
-    # bugs = get_all_bugs()
-    pass
-
-
 if __name__ == '__main__':
     print('Total number of actual bugs: ' + str(len(get_all_bugs())))
