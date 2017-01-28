@@ -23,3 +23,23 @@ def get_ids(query):
 # the query returns and that are not in the list.
 def get_missing_bugs(bugs, query):
     return set(get_ids(query)).difference(set([bug['id'] for bug in bugs]))
+
+
+UPLIFT_FLAG_NAMES = ['approval-mozilla-release', 'approval-mozilla-beta', 'approval-mozilla-aurora']
+
+
+def get_uplifts(bugs):
+    return [bug for bug in bugs if any(flag['name'] in UPLIFT_FLAG_NAMES and flag['status'] == '+' for attachment in bug['attachments'] for flag in attachment['flags'])]
+
+
+def uplift_channels(bug):
+    channels = set()
+
+    for attachment in bug['attachments']:
+        for flag in attachment['flags']:
+            if flag['name'] not in UPLIFT_FLAG_NAMES or flag['status'] != '+':
+                continue
+
+            channels.add(flag['name'][17:])
+
+    return list(channels)
