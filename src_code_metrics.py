@@ -1,6 +1,7 @@
 import re, csv, pytz, json, subprocess
 from dateutil import parser
 import pandas as pd
+from libmozdata import patchanalysis
 
 # Execute a shell command
 def shellCommand(command_str):
@@ -70,44 +71,46 @@ def extractSourceCodeMetrics(rel_date_list, rel_list, commit_date_dict, category
     # map and compute metric values
     result_list = list()
     i = 0
-    with open('bugs_and_commits.json') as f:
-        bug2commit = json.load(f)
-        for phase in bug2commit:
-            bugs_in_phase = bug2commit[phase]
-            for mapping in bugs_in_phase:
-                if DEBUG and i > 5:
-                    break
-                bug_id = mapping['bug_id']
-                commits = mapping['commits']
-                print bug_id
-                # extract metrics
-                raw_list = list()
-                metric_list = list()
-                for commit_id in commits:
-                    i += 1
-                    if DEBUG:
-                        print ' ', commit_id
-                    # corresponding (prior) release of a commit
-                    rel_num = correspondingRelease(commit_id, commit_date_dict, rel_date_list)                    
-                    # changed files in a commit
-                    shell_res = shellCommand('hg -R %s log -r %s --template {files}\t{diffstat}' %(HG_REPO_PATH, commit_id)).split('\t')
-                    raw_changed_files = shell_res[0]
-                    cpp_changed_files = re.findall(r'(\S+\.(?:c|cpp|cc|cxx|h|hpp|hxx)\b)', raw_changed_files)
-                    # map file/node to metrics
-                    for a_file in cpp_changed_files:
-                        metric_dict = rel_metric_dict[rel_num]
-                        for node in metric_dict:
-                            if node in a_file:
-                                metrics = metric_dict[node]
-                                raw_list.append(metrics)
-                # compute average/sum value for a specific attachment
-                if len(raw_list):
-                    df = pd.DataFrame(raw_list, columns=metric_names).apply(pd.to_numeric)
-                    for metric_name in metric_names:
-                        metric_list.append(round(df[metric_name].mean(), 2))
-                    result_list.append([bug_id] + metric_list)
-                else:
-                    result_list.append([bug_id] + [0]*len(metric_names))
+
+    bugs = get_bugs.get_all()
+
+    for bug in bugs:
+        if DEBUG and i > 5:
+            break
+
+        bug_id = bug['id']
+        commits, _ = patchanalysis.get_commits_for_bug(bug)
+
+        print bug_id
+
+        # extract metrics
+        raw_list = list()
+        metric_list = list()
+        for commit_id in commits:
+            i += 1
+            if DEBUG:
+                print ' ', commit_id
+            # corresponding (prior) release of a commit
+            rel_num = correspondingRelease(commit_id, commit_date_dict, rel_date_list)
+            # changed files in a commit
+            shell_res = shellCommand('hg -R %s log -r %s --template {files}\t{diffstat}' %(HG_REPO_PATH, commit_id)).split('\t')
+            raw_changed_files = shell_res[0]
+            cpp_changed_files = re.findall(r'(\S+\.(?:c|cpp|cc|cxx|h|hpp|hxx)\b)', raw_changed_files)
+            # map file/node to metrics
+            for a_file in cpp_changed_files:
+                metric_dict = rel_metric_dict[rel_num]
+                for node in metric_dict:
+                    if node in a_file:
+                        metrics = metric_dict[node]
+                        raw_list.append(metrics)
+        # compute average/sum value for a specific attachment
+        if len(raw_list):
+            df = pd.DataFrame(raw_list, columns=metric_names).apply(pd.to_numeric)
+            for metric_name in metric_names:
+                metric_list.append(round(df[metric_name].mean(), 2))
+            result_list.append([bug_id] + metric_list)
+        else:
+            result_list.append([bug_id] + [0]*len(metric_names))
     
     return pd.DataFrame(result_list, columns=['bug_id']+metric_names)
 
