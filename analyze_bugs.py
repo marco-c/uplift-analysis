@@ -72,7 +72,7 @@ if __name__ == '__main__':
 
     remaining_uplifts = [bug for bug in all_uplifts if str(bug['id']) not in analyzed_bugs]
 
-    '''i = len(analyzed_bugs)
+    i = len(analyzed_bugs)
     for bug in remaining_uplifts:
         i += 1
         print(str(i) + ' out of ' + str(len(all_uplifts)) + ': ' + str(bug['id']))
@@ -112,7 +112,7 @@ if __name__ == '__main__':
             traceback.print_exc()
 
         with open(os.path.join(DIR, 'analyzed_bugs.json'), 'w') as f:
-            json.dump(analyzed_bugs, f)'''
+            json.dump(analyzed_bugs, f)
 
 
     row_keys = set()
