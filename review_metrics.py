@@ -31,7 +31,7 @@ def dateDiff(d1_str, d2_str):
     return (d2 - d1).total_seconds()/3600
 
 if __name__ == '__main__':
-    DEBUG = True    
+    DEBUG = False    
     # load bugs
     if DEBUG:
         bug_list = ()
