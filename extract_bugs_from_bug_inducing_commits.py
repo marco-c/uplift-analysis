@@ -35,7 +35,7 @@ for commit in bug_inducing_commits:
 
 bug_inducing_bugs = list(set(bug_inducing_bugs))
 
-all_bugs = [bug['id'] for bug in get_bugs.get_all_bugs()]
+all_bugs = [bug['id'] for bug in get_bugs.get_all()]
 
 with open('independent_metrics/bug_inducing.csv', 'w') as output_file:
     csv_writer = csv.writer(output_file, ['bug_id', 'error_inducing'])
