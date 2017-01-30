@@ -31,7 +31,7 @@ def dateDiff(d1_str, d2_str):
     return (d2 - d1).total_seconds()/3600
 
 if __name__ == '__main__':
-    DEBUG = False    
+    DEBUG = True    
     # load bugs
     if DEBUG:
         bug_list = ()
@@ -49,29 +49,30 @@ if __name__ == '__main__':
     output_list = list()
     metric_names = ['bug_id', 'review_iterations', 'comment_times', 'comment_words', 'reviewers', 'reviewer_comment_rate', 
                     'non_author_voters', 'neg_review_rate', 'response_delay', 'review_duration', 
-                    'feedback_count', 'neg_feedback_rate', 'feedback_delay']
+                    'feedback_count', 'neg_feedbacks', 'feedback_delay', 'review_status']
     for bug_item in bug_list:
         bug_id = bug_item['id']
         print bug_id
-        total_patches, obsolete_cnt = 0, 0
+        total_patches, approved_patches, obsolete_cnt = 0, 0, 0
         iteration_list, ct_list, cw_list, reviewer_cnt_list, reviewer_comm_list = list(), list(), list(), list(), list()
         n_author_list, neg_review_list, review_delay_list, review_dur_list = list(), list(), list(), list()
         fb_cnt_list, fb_neg_list, fb_delay_list = list(), list(), list()
         for attach_item in bug_item['attachments']:
             if attach_item['is_patch']:
                 if attach_item['content_type'] == 'text/plain':
-                    total_patches += 1
                     attach_id = attach_item['id']
                     attach_flags = attach_item['flags']
                     attach_author = attach_item['creator']
                     attach_date = re.sub(r'[^0-9]', '', attach_item['creation_time'])
                     is_obsolete = attach_item['is_obsolete']
-                    # count obsolete patches in a bug
-                    if is_obsolete == 1:
-                        obsolete_cnt += 1
                     # analyze patches (including the obsolete ones)
                     if len(attach_flags):
                         print 'attach:', attach_id
+                        # count total reviewed or review requested patches
+                        total_patches += 1
+                        # count obsolete patches in a bug
+                        if is_obsolete == 1:
+                            obsolete_cnt += 1
                         review_iterations = 0
                         feedback_cnt, neg_feedbacks = 0, 0
                         reviewer_set = set()
@@ -103,12 +104,8 @@ if __name__ == '__main__':
                         else:
                             neg_review_rate = -1
                         neg_review_list.append(neg_review_rate)
-                        # proportion of negative feedbacks
-                        if feedback_cnt:
-                            neg_feedback_rate = neg_feedbacks/feedback_cnt
-                        else:
-                            neg_feedback_rate = -1
-                        fb_neg_list.append(neg_feedback_rate)
+                        # number of negative feedbacks
+                        fb_neg_list.append(neg_feedbacks)
                         # non author voters
                         non_author_voters = len(reviewer_set - set([attach_author]))
                         n_author_list.append(non_author_voters)
@@ -136,15 +133,23 @@ if __name__ == '__main__':
                         reviewer_comm_list.append(reviewer_comment_rate)
                         ct_list.append(total_comment_times)
                         cw_list.append(total_comment_words)
+                        # whether the patched has been approved
+                        if attach_flags[-1]['status'] == '+':
+                            approved_patches += 1
         if total_patches:
             obsolete_patch_rate = obsolete_cnt/total_patches
+            if approved_patches/total_patches == 1:
+                review_status = '+'
+            else:
+                review_status = '?'
+            output_list.append([bug_id, mean(iteration_list), mean(ct_list), mean(cw_list), mean(reviewer_cnt_list), mean(reviewer_comm_list), 
+                                mean(n_author_list), mean(neg_review_list), mean(review_delay_list), mean(review_dur_list),
+                                mean(fb_cnt_list), mean(fb_neg_list), mean(fb_delay_list), review_status])
+            
         else:
             obsolete_patch_rate = 0
-        output_list.append([bug_id, mean(iteration_list), mean(ct_list), mean(cw_list), mean(reviewer_cnt_list), mean(reviewer_comm_list), 
-                            mean(n_author_list), mean(neg_review_list), mean(review_delay_list), mean(review_dur_list),
-                            mean(fb_cnt_list), mean(fb_neg_list), mean(fb_delay_list)])
     # output results
-    df = pd.DataFrame(output_list, columns=metric_names).round(decimals=2).fillna(-1)
+    df = pd.DataFrame(output_list, columns=metric_names).round(decimals=2).fillna(-1)    
     df.to_csv('independent_metrics/review_metrics.csv', index=False)
     if DEBUG:
         print df
