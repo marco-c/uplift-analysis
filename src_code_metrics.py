@@ -1,6 +1,7 @@
 import re, csv, pytz, json, subprocess
 from dateutil import parser
 import pandas as pd
+import get_bugs
 from libmozdata import patchanalysis
 
 # Execute a shell command
