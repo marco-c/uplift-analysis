@@ -52,6 +52,10 @@ author_cache = {
     'sikeda@mozilla.com': ['sotaro.ikeda.g@gmail.com'],
     'quanxunzhen@gmail.com': ['xidorn+moz@upsuper.org'],
     'jones.chris.g@gmail.com': ['cjones.bugs@gmail.com', 'cjones@mozilla.com'],
+    'kit@yakshaving.ninja': ['kit@mozilla.com', 'kitcambridge@mozilla.com', 'kcambridge@mozilla.com'],
+    'kit@mozilla.com': ['kit@yakshaving.ninja', 'kitcambridge@mozilla.com', 'kcambridge@mozilla.com'],
+    'kitcambridge@mozilla.com': ['kit@mozilla.com', 'kit@yakshaving.ninja', 'kcambridge@mozilla.com'],
+    'kcambridge@mozilla.com': ['kit@mozilla.com', 'kitcambridge@mozilla.com', 'kit@yakshaving.ninja'],
 }
 
 if __name__ == '__main__':
