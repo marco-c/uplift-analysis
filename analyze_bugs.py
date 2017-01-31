@@ -100,7 +100,7 @@ if __name__ == '__main__':
 
             info['component'] = bug['component']
             info['channels'] = uplift_channels
-            info['types'] = get_bug_types(bug)
+            info['types'] = utils.get_bug_types(bug)
 
             for channel in uplift_channels:
                 uplift_info = patchanalysis.uplift_info(bug, channel)
