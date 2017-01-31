@@ -51,7 +51,7 @@ author_cache = {
     'mcsmurf@mcsmurf.de': ['bugzilla@mcsmurf.de', 'bugzilla2@mcsmurf.de'],
     'sikeda@mozilla.com': ['sotaro.ikeda.g@gmail.com'],
     'quanxunzhen@gmail.com': ['xidorn+moz@upsuper.org'],
-    'jones.chris.g@gmail.com': ['cjones.bugs@gmail.com', 'cjones@mozilla.com']
+    'jones.chris.g@gmail.com': ['cjones.bugs@gmail.com', 'cjones@mozilla.com'],
 }
 
 if __name__ == '__main__':
@@ -96,6 +96,7 @@ if __name__ == '__main__':
 
             info['component'] = bug['component']
             info['channels'] = uplift_channels
+            info['types'] = get_bug_types(bug)
 
             for channel in uplift_channels:
                 uplift_info = patchanalysis.uplift_info(bug, channel)
