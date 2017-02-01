@@ -9,7 +9,8 @@ import csv
 import utils
 import traceback
 import multiprocessing
-from libmozdata import patchanalysis
+import subprocess
+import time
 
 import get_bugs
 
@@ -59,6 +60,40 @@ author_cache = {
     'kitcambridge@mozilla.com': ['kit@mozilla.com', 'kit@yakshaving.ninja', 'kcambridge@mozilla.com'],
     'kcambridge@mozilla.com': ['kit@mozilla.com', 'kitcambridge@mozilla.com', 'kit@yakshaving.ninja'],
 }
+
+
+def set_server():
+    global patchanalysis
+
+    server_ports_lock.acquire()
+    next_server_port = server_ports.pop()
+    server_ports.append(next_server_port + 1)
+    server_ports_lock.release()
+
+    stdout_server = open('server_' + str(next_server_port) + ".out", "a")
+    stderr_server = open('server_' + str(next_server_port) + "_error.out", "a")
+
+    subprocess.call('./serveHG.sh central ' + str(next_server_port) + ' &', shell=True, stdout=stdout_server, stderr=stderr_server)
+
+    from libmozdata import config
+
+    class MyConfig(config.ConfigIni):
+        def __init__(self, path=None):
+            super(MyConfig, self).__init__(path)
+
+        def get(self, section, option, default=None, type=str):
+            if section == 'Mercurial' and option == 'URL':
+                print('http://127.0.0.1:' + str(next_server_port) + '/')
+                return 'http://127.0.0.1:' + str(next_server_port) + '/'
+
+            return super(MyConfig, self).get(section, option, default, type)
+
+    config.set_config(MyConfig())
+
+    from libmozdata import patchanalysis
+
+    # HACKY! Wait for the server to start.
+    time.sleep(5)
 
 
 def analyze_bug(bug):
@@ -111,10 +146,13 @@ if __name__ == '__main__':
 
     manager = multiprocessing.Manager()
     analyzed_bugs_shared = manager.dict(analyzed_bugs)
+    server_ports_lock = multiprocessing.Lock()
+    server_ports = manager.list([ 8000 ])
 
-    pool = multiprocessing.Pool()
+    pool = multiprocessing.Pool(initializer=set_server)
 
     i = len(analyzed_bugs)
+    print(str(i) + ' out of ' + str(len(bugs)))
     for _ in pool.imap_unordered(analyze_bug, remaining_bugs, chunksize=21):
         i += 21
         print(str(i) + ' out of ' + str(len(bugs)))
