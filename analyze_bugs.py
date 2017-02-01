@@ -2,11 +2,13 @@
 # tail -f all_bugs/analyze_bugs.log
 
 import os
+import sys
 import json
 import argparse
 import csv
 import utils
 import traceback
+import multiprocessing
 from libmozdata import patchanalysis
 
 import get_bugs
@@ -58,6 +60,38 @@ author_cache = {
     'kcambridge@mozilla.com': ['kit@mozilla.com', 'kitcambridge@mozilla.com', 'kit@yakshaving.ninja'],
 }
 
+
+def analyze_bug(bug):
+    sys.stdout = open('analyze_bugs_' + str(os.getpid()) + ".out", "a", buffering=0)
+    sys.stderr = open('analyze_bugs_' + str(os.getpid()) + "_error.out", "a", buffering=0)
+
+    uplift_channels = utils.uplift_channels(bug)
+
+    try:
+        info = patchanalysis.bug_analysis(bug, author_cache=author_cache)
+
+        # Translate sets into lists, as sets are not JSON-serializable.
+        info['users']['authors'] = list(info['users']['authors'])
+        info['users']['reviewers'] = list(info['users']['reviewers'])
+
+        info['component'] = bug['component']
+        info['channels'] = uplift_channels
+        info['types'] = utils.get_bug_types(bug)
+
+        for channel in uplift_channels:
+            uplift_info = patchanalysis.uplift_info(bug, channel)
+            del uplift_info['landings']
+            info[channel + '_uplift_info'] = uplift_info
+            # Transform timedelta objects to number of seconds (to make them JSON-serializable).
+            info[channel + '_uplift_info']['landing_delta'] = int(uplift_info['landing_delta'].total_seconds())
+            info[channel + '_uplift_info']['response_delta'] = int(uplift_info['response_delta'].total_seconds())
+            info[channel + '_uplift_info']['release_delta'] = int(uplift_info['release_delta'].total_seconds())
+
+        analyzed_bugs_shared[str(bug['id'])] = info
+    except Exception as e:
+        print('Error with bug ' + str(bug['id']) + ': ' + str(e))
+        traceback.print_exc()
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Mine commit metrics')
     parser.add_argument('type', action='store', default='all_bugs', choices=['all_bugs', 'uplift_bugs'])
@@ -66,7 +100,6 @@ if __name__ == '__main__':
     DIR = args.type
 
     bugs = get_bugs.get_all()
-    all_uplifts = utils.get_uplifts(bugs)
 
     try:
         with open(os.path.join(DIR, 'analyzed_bugs.json'), 'r') as f:
@@ -74,50 +107,22 @@ if __name__ == '__main__':
     except:
         analyzed_bugs = dict()
 
-    remaining_uplifts = [bug for bug in all_uplifts if str(bug['id']) not in analyzed_bugs]
+    remaining_bugs = [bug for bug in bugs if str(bug['id']) not in analyzed_bugs]
+
+    manager = multiprocessing.Manager()
+    analyzed_bugs_shared = manager.dict(analyzed_bugs)
+
+    pool = multiprocessing.Pool()
 
     i = len(analyzed_bugs)
-    for bug in remaining_uplifts:
-        i += 1
-        print(str(i) + ' out of ' + str(len(all_uplifts)) + ': ' + str(bug['id']))
-
-        uplift_channels = utils.uplift_channels(bug)
-
-        try:
-            info = patchanalysis.bug_analysis(bug, uplift_channels[0], author_cache)
-
-            # Translate sets into lists, as sets are not JSON-serializable.
-            info['users']['authors'] = list(info['users']['authors'])
-            info['users']['reviewers'] = list(info['users']['reviewers'])
-  
-            del info['uplift_accepted']
-            del info['uplift_comment']
-            del info['uplift_author']
-            del info['landing_delta']
-            del info['response_delta']
-            del info['release_delta']
-            del info['landings']
-
-            info['component'] = bug['component']
-            info['channels'] = uplift_channels
-            info['types'] = utils.get_bug_types(bug)
-
-            for channel in uplift_channels:
-                uplift_info = patchanalysis.uplift_info(bug, channel)
-                del uplift_info['landings']
-                info[channel + '_uplift_info'] = uplift_info
-                # Transform timedelta objects to number of seconds (to make them JSON-serializable).
-                info[channel + '_uplift_info']['landing_delta'] = int(uplift_info['landing_delta'].total_seconds())
-                info[channel + '_uplift_info']['response_delta'] = int(uplift_info['response_delta'].total_seconds())
-                info[channel + '_uplift_info']['release_delta'] = int(uplift_info['release_delta'].total_seconds())
-
-            analyzed_bugs[str(bug['id'])] = info
-        except Exception as e:
-            print('Error with bug ' + str(bug['id']) + ': ' + str(e))
-            traceback.print_exc()
-
+    for _ in pool.imap_unordered(analyze_bug, remaining_bugs, chunksize=21):
+        i += 21
+        print(str(i) + ' out of ' + str(len(bugs)))
         with open(os.path.join(DIR, 'analyzed_bugs.json'), 'w') as f:
-            json.dump(analyzed_bugs, f)
+            json.dump(analyzed_bugs_shared._getvalue(), f)
+
+    pool.close()
+    pool.join()
 
 
     rows = []
