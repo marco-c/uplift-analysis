@@ -37,7 +37,7 @@ def uplift_channels(bug):
 
     for attachment in bug['attachments']:
         for flag in attachment['flags']:
-            if flag['name'] not in UPLIFT_FLAG_NAMES or flag['status'] != '+':
+            if flag['name'] not in UPLIFT_FLAG_NAMES:
                 continue
 
             channels.add(flag['name'][17:])
