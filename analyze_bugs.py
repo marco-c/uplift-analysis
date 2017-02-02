@@ -78,7 +78,7 @@ author_cache = {
 reviewer_cache = {
     'mt': 'martin.thomson@gmail.com',
     'j': 'j@mailb.org',
-    'andrew': ['continuation@gmail.com'],
+    'andrew': 'continuation@gmail.com',
 }
 
 
