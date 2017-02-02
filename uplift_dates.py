@@ -22,6 +22,6 @@ if __name__ == '__main__':
 
     with open('uplift_dates.csv', 'w') as output_file:
         csv_writer = csv.writer(output_file)
-        csv_writer.writerow(['month', 'channel', 'number_of_uplifts'])
+        csv_writer.writerow(['Month', 'Channel', 'Number_of_uplifts'])
         for (month, channel), number in sorted(months.items(), lambda x, y: int(x[0][0]) - int(y[0][0])):
             csv_writer.writerow([month, channel, number])
