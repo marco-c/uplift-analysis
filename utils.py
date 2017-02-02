@@ -45,17 +45,13 @@ def uplift_channels(bug):
     return list(channels)
 
 
-def uplift_approved_channels(bug):
-    channels = set()
-
+def get_uplift_date(bug, channel):
     for attachment in bug['attachments']:
         for flag in attachment['flags']:
-            if flag['name'] not in UPLIFT_FLAG_NAMES or flag['status'] != '+':
+            if flag['name'] != 'approval-mozilla-' + channel:
                 continue
 
-            channels.add(flag['name'][17:])
-
-    return list(channels)
+            return flag['???']
 
 
 def get_bug_types(bug):
@@ -79,7 +75,7 @@ def get_bug_types(bug):
 
     performance_keywords = ['hang', 'talos-regression', 'perf']
     performance_title_keywords = ['slow', 'performance']
-    if any(keyword in bug['keywords'] for keyword in performance_keywords) any(keyword in bug['summary'].lower() for keyword in performance_title_keywords) or or 'memshrink' in bug['whiteboard'].lower():
+    if any(keyword in bug['keywords'] for keyword in performance_keywords) or any(keyword in bug['summary'].lower() for keyword in performance_title_keywords) or 'memshrink' in bug['whiteboard'].lower():
         types.append('performance')
 
     return types
