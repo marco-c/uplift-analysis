@@ -149,11 +149,11 @@ if __name__ == '__main__':
 
     pool = multiprocessing.Pool(16, initializer=set_server)
 
-    i = len(analyzed_bugs)
-    print(str(i) + ' out of ' + str(len(bugs)))
+    i = 0
+    print(str(i) + ' out of ' + str(len(remaining_bugs)))
     for _ in pool.imap_unordered(analyze_bug, remaining_bugs, chunksize=21):
         i += 1
-        print(str(i) + ' out of ' + str(len(bugs)))
+        print(str(i) + ' out of ' + str(len(remaining_bugs)))
         if i % 210 == 0:
             with open(os.path.join(DIR, 'analyzed_bugs.json'), 'w') as f:
                 json.dump(analyzed_bugs_shared._getvalue(), f)
