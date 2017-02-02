@@ -145,7 +145,7 @@ if __name__ == '__main__':
     manager = multiprocessing.Manager()
     analyzed_bugs_shared = manager.dict(analyzed_bugs)
     server_ports_lock = multiprocessing.Lock()
-    server_ports = manager.list([ 8000 ])
+    server_ports = manager.list([ 60000 ])
 
     pool = multiprocessing.Pool(16, initializer=set_server)
 
