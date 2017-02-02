@@ -59,6 +59,26 @@ author_cache = {
     'kit@mozilla.com': ['kit@yakshaving.ninja', 'kitcambridge@mozilla.com', 'kcambridge@mozilla.com'],
     'kitcambridge@mozilla.com': ['kit@mozilla.com', 'kit@yakshaving.ninja', 'kcambridge@mozilla.com'],
     'kcambridge@mozilla.com': ['kit@mozilla.com', 'kitcambridge@mozilla.com', 'kit@yakshaving.ninja'],
+    'aaronraimist@riseup.net': ['aaron@raim.ist'],
+    'markus.nilsson@sonymobile.com': ['markus@hogpack.se'],
+    'giles@mozilla.com': ['giles@thaumas.net', 'rillian@telus.net'],
+    'tomcat@mozilla.com': ['tomcat_moz@yahoo.com', 'cbook@mozilla.com'],
+    'joshmoz@gmail.com': ['jaas@kflag.net'],
+    'benj@benj.me': ['bbouvier@mozilla.com'],
+    'nsilva@mozilla.com': ['nical.bugzilla@gmail.com', 'nical.silva@gmail.com'],
+    'olivier@olivieryiptong.com': ['oyiptong@mozilla.com'],
+    'longster@gmail.com': ['jlong@mozilla.com'],
+    'kats@mozilla.com': ['bugmail@mozilla.staktrace.com'],
+    'paul@paul.cx': ['padenot@mozilla.com'],
+    'senglehardt@mozilla.com': ['bugzilla@senglehardt.com'],
+    'sworkman@mozilla.com': ['sjhworkman@gmail.com'],
+    'jchan@mozilla.com': ['jyc@eqv.io'],
+}
+
+reviewer_cache = {
+    'mt': 'martin.thomson@gmail.com',
+    'j': 'j@mailb.org',
+    'andrew': ['continuation@gmail.com'],
 }
 
 
@@ -101,7 +121,7 @@ def analyze_bug(bug):
     uplift_channels = utils.uplift_channels(bug)
 
     try:
-        info = patchanalysis.bug_analysis(bug, author_cache=author_cache)
+        info = patchanalysis.bug_analysis(bug, author_cache=author_cache, reviewer_cache=reviewer_cache)
 
         # Translate sets into lists, as sets are not JSON-serializable.
         info['users']['authors'] = list(info['users']['authors'])
