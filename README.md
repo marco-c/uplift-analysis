@@ -19,6 +19,6 @@ Given the reduction of stabilization time, the risk associated to uplifts is muc
 We are interested in understanding which uplifts caused regressions and why, where/when uplifts succeed/fail the most, and, last but not least, how to improve the uplift process.
 
 ### Research questions ###
-- RQ1: Why uplifted issues failed?
-- RQ2: Where/when uplifted issues succeed/fail the most?
-- RQ3: How can we improve the issue uplifting process (modelling)?
+- RQ1: What kind of patches were uplifted?
+- RQ2: Why some uplifted patches failed?
+- RQ3: How can we improve the uplifting process?
