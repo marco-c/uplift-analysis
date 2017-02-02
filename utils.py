@@ -1,4 +1,5 @@
 from libmozdata import bugzilla
+from libmozdata.utils import get_date_ymd
 
 # Assume query ends with 'limit=500&order=bug_id&fXXX=bug_id&oXXX=greaterthan&vXXX='.
 def get_ids(query):
@@ -45,13 +46,26 @@ def uplift_channels(bug):
     return list(channels)
 
 
+def uplift_approved_channels(bug):
+    channels = set()
+
+    for attachment in bug['attachments']:
+        for flag in attachment['flags']:
+            if flag['name'] not in UPLIFT_FLAG_NAMES or flag['status'] != '+':
+                continue
+
+            channels.add(flag['name'][17:])
+
+    return list(channels)
+
+
 def get_uplift_date(bug, channel):
     for attachment in bug['attachments']:
         for flag in attachment['flags']:
-            if flag['name'] != 'approval-mozilla-' + channel:
+            if flag['name'] != 'approval-mozilla-' + channel or flag['status'] != '+':
                 continue
 
-            return flag['???']
+            return get_date_ymd(flag['creation_date'])
 
 
 def get_bug_types(bug):
