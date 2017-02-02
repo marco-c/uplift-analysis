@@ -60,12 +60,13 @@ def get_bug_types(bug):
         types.append('security')
 
     feature_keywords = ['feature', 'polish']
-    feature_title_keywords = ['[ux]']
+    feature_title_keywords = ['[ux]', 'implement', 'support']
     if any(keyword in bug['keywords'] for keyword in feature_keywords) or any(keyword in bug['summary'].lower() for keyword in feature_title_keywords) or '[ux]' in bug['whiteboard'].lower():
         types.append('feature')
 
-    performance_keywords = ['hang', 'talos-regression']
-    if any(keyword in bug['keywords'] for keyword in performance_keywords) or 'memshrink' in bug['whiteboard'].lower():
+    performance_keywords = ['hang', 'talos-regression', 'perf']
+    performance_title_keywords = ['slow', 'performance']
+    if any(keyword in bug['keywords'] for keyword in performance_keywords) any(keyword in bug['summary'].lower() for keyword in performance_title_keywords) or or 'memshrink' in bug['whiteboard'].lower():
         types.append('performance')
 
     return types
