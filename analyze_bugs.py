@@ -227,6 +227,7 @@ if __name__ == '__main__':
             row_per_channel['release_delta'] = info[channel + '_release_delta']
             row_per_channel['uplift_comment_length'] = info[channel + '_uplift_comment_length']
             row_per_channel['uplift_requestor'] = info[channel + '_uplift_requestor']
+            row_per_channel['uplift_accepted'] = info[channel + '_uplift_accepted']
             rows_per_channel[channel].append(row_per_channel)
 
             if not any_added:
