@@ -45,6 +45,19 @@ def uplift_channels(bug):
     return list(channels)
 
 
+def uplift_approved_channels(bug):
+    channels = set()
+
+    for attachment in bug['attachments']:
+        for flag in attachment['flags']:
+            if flag['name'] not in UPLIFT_FLAG_NAMES or flag['status'] != '+':
+                continue
+
+            channels.add(flag['name'][17:])
+
+    return list(channels)
+
+
 def get_bug_types(bug):
     types = []
 
