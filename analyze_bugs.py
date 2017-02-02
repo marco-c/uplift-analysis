@@ -70,10 +70,9 @@ def set_server():
     server_ports.append(next_server_port + 1)
     server_ports_lock.release()
 
-    stdout_server = open('server_' + str(next_server_port) + ".out", "a")
-    stderr_server = open('server_' + str(next_server_port) + "_error.out", "a")
+    stdout_server = open('server_' + str(next_server_port) + ".out", "a", buffering=0)
 
-    subprocess.call('./serveHG.sh central ' + str(next_server_port) + ' &', shell=True, stdout=stdout_server, stderr=stderr_server)
+    subprocess.call('./serveHG.sh central ' + str(next_server_port) + ' &', shell=True, stdout=stdout_server, stderr=stdout_server)
 
     from libmozdata import config
 
@@ -97,8 +96,7 @@ def set_server():
 
 
 def analyze_bug(bug):
-    sys.stdout = open('analyze_bugs_' + str(os.getpid()) + ".out", "a", buffering=0)
-    sys.stderr = open('analyze_bugs_' + str(os.getpid()) + "_error.out", "a", buffering=0)
+    sys.stdout = sys.stderr = open('analyze_bugs_' + str(os.getpid()) + ".out", "a", buffering=0)
 
     uplift_channels = utils.uplift_channels(bug)
 
