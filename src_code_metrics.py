@@ -116,7 +116,7 @@ def extractSourceCodeMetrics(rel_date_list, rel_list, commit_date_dict, category
     return pd.DataFrame(result_list, columns=['bug_id']+metric_names)
 
 if __name__ == '__main__':
-    DEBUG = True
+    DEBUG = False
     HG_REPO_PATH = '../firefox/'
     # load data
     rel_date_list, rel_list = loadReleaseDate()
