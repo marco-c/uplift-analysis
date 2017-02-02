@@ -20,5 +20,5 @@ We are interested in understanding which uplifts caused regressions and why, whe
 
 ### Research questions ###
 - RQ1: What kind of patches were uplifted?
-- RQ2: Why some uplifted patches failed?
+- RQ2: Why did some uplifted patches fail?
 - RQ3: How can we improve the uplifting process?
