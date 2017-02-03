@@ -19,7 +19,7 @@ if __name__ == '__main__':
 #    rwilcox = robjects.r['wilcox.test']
 #    rcliff = robjects.r['cliff.delta']
     
-    channel = 'aurora'
+    channel = 'beta'
     
     metric_list = ['changes_size', 'code_churn_overall', 'avg_cyclomatic', 'closeness',
             'landing_delta', 'response_delta', 'release_delta', 'uplift_comment_length',
@@ -45,6 +45,6 @@ if __name__ == '__main__':
         accept_median = nanmedian(df_accept[metric])
         reject_median = nanmedian(df_reject[metric])
         result_list.append([metric, accept_median, reject_median, corrected_p])
-    df_res = pd.DataFrame(result_list, columns=['metric', 'accpeted', 'rejected', 'p-value'])
+    df_res = pd.DataFrame(result_list, columns=['metric', 'accepted', 'rejected', 'p-value'])
     print channel
     print df_res
