@@ -1,10 +1,7 @@
 from __future__ import division
-import os
 import pandas as pd
 from scipy import stats
 from numpy import nanmedian
-# import rpy2
-os.environ['R_HOME'] = '/Library/Frameworks/R.framework/Resources'
 import rpy2.robjects as robjects
 from rpy2.robjects.packages import importr
 
