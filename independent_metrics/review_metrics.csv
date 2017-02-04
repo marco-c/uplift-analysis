@@ -1,4 +1,4 @@
-bug_id,review_iterations,comment_times,comment_words,reviewers,reviewer_comment_rate,non_author_voters,neg_review_rate,response_delay,review_duration,feedback_count,neg_feedbacks,feedback_delay,review_status
+bug_id,review_iterations,comment_times,comment_words,reviewer_cnt,reviewer_comment_rate,non_author_voters,neg_review_rate,response_delay,review_duration,feedback_count,neg_feedbacks,feedback_delay,review_status
 1197534,1.0,1.0,2.0,1.0,0.0,1.0,0.0,3.08,3.08,0.0,0.0,-1.0,+
 1126562,1.0,0.0,0.0,1.0,0.0,1.0,0.0,136.31,136.31,0.0,0.0,-1.0,+
 1080904,1.0,0.0,0.0,1.0,1.0,1.0,0.0,15.13,15.13,0.0,0.0,-1.0,+

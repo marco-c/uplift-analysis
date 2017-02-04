@@ -1,10 +1,11 @@
 library('rpart.plot')
 library('plyr')
+library('ROSE')
 
 # select uplift_accepted or error_inducing
-target = 'uplift_accepted'
-channel = 'aurora'
-doVIF = 'YES'
+target = 'error_inducing'
+channel = 'beta'
+doVIF = 'NO'
 
 # load data into data frames
 df.basic = as.data.frame(read.csv(sprintf('independent_metrics/basic_%s.csv', channel)))
@@ -18,33 +19,30 @@ df = merge(df, df.review, by='bug_id')
 df = merge(df, df.senti, by='bug_id')
 df = merge(df, df.code, by='bug_id')
 
+
 if (target == 'error_inducing'){
 	df = df[df['uplift_accepted'] == 'True',]
 }
-
 
 xcol = c('changes_size', 'code_churn_overall', 
 		'avg_cyclomatic', 'cnt_func', 'ratio_comment', 
 		'page_rank', 'closeness', 'indegree', 'outdegree',
         'landing_delta', 'response_delta', 'release_delta', 'uplift_comment_length',
         'reviewer_familiarity_overall', 'test_changes_size',
-        #'max_pos', 'min_neg', 'owner_pos', 'owner_neg', 'manager_pos', 'manager_neg', 
-		'reviewers', 'comments', 'reviewer_comment_rate')
+        'max_pos', 'min_neg', 'owner_pos', 'owner_neg', 'manager_pos', 'manager_neg', 
+		'reviewer_cnt', 'comments', 'reviewer_comment_rate')
 formula = as.formula(sprintf('%s ~ %s', target, paste(xcol, collapse= '+')))
 
+# balance data between the target subset and the other category
+df = ovun.sample(formula, data=df, p=0.5, seed=1, method='both')$data
 
 #	VIF analysis
 if(doVIF == 'YES') {
 	library(car)
-	vif.fit = glm(formula, data = df, family = binomial())
-	print(vif(vif.fit) >= 5)
+	fit = glm(formula, data=df, family=binomial())
+	print(vif(fit) >= 5)
 }
 
-
 tree.fit = rpart(formula, data=df)
-#node.fun3 <- function(x, labs, digits, varlen)
-#{
-#    paste(labs, "\n\ndev", x$frame$dev)
-#}
-#prp(tree.fit, extra=6, node.fun=node.fun3)
-rpart.plot(tree.fit)
+prp(tree.fit, extra=106, varlen=0, under=TRUE)
+

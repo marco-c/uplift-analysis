@@ -47,7 +47,7 @@ if __name__ == '__main__':
     # extracting review metrics
     print 'Extracting metrics ...'
     output_list = list()
-    metric_names = ['bug_id', 'review_iterations', 'comment_times', 'comment_words', 'reviewers', 'reviewer_comment_rate', 
+    metric_names = ['bug_id', 'review_iterations', 'comment_times', 'comment_words', 'reviewer_cnt', 'reviewer_comment_rate', 
                     'non_author_voters', 'neg_review_rate', 'response_delay', 'review_duration', 
                     'feedback_count', 'neg_feedbacks', 'feedback_delay', 'review_status']
     for bug_item in bug_list:
