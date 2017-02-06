@@ -59,7 +59,7 @@ if __name__ == '__main__':
         # statistical analyses
         result_list = statisticalAnalyses(df_accept, df_reject, metric_list)
         # output results
-        df_res = pd.DataFrame(result_list, columns=['metric', 'accpeted', 'rejected', 'p-value', 'effect_size'])
+        df_res = pd.DataFrame(result_list, columns=['metric', 'accepted', 'rejected', 'p-value', 'effect_size'])
         print(channel)
         print(df_res)
         print('\n')
