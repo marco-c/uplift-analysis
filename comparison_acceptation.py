@@ -45,20 +45,21 @@ def statisticalAnalyses(df_sub1, df_sub2, metric_list):
     return result_list
 
 if __name__ == '__main__':
-    channel = 'aurora'
-    # initialize variables
-    metric_list = ['changes_size', 'code_churn_overall', 'avg_cyclomatic', 'closeness',
-            'landing_delta', 'response_delta', 'release_delta', 'uplift_comment_length',
-            'developer_familiarity_overall', 'reviewer_familiarity_overall', 
-            'reviewers', 'comments']
-    # load data
-    df = loadData(channel)
-    # split data into different categories
-    df_accept = df.loc[df.uplift_accepted == True]
-    df_reject = df.loc[df.uplift_accepted == False]
-    # statistical analyses
-    result_list = statisticalAnalyses(df_accept, df_reject, metric_list)
-    # output results
-    df_res = pd.DataFrame(result_list, columns=['metric', 'accpeted', 'rejected', 'p-value', 'effect_size'])
-    print channel
-    print df_res
+    for channel in ['release', 'beta', 'aurora']:
+        # initialize variables
+        metric_list = ['changes_size', 'code_churn_overall', 'avg_cyclomatic', 'closeness',
+                'landing_delta', 'response_delta', 'release_delta', 'uplift_comment_length',
+                'developer_familiarity_overall', 'reviewer_familiarity_overall',
+                'reviewer_cnt', 'comments']
+        # load data
+        df = loadData(channel)
+        # split data into different categories
+        df_accept = df.loc[df.uplift_accepted == True]
+        df_reject = df.loc[df.uplift_accepted == False]
+        # statistical analyses
+        result_list = statisticalAnalyses(df_accept, df_reject, metric_list)
+        # output results
+        df_res = pd.DataFrame(result_list, columns=['metric', 'accepted', 'rejected', 'p-value', 'effect_size'])
+        print(channel)
+        print(df_res)
+        print('\n')

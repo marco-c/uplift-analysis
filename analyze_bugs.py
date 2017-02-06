@@ -139,6 +139,8 @@ def analyze_bug(bug):
             info[channel + '_uplift_info']['landing_delta'] = int(uplift_info['landing_delta'].total_seconds())
             info[channel + '_uplift_info']['response_delta'] = int(uplift_info['response_delta'].total_seconds())
             info[channel + '_uplift_info']['release_delta'] = int(uplift_info['release_delta'].total_seconds())
+            if uplift_info['uplift_accepted']:
+                info[channel + '_uplift_info']['uplift_date'] = utils.get_uplift_date(bug, channel).strftime('%Y-%m-%d')
 
         analyzed_bugs_shared[str(bug['id'])] = info
     except Exception as e:
@@ -152,14 +154,13 @@ if __name__ == '__main__':
 
     DIR = args.type
 
-    bugs = get_bugs.get_all()
-
     try:
         with open(os.path.join(DIR, 'analyzed_bugs.json'), 'r') as f:
             analyzed_bugs = json.load(f)
     except:
         analyzed_bugs = dict()
 
+    bugs = get_bugs.get_all()
     remaining_bugs = [bug for bug in bugs if str(bug['id']) not in analyzed_bugs]
 
     manager = multiprocessing.Manager()
@@ -238,6 +239,8 @@ if __name__ == '__main__':
             info[channel + '_uplift_comment_length'] = len(info[channel + '_uplift_info']['uplift_comment']['text']) if info[channel + '_uplift_info']['uplift_comment'] is not None else 0
             info[channel + '_uplift_requestor'] = info[channel + '_uplift_info']['uplift_comment']['author'] if info[channel + '_uplift_info']['uplift_comment'] is not None else ''
             info[channel + '_uplift_accepted'] = info[channel + '_uplift_info']['uplift_accepted']
+            if info[channel + '_uplift_accepted']:
+                info[channel + '_uplift_date'] = info[channel + '_uplift_info']['uplift_date']
             del info[channel + '_uplift_info']
 
             row_per_channel['landing_delta'] = info[channel + '_landing_delta']
@@ -246,6 +249,8 @@ if __name__ == '__main__':
             row_per_channel['uplift_comment_length'] = info[channel + '_uplift_comment_length']
             row_per_channel['uplift_requestor'] = info[channel + '_uplift_requestor']
             row_per_channel['uplift_accepted'] = info[channel + '_uplift_accepted']
+            if info[channel + '_uplift_accepted']:
+                row_per_channel['uplift_date'] = info[channel + '_uplift_date']
             rows_per_channel[channel].append(row_per_channel)
 
             if not any_added:

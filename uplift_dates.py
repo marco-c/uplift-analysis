@@ -1,9 +1,11 @@
 import csv
-from datetime import datetime, timedelta
-from dateutil import relativedelta
-from libmozdata.utils import as_utc
+import locale
+from datetime import datetime
 import get_bugs
 import utils
+
+# The month abbreviation should be in English.
+locale.setlocale(locale.LC_TIME, 'C')
 
 if __name__ == '__main__':
     bugs = get_bugs.get_all()
@@ -13,9 +15,8 @@ if __name__ == '__main__':
 
     for uplift in uplifts:
         for channel in utils.uplift_approved_channels(uplift):
-            diff = relativedelta.relativedelta(utils.get_uplift_date(uplift, channel), as_utc(datetime(2014, 7, 22)))
-            month = str(diff.years * 12 + diff.months)
-            key = (month, channel)
+            uplift_date = utils.get_uplift_date(uplift, channel)
+            key = (uplift_date.strftime('%b %Y'), channel)
             if key not in months:
                 months[key] = 0
             months[key] += 1
@@ -23,5 +24,5 @@ if __name__ == '__main__':
     with open('uplift_dates.csv', 'w') as output_file:
         csv_writer = csv.writer(output_file)
         csv_writer.writerow(['Month', 'Channel', 'Number_of_uplifts'])
-        for (month, channel), number in sorted(months.items(), lambda x, y: int(x[0][0]) - int(y[0][0])):
+        for (month, channel), number in sorted(months.items(), key=lambda x: datetime.strptime(x[0][0], '%b %Y')):
             csv_writer.writerow([month, channel, number])

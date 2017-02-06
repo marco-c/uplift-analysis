@@ -24,13 +24,14 @@ if (target == 'error_inducing'){
 	df = df[df['uplift_accepted'] == 'True',]
 }
 
-xcol = c('changes_size', 'code_churn_overall', 
-		'avg_cyclomatic', 'cnt_func', 'ratio_comment', 
-		'page_rank', 'closeness', 'indegree', 'outdegree',
-        'landing_delta', 'response_delta', 'release_delta', 'uplift_comment_length',
-        'reviewer_familiarity_overall', 'test_changes_size',
-        'max_pos', 'min_neg', 'owner_pos', 'owner_neg', 'manager_pos', 'manager_neg', 
-		'reviewer_cnt', 'comments', 'reviewer_comment_rate')
+xcol = c('changes_size', 'code_churn_overall', 'test_changes_size',
+         'avg_cyclomatic', 'cnt_func', 'ratio_comment', 'page_rank', 'closeness', 'indegree', 'outdegree',
+         'release_delta',
+         'comments',
+         'component',
+         'developer_familiarity_overall', 'reviewer_familiarity_overall', 'reviewer_cnt',
+         'min_neg', 'owner_neg'
+         )
 formula = as.formula(sprintf('%s ~ %s', target, paste(xcol, collapse= '+')))
 
 # balance data between the target subset and the other category
