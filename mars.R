@@ -30,7 +30,7 @@ xcol = c('changes_size', 'code_churn_overall', 'test_changes_size',
          'comments',
          'component',
          'developer_familiarity_overall', 'reviewer_familiarity_overall', 'reviewer_cnt',
-         'min_neg', 'owner_neg',
+         'min_neg', 'owner_neg'
          )
 formula = as.formula(sprintf('%s ~ %s', target, paste(xcol, collapse= '+')))
 
