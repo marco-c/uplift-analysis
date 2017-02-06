@@ -7,10 +7,12 @@ if __name__ == '__main__':
     effsize = importr('effsize')
     rcliff = robjects.r['cliff.delta']
     # initialize variables
-    metric_list = ['changes_size', 'code_churn_overall', 'avg_cyclomatic', 'closeness',
-            'landing_delta', 'response_delta', 'release_delta',
-            'developer_familiarity_overall', 'reviewer_familiarity_overall', 
-            'reviewers', 'comments']
+    metric_list = [
+      'changes_size', 'code_churn_overall', 'avg_cyclomatic', 'closeness',
+      'release_delta',
+      'developer_familiarity_overall', 'reviewer_familiarity_overall',
+      'reviewers', 'comments'
+    ]
     # load data
     df_failure = pd.read_csv('independent_metrics/bug_inducing.csv')
     df = pd.merge(loadData(channel), df_failure, on='bug_id')
