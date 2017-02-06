@@ -10,7 +10,7 @@ shadow = data.frame(x.min=c(-0.3,2.1,25.1), x.max=c(1.9,24.9,28.2), y.min=c(0,0,
 
 ggplot(data=df, aes(x=Delta, y=Number_of_uplifts, shape=Channel)) + 
 	geom_line(size=0.5) + 
-	scale_x_continuous(breaks=c(1:length(month_label)), label=month_label, expand=c(0,0.3)) +
+	scale_x_continuous(breaks=c(0:(length(month_label)-1)), label=month_label, expand=c(0,0.3)) +
 	geom_point(size=5) + 
 	scale_shape(solid = FALSE) +
 	xlab('Time period') + ylab('Upliftd issues') +
