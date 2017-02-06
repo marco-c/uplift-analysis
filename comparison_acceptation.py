@@ -45,7 +45,7 @@ def statisticalAnalyses(df_sub1, df_sub2, metric_list):
     return result_list
 
 if __name__ == '__main__':
-    for channel in ['release', 'beta', 'aurora']:
+    for channel in ['aurora', 'beta', 'release']:
         # initialize variables
         metric_list = ['changes_size', 'code_churn_overall', 'avg_cyclomatic', 'closeness',
                 'landing_delta', 'response_delta', 'release_delta', 'uplift_comment_length',
@@ -60,6 +60,6 @@ if __name__ == '__main__':
         result_list = statisticalAnalyses(df_accept, df_reject, metric_list)
         # output results
         df_res = pd.DataFrame(result_list, columns=['metric', 'accepted', 'rejected', 'p-value', 'effect_size'])
-        print(channel)
+        print(channel.upper())
         print(df_res)
         print('\n')
