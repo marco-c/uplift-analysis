@@ -2,7 +2,7 @@ import pandas as pd
 from comparison_acceptation import *
 
 if __name__ == '__main__':
-    channel = 'release'
+    channel = 'aurora'
     # import R packages
     effsize = importr('effsize')
     rcliff = robjects.r['cliff.delta']
@@ -11,7 +11,7 @@ if __name__ == '__main__':
       'changes_size', 'code_churn_overall', 'avg_cyclomatic', 'closeness',
       'release_delta',
       'developer_familiarity_overall', 'reviewer_familiarity_overall',
-      'reviewers', 'comments'
+      'reviewer_cnt', 'comments'
     ]
     # load data
     df_failure = pd.read_csv('independent_metrics/bug_inducing.csv')
