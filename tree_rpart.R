@@ -2,8 +2,6 @@ library('rpart.plot')
 library('plyr')
 library('ROSE')
 
-# select uplift_accepted or error_inducing
-target = 'error_inducing'
 channel = 'beta'
 doVIF = 'NO'
 
@@ -18,11 +16,8 @@ df = merge(df.inducing, df.basic, by='bug_id')
 df = merge(df, df.review, by='bug_id')
 df = merge(df, df.senti, by='bug_id')
 df = merge(df, df.code, by='bug_id')
-
-
-if (target == 'error_inducing'){
-	df = df[df['uplift_accepted'] == 'True',]
-}
+# only take uplifted issues into account
+df = df[df['uplift_accepted'] == 'True',]
 
 xcol = c('changes_size', 'code_churn_overall', 
 		'avg_cyclomatic', 'cnt_func', 'ratio_comment', 
@@ -31,7 +26,7 @@ xcol = c('changes_size', 'code_churn_overall',
         'reviewer_familiarity_overall', 'test_changes_size',
         'max_pos', 'min_neg', 'owner_pos', 'owner_neg', 'manager_pos', 'manager_neg', 
 		'reviewer_cnt', 'comments', 'reviewer_comment_rate')
-formula = as.formula(sprintf('%s ~ %s', target, paste(xcol, collapse= '+')))
+formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
 
 # balance data between the target subset and the other category
 df = ovun.sample(formula, data=df, p=0.5, seed=1, method='both')$data

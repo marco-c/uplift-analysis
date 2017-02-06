@@ -2,9 +2,7 @@ library(earth)
 #library('plyr')
 library('ROSE')
 
-# select uplift_accepted or error_inducing
-target = 'error_inducing'
-channel = 'beta'
+channel = 'release'
 doVIF = 'NO'
 
 # load data into data frames
@@ -18,11 +16,8 @@ df = merge(df.inducing, df.basic, by='bug_id')
 df = merge(df, df.review, by='bug_id')
 df = merge(df, df.senti, by='bug_id')
 df = merge(df, df.code, by='bug_id')
-
-
-if (target == 'error_inducing'){
-	df = df[df['uplift_accepted'] == 'True',]
-}
+# only take uplifted issues into account
+df = df[df['uplift_accepted'] == 'True',]
 
 xcol = c('changes_size', 'code_churn_overall', 'test_changes_size',
          'avg_cyclomatic', 'cnt_func', 'ratio_comment', 'page_rank', 'closeness', 'indegree', 'outdegree',
@@ -32,7 +27,7 @@ xcol = c('changes_size', 'code_churn_overall', 'test_changes_size',
          'developer_familiarity_overall', 'reviewer_familiarity_overall', 'reviewer_cnt',
          'min_neg', 'owner_neg'
          )
-formula = as.formula(sprintf('%s ~ %s', target, paste(xcol, collapse= '+')))
+formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
 
 # balance data between the target subset and the other category
 df = ovun.sample(formula, data=df, p=0.5, seed=1, method='both')$data
@@ -44,8 +39,6 @@ if(doVIF == 'YES') {
 	print(vif(fit) >= 5)
 }
 
-#tree.fit = rpart(formula, data=df)
-#prp(tree.fit, extra=106, varlen=0, under=TRUE)
-
 mars.model = earth(formula, data=df)
 summary(mars.model)
+evimp(mars.model)
