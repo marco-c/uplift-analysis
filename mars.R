@@ -4,7 +4,7 @@ library('ROSE')
 
 # select uplift_accepted or error_inducing
 target = 'error_inducing'
-channel = 'beta'
+channel = 'release'
 doVIF = 'NO'
 
 # load data into data frames
@@ -43,8 +43,7 @@ if(doVIF == 'YES') {
 	print(vif(fit) >= 5)
 }
 
-#tree.fit = rpart(formula, data=df)
-#prp(tree.fit, extra=106, varlen=0, under=TRUE)
 
 mars.model = earth(formula, data=df)
 summary(mars.model)
+evimp(mars.model)
