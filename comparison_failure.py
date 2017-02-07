@@ -9,9 +9,9 @@ if __name__ == '__main__':
         # initialize variables
         metric_list = [
           'changes_size', 'code_churn_overall', 'avg_cyclomatic', 'closeness',
-          'release_delta',
+          'review_duration', 'comments',
           'developer_familiarity_overall', 'reviewer_familiarity_overall',
-          'review_duration', 'comments'
+          'release_delta'
         ]
         # load data
         df_failure = pd.read_csv('independent_metrics/bug_inducing.csv')
