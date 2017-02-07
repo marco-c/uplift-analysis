@@ -48,9 +48,15 @@ if __name__ == '__main__':
     for channel in ['aurora', 'beta', 'release']:
         # initialize variables
         metric_list = ['changes_size', 'code_churn_overall', 'avg_cyclomatic', 'closeness',
+<<<<<<< HEAD
                 'developer_familiarity_overall', 'reviewer_familiarity_overall',
                 'reviewer_cnt', 'comments',
                 'landing_delta', 'response_delta', 'release_delta']
+=======
+                'landing_delta', 'response_delta', 'release_delta',
+                'developer_familiarity_overall', 'reviewer_familiarity_overall',
+                'review_duration', 'comments']
+>>>>>>> bd29caab2451dc5ca9542e13c9f5c3d374a23216
         # load data
         df = loadData(channel)
         # split data into different categories
