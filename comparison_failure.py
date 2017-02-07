@@ -2,7 +2,7 @@ import pandas as pd
 from comparison_acceptation import *
 
 if __name__ == '__main__':
-    for channel in ['release', 'beta', 'aurora']:
+    for channel in ['aurora', 'beta', 'release']:
         # import R packages
         effsize = importr('effsize')
         rcliff = robjects.r['cliff.delta']
@@ -24,6 +24,4 @@ if __name__ == '__main__':
         result_list = statisticalAnalyses(df_fault, df_clean, metric_list)
         # output results
         df_res = pd.DataFrame(result_list, columns=['metric', 'fault', 'clean', 'p-value', 'effect_size'])
-        print(channel)
-        print(df_res)
-        print('\n')
+        print_results(channel, df_res, ['fault', 'clean'])

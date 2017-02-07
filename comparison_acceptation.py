@@ -25,6 +25,50 @@ def loadData(channel):
     df = pd.merge(df, df_code, on='bug_id')
     return df
 
+def to_nice_num(num):
+    if abs(num) < 0.01:
+        return "{:.2e}".format(num)
+
+    nice_num = "{0:.2f}".format(num)
+
+    if nice_num.endswith('0'):
+        nice_num = nice_num[:-1]
+
+    return nice_num
+
+def print_results(channel, df_res, columns):
+    if channel != 'aurora':
+        print('\\hline')
+    print('\\emph{' + channel.capitalize() + '}')
+
+    metric_names = [
+        ('changes_size', 'Code churn'),
+        ('code_churn_overall', 'Prior changes'),
+        ('avg_cyclomatic', 'Cyclomatic'),
+        ('closeness', 'Closeness'),
+        ('developer_familiarity_overall', 'Developer exp.'),
+        ('reviewer_familiarity_overall', 'Reviewer exp.'),
+        ('comments', '\\# of comments'),
+        ('review_duration', 'Review duration'),
+        ('landing_delta', 'Landing delta'),
+        ('response_delta', 'Response delta'),
+        ('release_delta', 'Release delta'),
+    ]
+
+    for metric, metric_name in metric_names:
+        df = df_res[df_res.metric == metric]
+        if len(df) == 0:
+            continue
+        obj = df.iloc[0]
+
+        p_value = to_nice_num(obj['p-value'])
+        if obj['p-value'] < 0.05:
+            p_value = '\\textbf{' + p_value + '}'
+
+        print('& ' + metric_name + ' & ' + to_nice_num(obj[columns[0]]) + ' & ' + to_nice_num(obj[columns[1]]) + ' & ' + p_value + ' & ' + obj['effect_size'] + ' \\\\')
+
+    print('')
+
 def statisticalAnalyses(df_sub1, df_sub2, metric_list):
     # import R packages
     effsize = importr('effsize')
@@ -60,6 +104,4 @@ if __name__ == '__main__':
         result_list = statisticalAnalyses(df_accept, df_reject, metric_list)
         # output results
         df_res = pd.DataFrame(result_list, columns=['metric', 'accepted', 'rejected', 'p-value', 'effect_size'])
-        print(channel.upper())
-        print(df_res)
-        print('\n')
+        print_results(channel, df_res, ['accepted', 'rejected'])
