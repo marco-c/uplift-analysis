@@ -29,6 +29,9 @@ def loadData(channel):
     df.response_delta = df.response_delta / 86400
     df.release_delta = df.release_delta / 86400
 
+    # Ignore uplifts in the 'Pocket' component.
+    df = df[df.component != 'Pocket']
+
     return df
 
 def to_nice_num(num):
