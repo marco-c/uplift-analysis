@@ -48,11 +48,14 @@ if __name__ == '__main__':
     for channel in ['aurora', 'beta', 'release']:
         # initialize variables
         metric_list = ['changes_size', 'code_churn_overall', 'avg_cyclomatic', 'closeness',
-                        'review_duration', 'comments',
                         'developer_familiarity_overall', 'reviewer_familiarity_overall',
+                        'comments', 'review_duration', 
                         'landing_delta', 'response_delta', 'release_delta']
         # load data
         df = loadData(channel)
+        df.landing_delta = df.landing_delta / (3600 * 24)
+        df.response_delta = df.response_delta / (3600 * 24)
+        df.release_delta = df.release_delta / (3600 * 24)
         # split data into different categories
         df_accept = df.loc[df.uplift_accepted == True]
         df_reject = df.loc[df.uplift_accepted == False]
