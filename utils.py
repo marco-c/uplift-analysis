@@ -68,6 +68,15 @@ def get_uplift_date(bug, channel):
             return get_date_ymd(flag['creation_date'])
 
 
+def get_uplift_reject_date(bug, channel):
+    for attachment in bug['attachments']:
+        for flag in attachment['flags']:
+            if flag['name'] != 'approval-mozilla-' + channel or flag['status'] != '-':
+                continue
+
+            return get_date_ymd(flag['creation_date'])
+
+
 def get_bug_types(bug):
     types = []
 

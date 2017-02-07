@@ -11,6 +11,7 @@ import traceback
 import multiprocessing
 import subprocess
 import time
+from datetime import datetime
 
 import get_bugs
 
@@ -141,6 +142,9 @@ def analyze_bug(bug):
             info[channel + '_uplift_info']['release_delta'] = int(uplift_info['release_delta'].total_seconds())
             if uplift_info['uplift_accepted']:
                 info[channel + '_uplift_info']['uplift_date'] = utils.get_uplift_date(bug, channel).strftime('%Y-%m-%d')
+            uplift_reject_date = utils.get_uplift_reject_date(bug, channel)
+            if uplift_reject_date is not None:
+                info[channel + '_uplift_info']['uplift_reject_date'] = uplift_reject_date.strftime('%Y-%m-%d')
 
         analyzed_bugs_shared[str(bug['id'])] = info
     except Exception as e:
@@ -227,6 +231,15 @@ if __name__ == '__main__':
             if (channel + '_uplift_info') not in info:
                 continue
 
+            if 'uplift_date' in info[channel + '_uplift_info']:
+                uplift_date = datetime.strptime(info[channel + '_uplift_info']['uplift_date'], '%Y-%m-%d')
+                if uplift_date < datetime(2014, 9, 1) or uplift_date >= datetime(2016, 9, 1):
+                    continue
+            elif 'uplift_reject_date' in info[channel + '_uplift_info']:
+                uplift_reject_date = datetime.strptime(info[channel + '_uplift_info']['uplift_reject_date'], '%Y-%m-%d')
+                if uplift_reject_date < datetime(2014, 9, 1) or uplift_reject_date >= datetime(2016, 9, 1):
+                    continue
+
             row_per_channel = info_before.copy()
 
             info[channel + '_landing_delta'] = info[channel + '_uplift_info']['landing_delta']
@@ -235,8 +248,10 @@ if __name__ == '__main__':
             info[channel + '_uplift_comment_length'] = len(info[channel + '_uplift_info']['uplift_comment']['text']) if info[channel + '_uplift_info']['uplift_comment'] is not None else 0
             info[channel + '_uplift_requestor'] = info[channel + '_uplift_info']['uplift_comment']['author'] if info[channel + '_uplift_info']['uplift_comment'] is not None else ''
             info[channel + '_uplift_accepted'] = info[channel + '_uplift_info']['uplift_accepted']
-            if info[channel + '_uplift_accepted']:
+            if 'uplift_date' in info[channel + '_uplift_info']:
                 info[channel + '_uplift_date'] = info[channel + '_uplift_info']['uplift_date']
+            if 'uplift_reject_date' in info[channel + '_uplift_info']:
+                info[channel + '_uplift_reject_date'] = info[channel + '_uplift_info']['uplift_reject_date']
             del info[channel + '_uplift_info']
 
             row_per_channel['landing_delta'] = info[channel + '_landing_delta']
@@ -245,8 +260,10 @@ if __name__ == '__main__':
             row_per_channel['uplift_comment_length'] = info[channel + '_uplift_comment_length']
             row_per_channel['uplift_requestor'] = info[channel + '_uplift_requestor']
             row_per_channel['uplift_accepted'] = info[channel + '_uplift_accepted']
-            if info[channel + '_uplift_accepted']:
+            if (channel + '_uplift_date') in info:
                 row_per_channel['uplift_date'] = info[channel + '_uplift_date']
+            if (channel + '_uplift_reject_date') in info:
+                row_per_channel['uplift_reject_date'] = info[channel + '_uplift_reject_date']
             rows_per_channel[channel].append(row_per_channel)
 
             # Add keys to the set of keys.
