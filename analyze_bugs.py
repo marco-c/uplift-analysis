@@ -186,9 +186,6 @@ if __name__ == '__main__':
     pool.join()
 
 
-    rows = []
-    row_keys = set()
-    rows_any = []
     rows_per_channel = {
       'release': [],
       'beta': [],
@@ -226,7 +223,6 @@ if __name__ == '__main__':
             if (channel + '_uplift_info') in info_before:
                 del info_before[channel + '_uplift_info']
 
-        any_added = False
         for channel in ['release', 'beta', 'aurora']:
             if (channel + '_uplift_info') not in info:
                 continue
@@ -253,34 +249,12 @@ if __name__ == '__main__':
                 row_per_channel['uplift_date'] = info[channel + '_uplift_date']
             rows_per_channel[channel].append(row_per_channel)
 
-            if not any_added:
-                rows_any.append(row_per_channel)
-                any_added = True
-
+            # Add keys to the set of keys.
             row_per_channel_keys |= set(row_per_channel.keys())
-
-        # Add keys to the set of keys.
-        row_keys |= set(info.keys())
-
-        rows.append(info)
-
-
-    row_keys.remove('bug_id')
-    row_keys = ['bug_id'] + sorted(list(row_keys))
-
-    with open('independent_metrics/basic.csv', 'w') as output_file:
-        csv_writer = csv.DictWriter(output_file, row_keys)
-        csv_writer.writeheader()
-        csv_writer.writerows(rows)
 
 
     row_per_channel_keys.remove('bug_id')
     row_per_channel_keys = ['bug_id'] + sorted(list(row_per_channel_keys))
-
-    with open('independent_metrics/basic_any.csv', 'w') as output_file:
-        csv_writer = csv.DictWriter(output_file, row_per_channel_keys)
-        csv_writer.writeheader()
-        csv_writer.writerows(rows_any)
 
     for channel in ['release', 'beta', 'aurora']:
         with open('independent_metrics/basic_' + channel + '.csv', 'w') as output_file:
