@@ -11,7 +11,7 @@ if __name__ == '__main__':
           'changes_size', 'code_churn_overall', 'avg_cyclomatic', 'closeness',
           'release_delta',
           'developer_familiarity_overall', 'reviewer_familiarity_overall',
-          'reviewer_cnt', 'comments'
+          'review_duration', 'comments'
         ]
         # load data
         df_failure = pd.read_csv('independent_metrics/bug_inducing.csv')
