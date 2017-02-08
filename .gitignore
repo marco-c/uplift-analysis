@@ -2,3 +2,4 @@
 mozdata.ini
 .ipynb_checkpoints/
 *.pyc
+plots/*.pdf
