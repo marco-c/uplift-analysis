@@ -2,7 +2,7 @@ library(earth)
 #library('plyr')
 library('ROSE')
 
-channel = 'release'
+channel = 'aurora'
 doVIF = 'NO'
 
 # load data into data frames
@@ -19,26 +19,36 @@ df = merge(df, df.code, by='bug_id')
 # only take uplifted issues into account
 df = df[df['uplift_accepted'] == 'True',]
 
-xcol = c('changes_size', 'test_changes_size', 'code_churn_overall', 'code_churn_last_3_releases',
-         'avg_cyclomatic', 'cnt_func', 'ratio_comment', 'page_rank', 'closeness', 'indegree', 'outdegree',
-         'release_delta',
-         'comments',
-         'component',
-         'developer_familiarity_overall', 'developer_familiarity_last_3_releases', 'reviewer_familiarity_overall', 'reviewer_familiarity_last_3_releases', 'reviewer_cnt', 'review_duration',
-         'min_neg', 'owner_neg'
-         )
-formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
-
-# balance data between the target subset and the other category
-df = ovun.sample(formula, data=df, p=0.5, seed=1, method='both')$data
 
 #	VIF analysis
 if(doVIF == 'YES') {
 	library(car)
+	xcol = c('changes_size', 'test_changes_size', 'code_churn_overall', 'code_churn_last_3_releases',
+	         'avg_cyclomatic', 'cnt_func', 'ratio_comment', 'page_rank', 'closeness', 'indegree', 'outdegree',
+	         'release_delta',
+	         'comments',
+	         'component',
+	         'developer_familiarity_overall', 'developer_familiarity_last_3_releases', 'reviewer_familiarity_overall', 'reviewer_familiarity_last_3_releases', 'reviewer_cnt', 'review_duration',
+	         'min_neg', 'owner_neg'
+	         )
+	formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
 	fit = glm(formula, data=df, family=binomial())
-	print(vif(fit) >= 5)
+	vfit = vif(fit)
+	print (vfit[,3] >= sqrt(5))
+	# remove correlated variables
+	formula.reduced = update(formula, ~. -developer_familiarity_last_3_releases -reviewer_familiarity_last_3_releases
+										-reviewer_familiarity_overall -developer_familiarity_overall -component)
+	newfit = glm(formula.reduced, data=df, family=binomial())
+	vfit = vif(newfit)
+	print ('Perform VIF again')
+	print (vfit[,3] >= sqrt(5))
+} else {
+	# balance data between the target subset and the other category
+	xcol = scan(sprintf('mars_metrics/%s.txt', channel), what='', sep='\n')
+	formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
+	df = ovun.sample(formula, data=df, p=0.5, seed=1, method='both')$data
+	# model building
+	mars.model = earth(formula, data=df)
+	print(summary(mars.model))
+	print(evimp(mars.model))
 }
-
-mars.model = earth(formula, data=df)
-summary(mars.model)
-evimp(mars.model)
