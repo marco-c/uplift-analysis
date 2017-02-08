@@ -19,12 +19,12 @@ df = merge(df, df.code, by='bug_id')
 # only take uplifted issues into account
 df = df[df['uplift_accepted'] == 'True',]
 
-xcol = c('changes_size', 'code_churn_overall', 'test_changes_size',
+xcol = c('changes_size', 'test_changes_size', 'code_churn_overall', 'code_churn_last_3_releases',
          'avg_cyclomatic', 'cnt_func', 'ratio_comment', 'page_rank', 'closeness', 'indegree', 'outdegree',
          'release_delta',
          'comments',
          'component',
-         'developer_familiarity_overall', 'reviewer_familiarity_overall', 'reviewer_cnt',
+         'developer_familiarity_overall', 'developer_familiarity_last_3_releases', 'reviewer_familiarity_overall', 'reviewer_familiarity_last_3_releases', 'reviewer_cnt', 'review_duration',
          'min_neg', 'owner_neg'
          )
 formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
