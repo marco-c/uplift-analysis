@@ -3,7 +3,7 @@ library(earth)
 library('ROSE')
 
 channel = 'aurora'
-doVIF = 'NO'
+doVIF = 'YES'
 
 # load data into data frames
 df.basic = as.data.frame(read.csv(sprintf('independent_metrics/basic_%s.csv', channel)))
@@ -34,14 +34,22 @@ if(doVIF == 'YES') {
 	formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
 	fit = glm(formula, data=df, family=binomial())
 	vfit = vif(fit)
-	print (vfit[,3] >= sqrt(5))
+	if(is.vector(vfit)) {
+		print (vfit >= 5)
+	} else {
+		print (vfit[,3] >= sqrt(5))
+	}
 	# remove correlated variables
 	formula.reduced = update(formula, ~. -developer_familiarity_last_3_releases -reviewer_familiarity_last_3_releases
 										-reviewer_familiarity_overall -developer_familiarity_overall -component)
-	newfit = glm(formula.reduced, data=df, family=binomial())
-	vfit = vif(newfit)
-	print ('Perform VIF again')
-	print (vfit[,3] >= sqrt(5))
+	fit.new = glm(formula.reduced, data=df, family=binomial())
+	vfit.new = vif(fit.new)
+	print ('Check VIF again')
+	if(is.vector(vfit)) {
+		print (vfit >= 5)
+	} else {
+		print (vfit[,3] >= sqrt(5))
+	}
 } else {
 	# balance data between the target subset and the other category
 	xcol = scan(sprintf('mars_metrics/%s.txt', channel), what='', sep='\n')
