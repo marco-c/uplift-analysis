@@ -15,6 +15,10 @@ def effectSize(series1, series2, rcliff):
     effect_size = rcliff(list1, list2).rx('magnitude')[0].levels[0]
     return effect_size
 
+def loadMetrics():
+    with open('metric_list.txt') as f:
+        return [elem.replace('\n', '') for elem in f.read().split(', ')]
+
 def loadData(channel):
     df_basic = pd.read_csv('independent_metrics/basic_{}.csv'.format(channel))
     df_review = pd.read_csv('independent_metrics/review_metrics.csv')
@@ -62,6 +66,7 @@ def print_results(channel, df_res, columns):
         ('landing_delta', 'Landing delta'),
         ('response_delta', 'Response delta'),
         ('release_delta', 'Release delta'),
+        # TODO: Add metric names here.
     ]
 
     for metric, metric_name in metric_names:
@@ -100,10 +105,7 @@ def statisticalAnalyses(df_sub1, df_sub2, metric_list):
 if __name__ == '__main__':
     for channel in ['aurora', 'beta', 'release']:
         # initialize variables
-        metric_list = ['changes_size', 'code_churn_overall', 'avg_cyclomatic', 'closeness',
-                        'developer_familiarity_overall', 'reviewer_familiarity_overall',
-                        'comments', 'review_duration', 
-                        'landing_delta', 'response_delta', 'release_delta']
+        metric_list = loadMetrics()
         # load data
         df = loadData(channel)
         # split data into different categories
