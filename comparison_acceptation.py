@@ -82,10 +82,11 @@ def print_results(channel, df_res, columns, metric_list):
     for metric in metric_list:
         metric_name = metric_names[metric]
 
-        df = df_res[df_res.metric == metric]
-        if len(df) == 0:
+        obj = df_res[df_res.metric == metric].iloc[0]
+
+        # Ignore non significant results.
+        if obj['effect_size'] == '--':
             continue
-        obj = df.iloc[0]
 
         p_value = to_nice_num(obj['p-value'])
         if obj['p-value'] < 0.05:
