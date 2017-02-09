@@ -45,10 +45,10 @@ if(doVIF == 'YES') {
 	fit.new = glm(formula.reduced, data=df, family=binomial())
 	vfit.new = vif(fit.new)
 	print ('Check VIF again')
-	if(is.vector(vfit)) {
-		print (vfit >= 5)
+	if(is.vector(vfit.new)) {
+		print (vfit.new >= 5)
 	} else {
-		print (vfit[,3] >= sqrt(5))
+		print (vfit.new[,3] >= sqrt(5))
 	}
 } else {
 	# balance data between the target subset and the other category
