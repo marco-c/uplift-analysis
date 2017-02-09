@@ -26,7 +26,15 @@ drawplot <- function(df, target, metric) {
 	boxplot(list(unlist(df.sub1[metric]), unlist(df.sub2[metric])), outline=FALSE, names=c('Faulty', 'Clean'), main=metric)
 }
 
-metric_list = c('changes_size', 'code_churn_overall', 'developer_familiarity_overall')
+metric_list = c('changes_size', 'test_changes_size', 'code_churn_overall',
+	         'avg_cyclomatic', 'cnt_func', 'ratio_comment', 'closeness', 'betweenness',
+	         'release_delta',
+	         'comments',
+	         'developer_familiarity_overall', 'reviewer_cnt', 'review_duration',
+	         'min_neg', 'owner_neg', 'manager_neg',
+	         'LOC', 'maxnesting',
+	         'comment_words', 'reviewer_comment_rate', 'non_author_voters', 'neg_review_rate',
+	         'backout_num', 'blocks', 'depends_on', 'landing_delta', 'modules_num', 'r.ed_patches')
 for(i in 1:length(metric_list)) {
 	metric_name = metric_list[i]
 	drawplot(df, 'error_inducing', metric_name)
