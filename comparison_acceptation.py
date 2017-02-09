@@ -94,8 +94,6 @@ def print_results(channel, df_res, columns, metric_list):
 
         print('& ' + metric_name + ' & ' + to_nice_num(obj[columns[0]]) + ' & ' + to_nice_num(obj[columns[1]]) + ' & ' + p_value + ' & ' + obj['effect_size'] + ' \\\\')
 
-    print('')
-
 def statisticalAnalyses(df_sub1, df_sub2, metric_list):
     # import R packages
     effsize = importr('effsize')
