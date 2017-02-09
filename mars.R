@@ -3,7 +3,7 @@ library(earth)
 library('ROSE')
 
 channel = 'aurora'
-doVIF = 'YES'
+doVIF = 'NO'
 
 # load data into data frames
 df.basic = as.data.frame(read.csv(sprintf('independent_metrics/basic_%s.csv', channel)))
@@ -22,17 +22,7 @@ df = df[df['uplift_accepted'] == 'True',]
 #	VIF analysis
 if(doVIF == 'YES') {
 	library(car)
-	xcol = c('changes_size', 'test_changes_size', 'code_churn_overall',
-	         'avg_cyclomatic', 'cnt_func', 'ratio_comment', 'page_rank', 'closeness', 'indegree', 'outdegree',
-	         'release_delta',
-	         'comments',
-	         'developer_familiarity_overall', 'reviewer_cnt', 'review_duration',
-	         'max_pos', 'min_neg', 'overall', 'owner_pos', 'owner_neg', 'manager_pos', 'manager_neg',
-	         'LOC', 'maxnesting',
-	         'comment_words', 'reviewer_comment_rate', 'non_author_voters', 'neg_review_rate',
-	         'feedback_count', 'neg_feedbacks', 'feedback_delay',
-	         'backout_num', 'blocks', 'depends_on', 'landing_delta', 'modules_num', 'r.ed_patches'
-	         )
+	xcol = scan(sprintf('metric_list.txt', channel), what='', sep='\n')
 	formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
 	fit = glm(formula, data=df, family=binomial())
 	vfit = vif(fit)
@@ -54,7 +44,7 @@ if(doVIF == 'YES') {
 	}
 } else {
 	# balance data between the target subset and the other category
-	xcol = scan(sprintf('mars_metrics/%s.txt', channel), what='', sep='\n')
+	xcol = scan(sprintf('metric_list.txt', channel), what='', sep='\n')
 	formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
 	df = ovun.sample(formula, data=df, p=0.5, seed=1, method='both')$data
 	# model building

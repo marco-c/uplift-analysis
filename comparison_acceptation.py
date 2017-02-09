@@ -17,7 +17,7 @@ def effectSize(series1, series2, rcliff):
 
 def loadMetrics():
     with open('metric_list.txt') as f:
-        return [elem.replace('\n', '') for elem in f.read().split(', ')]
+        return [line.rstrip('\n') for line in f]
 
 def loadData(channel):
     df_basic = pd.read_csv('independent_metrics/basic_{}.csv'.format(channel))

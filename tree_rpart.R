@@ -2,7 +2,7 @@ library('rpart.plot')
 library('plyr')
 library('ROSE')
 
-channel = 'beta'
+channel = 'aurora'
 doVIF = 'NO'
 
 # load data into data frames
@@ -19,13 +19,8 @@ df = merge(df, df.code, by='bug_id')
 # only take uplifted issues into account
 df = df[df['uplift_accepted'] == 'True',]
 
-xcol = c('changes_size', 'code_churn_overall', 
-		'avg_cyclomatic', 'cnt_func', 'ratio_comment', 
-		'page_rank', 'closeness', 'indegree', 'outdegree',
-        'landing_delta', 'response_delta', 'release_delta', 'uplift_comment_length',
-        'reviewer_familiarity_overall', 'test_changes_size',
-        'max_pos', 'min_neg', 'owner_pos', 'owner_neg', 'manager_pos', 'manager_neg', 
-		'reviewer_cnt', 'comments', 'reviewer_comment_rate')
+
+xcol = scan(sprintf('metric_list.txt', channel), what='', sep=',')
 formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
 
 # balance data between the target subset and the other category
@@ -39,5 +34,16 @@ if(doVIF == 'YES') {
 }
 
 tree.fit = rpart(formula, data=df)
+print(tree.fit)
+printcp(tree.fit)
+bestcp <- tree.fit$cptable[which.min(tree.fit$cptable[,"xerror"]),"CP"]
+tree.pruned <- prune(tree.fit, cp = bestcp)
+
+conf.matrix <- table(df$error_inducing, predict(tree.pruned,type="class"))
+rownames(conf.matrix) <- paste("Actual", rownames(conf.matrix), sep = ":")
+colnames(conf.matrix) <- paste("Pred", colnames(conf.matrix), sep = ":")
+print(conf.matrix)
+
 prp(tree.fit, extra=106, varlen=0, under=TRUE)
+prp(tree.pruned, faclen = 0, cex = 0.8, extra = 1)
 
