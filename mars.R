@@ -1,5 +1,5 @@
 library(earth)
-library('plyr')
+#library('plyr')
 library('ROSE')
 
 channel = 'aurora'
@@ -18,7 +18,6 @@ df = merge(df, df.senti, by='bug_id')
 df = merge(df, df.code, by='bug_id')
 # only take uplifted issues into account
 df = df[df['uplift_accepted'] == 'True',]
-df <- rename(df, c('r-ed_patches'='patches_reviewed_negatively'))
 
 #	VIF analysis
 if(doVIF == 'YES') {
@@ -32,7 +31,7 @@ if(doVIF == 'YES') {
 	         'LOC', 'maxnesting',
 	         'comment_words', 'reviewer_comment_rate', 'non_author_voters', 'neg_review_rate',
 	         'feedback_count', 'neg_feedbacks', 'feedback_delay',
-	         'backout_num', 'blocks', 'depends_on', 'landing_delta', 'modules_num', 'patches_reviewed_negatively'
+	         'backout_num', 'blocks', 'depends_on', 'landing_delta', 'modules_num', 'r.ed_patches'
 	         )
 	formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
 	fit = glm(formula, data=df, family=binomial())
