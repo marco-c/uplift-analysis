@@ -49,27 +49,39 @@ def to_nice_num(num):
 
     return nice_num
 
-def print_results(channel, df_res, columns):
+def print_results(channel, df_res, columns, metric_list):
     if channel != 'aurora':
         print('\\hline')
     print('\\emph{' + channel.capitalize() + '}')
 
-    metric_names = [
-        ('changes_size', 'Code churn'),
-        ('code_churn_overall', 'Prior changes'),
-        ('avg_cyclomatic', 'Cyclomatic'),
-        ('closeness', 'Closeness'),
-        ('developer_familiarity_overall', 'Developer exp.'),
-        ('reviewer_familiarity_overall', 'Reviewer exp.'),
-        ('comments', '\\# of comments'),
-        ('review_duration', 'Review duration'),
-        ('landing_delta', 'Landing delta'),
-        ('response_delta', 'Response delta'),
-        ('release_delta', 'Release delta'),
-        # TODO: Add metric names here.
-    ]
+    metric_names = {
+        'changes_size': 'Code churn',
+        'test_changes_size': 'Test churn',
+        'code_churn_overall': 'Prior changes',
+        'LOC': 'LOC',
+        'avg_cyclomatic': 'Average cyclomatic',
+        'cnt_func': 'Number of functions',
+        'maxnesting': 'Maximum nesting',
+        'ratio_comment': 'Comment ratio',
+        'modules_num': 'Module number',
+        'page_rank': 'PageRank',
+        'betweenness': 'Betweenness',
+        'closeness': 'Closeness',
+        'developer_familiarity_overall': 'Developer exp.',
+        'reviewer_familiarity_overall': 'Reviewer exp.',
+        'comments': '\\# of comments',
+        'comment_words': 'Comment words',
+        'review_duration': 'Review duration',
+        'min_neg': 'Developer sentiment',
+        'owner_neg': 'Owner sentiment',
+        'landing_delta': 'Landing delta',
+        'response_delta': 'Response delta',
+        'release_delta': 'Release delta',
+    }
 
-    for metric, metric_name in metric_names:
+    for metric in metric_list:
+        metric_name = metric_names[metric]
+
         df = df_res[df_res.metric == metric]
         if len(df) == 0:
             continue
@@ -115,4 +127,4 @@ if __name__ == '__main__':
         result_list = statisticalAnalyses(df_accept, df_reject, metric_list)
         # output results
         df_res = pd.DataFrame(result_list, columns=['metric', 'accepted', 'rejected', 'p-value', 'effect_size'])
-        print_results(channel, df_res, ['accepted', 'rejected'])
+        print_results(channel, df_res, ['accepted', 'rejected'], metric_list)

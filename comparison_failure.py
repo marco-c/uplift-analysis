@@ -19,4 +19,4 @@ if __name__ == '__main__':
         result_list = statisticalAnalyses(df_fault, df_clean, metric_list)
         # output results
         df_res = pd.DataFrame(result_list, columns=['metric', 'fault', 'clean', 'p-value', 'effect_size'])
-        print_results(channel, df_res, ['fault', 'clean'])
+        print_results(channel, df_res, ['fault', 'clean'], metric_list)
