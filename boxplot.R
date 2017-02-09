@@ -1,10 +1,8 @@
 library(earth)
 #library('plyr')
 library('ROSE')
-library('ggplot2')
 
 channel = 'aurora'
-doVIF = 'YES'
 
 # load data into data frames
 df.basic = as.data.frame(read.csv(sprintf('independent_metrics/basic_%s.csv', channel)))
@@ -17,6 +15,19 @@ df = merge(df.inducing, df.basic, by='bug_id')
 df = merge(df, df.review, by='bug_id')
 df = merge(df, df.senti, by='bug_id')
 df = merge(df, df.code, by='bug_id')
+# only take uplifted issues into account
+df = df[df['uplift_accepted'] == 'True',]
 
+colnames(df)
 
-boxplot(df$error_inducing, df$developer_familiarity_overall, outline=FALSE)
+drawplot <- function(df, target, metric) {
+	df.sub1 <- df[df[ ,target]=='True',]
+	df.sub2 <- df[df[ ,target]=='False',]
+	boxplot(list(unlist(df.sub1[metric]), unlist(df.sub2[metric])), outline=FALSE, names=c('Faulty', 'Clean'), main=metric)
+}
+
+metric_list = c('changes_size', 'code_churn_overall', 'developer_familiarity_overall')
+for(i in 1:length(metric_list)) {
+	metric_name = metric_list[i]
+	drawplot(df, 'error_inducing', metric_name)
+}
