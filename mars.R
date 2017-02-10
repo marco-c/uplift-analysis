@@ -19,10 +19,11 @@ df = merge(df, df.code, by='bug_id')
 # only take uplifted issues into account
 df = df[df['uplift_accepted'] == 'True',]
 
+xcol = scan(sprintf('mars_metric_list.txt', channel), what='', sep='\n')
+
 #	VIF analysis
 if(doVIF == 'YES') {
 	library(car)
-	xcol = scan(sprintf('metric_list.txt', channel), what='', sep='\n')
 	formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
 	fit = glm(formula, data=df, family=binomial())
 	vfit = vif(fit)
@@ -44,11 +45,10 @@ if(doVIF == 'YES') {
 	}
 } else {
 	# balance data between the target subset and the other category
-	xcol = scan(sprintf('metric_list.txt', channel), what='', sep='\n')
 	formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
 	df = ovun.sample(formula, data=df, p=0.5, seed=1, method='both')$data
 	# model building
-	mars.model = earth(formula, data=df)
+	mars.model = earth(formula, data=df, ncross=3, nfold=10)
 	print(summary(mars.model))
 	print(evimp(mars.model))
 }
