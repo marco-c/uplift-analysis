@@ -2,8 +2,8 @@ library(earth)
 #library('plyr')
 library('ROSE')
 
-channel = 'release'
-doVIF = 'NO'
+channel = 'aurora'
+doVIF = 'YES'
 
 # load data into data frames
 df.basic = as.data.frame(read.csv(sprintf('independent_metrics/basic_%s.csv', channel)))
@@ -20,11 +20,11 @@ df = merge(df, df.code, by='bug_id')
 df = df[df['uplift_accepted'] == 'True',]
 
 xcol = scan(sprintf('%s_metric_list.txt', channel), what='', sep='\n')
+formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
 
 #	VIF analysis
 if(doVIF == 'YES') {
 	library(car)
-	formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
 	fit = glm(formula, data=df, family=binomial())
 	vfit = vif(fit)
 	if(is.vector(vfit)) {
@@ -45,7 +45,6 @@ if(doVIF == 'YES') {
 	}
 } else {
 	# balance data between the target subset and the other category
-	formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
 	df = ovun.sample(formula, data=df, p=0.5, seed=1, method='both')$data
 	# model building
 	mars.model = earth(formula, data=df, ncross=3, nfold=10)

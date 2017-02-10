@@ -22,15 +22,20 @@ df = df[df['uplift_accepted'] == 'True',]
 xcol = scan(sprintf('%s_metric_list.txt', channel), what='', sep='\n')
 formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
 
-# balance data between the target subset and the other category
-df = ovun.sample(formula, data=df, p=0.5, seed=123, method='both')$data
-
 #	VIF analysis
 if(doVIF == 'YES') {
 	library(car)
 	fit = glm(formula, data=df, family=binomial())
-	print(vif(fit) >= 5)
+	vfit = vif(fit)
+	if(is.vector(vfit)) {
+		print (vfit >= 5)
+	} else {
+		print (vfit[,3] >= sqrt(5))
+	}
 }
+
+# balance data between the target subset and the other category
+df = ovun.sample(formula, data=df, p=0.5, seed=123, method='both')$data
 
 tree.fit = rpart(formula, data=df)
 print(tree.fit)
@@ -49,8 +54,8 @@ prp(tree.fit, extra=106, varlen=0, under=TRUE)
 prp(tree.pruned, faclen = 0, cex = 0.8, extra = 1)
 
 
-library(randomForest)
-fit <- randomForest(formula, data=df, importance=TRUE)
-varImpPlot(fit, main='')
-print(fit)
-importance(fit)
+#library(randomForest)
+#fit <- randomForest(formula, data=df, importance=TRUE)
+#varImpPlot(fit, main='')
+#print(fit)
+#importance(fit)
