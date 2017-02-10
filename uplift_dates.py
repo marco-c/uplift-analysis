@@ -18,6 +18,8 @@ if __name__ == '__main__':
     for uplift in uplifts:
         for channel in utils.uplift_approved_channels(uplift):
             uplift_date = utils.get_uplift_date(uplift, channel)
+            if uplift_date > as_utc(datetime(2016, 8, 24)):
+                continue
             delta = relativedelta.relativedelta(uplift_date, as_utc(datetime(2014, 7, 1)))
             delta_num = delta.years * 12 + delta.months
             key = (delta_num, uplift_date.strftime('%b %Y'), channel)
