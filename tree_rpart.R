@@ -38,6 +38,8 @@ if(doVIF == 'YES') {
 df = ovun.sample(formula, data=df, p=0.5, seed=123, method='both')$data
 
 tree.fit = rpart(formula, data=df)
+
+if(F){
 print(tree.fit)
 printcp(tree.fit)
 bestcp <- tree.fit$cptable[which.min(tree.fit$cptable[,"xerror"]),"CP"]
@@ -57,3 +59,4 @@ prp(tree.pruned, faclen = 0, cex = 0.8, extra = 1)
 #varImpPlot(fit, main='')
 #print(fit)
 #importance(fit)
+}
