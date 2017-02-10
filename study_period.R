@@ -14,7 +14,6 @@ ggplot(data=df, aes(x=Delta, y=Number_of_uplifts, shape=Channel)) +
 	geom_point(size=5) + 
 	scale_shape(solid = FALSE) +
 	xlab('Time period') + ylab('Upliftd issues') +
-	ggtitle('Number of uplifted issues per month') +
 	theme_bw() + 			# white background
 	theme(plot.title=element_text(size = 25), text=element_text(size=22), axis.text.x=element_text(size=19,angle=45,hjust=1), legend.position='top')  +
 	geom_rect(data=shadow, mapping=aes(xmin=x.min, xmax=x.max, ymin=y.min, ymax=y.max, fill=Periods), alpha=0.2, inherit.aes=FALSE)
