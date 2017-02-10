@@ -2,8 +2,8 @@ library('rpart.plot')
 library('plyr')
 library('ROSE')
 
-channel = 'aurora'
-doVIF = 'NO'
+channel = 'release'
+doVIF = 'YES'
 
 # load data into data frames
 df.basic = as.data.frame(read.csv(sprintf('independent_metrics/basic_%s.csv', channel)))
@@ -19,24 +19,29 @@ df = merge(df, df.code, by='bug_id')
 # only take uplifted issues into account
 df = df[df['uplift_accepted'] == 'True',]
 
-
-xcol = scan(sprintf('metric_list.txt', channel), what='', sep=',')
+xcol = scan(sprintf('%s_metric_list.txt', channel), what='', sep='\n')
 formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
-
-# balance data between the target subset and the other category
-df = ovun.sample(formula, data=df, p=0.5, seed=1, method='both')$data
 
 #	VIF analysis
 if(doVIF == 'YES') {
 	library(car)
 	fit = glm(formula, data=df, family=binomial())
-	print(vif(fit) >= 5)
+	vfit = vif(fit)
+	if(is.vector(vfit)) {
+		print (vfit >= 5)
+	} else {
+		print (vfit[,3] >= sqrt(5))
+	}
 }
+
+# balance data between the target subset and the other category
+df = ovun.sample(formula, data=df, p=0.5, seed=123, method='both')$data
 
 tree.fit = rpart(formula, data=df)
 print(tree.fit)
 printcp(tree.fit)
 bestcp <- tree.fit$cptable[which.min(tree.fit$cptable[,"xerror"]),"CP"]
+#bestcp <- 0.014989
 tree.pruned <- prune(tree.fit, cp = bestcp)
 
 conf.matrix <- table(df$error_inducing, predict(tree.pruned,type="class"))
@@ -47,3 +52,8 @@ print(conf.matrix)
 prp(tree.fit, extra=106, varlen=0, under=TRUE)
 prp(tree.pruned, faclen = 0, cex = 0.8, extra = 1)
 
+#library(randomForest)
+#fit <- randomForest(formula, data=df, importance=TRUE)
+#varImpPlot(fit, main='')
+#print(fit)
+#importance(fit)
