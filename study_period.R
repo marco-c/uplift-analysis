@@ -6,7 +6,7 @@ df = read.csv('uplift_dates.csv', header=TRUE, sep=',')
 month_label = unique(df$Month)
 
 # Shadow dataframe
-shadow = data.frame(x.min=c(-0.3,2.1), x.max=c(1.9,24.9), y.min=c(0,0), y.max=c(250,250), Periods=c('Removed ','Selected '))
+shadow = data.frame(x.min=c(-0.3,2.1), x.max=c(1.9,25.3), y.min=c(0,0), y.max=c(250,250), Periods=c('Removed ','Selected '))
 
 ggplot(data=df, aes(x=Delta, y=Number_of_uplifts, shape=Channel)) + 
 	geom_line(size=0.5) + 
