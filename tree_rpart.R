@@ -19,7 +19,7 @@ df = merge(df, df.code, by='bug_id')
 # only take uplifted issues into account
 df = df[df['uplift_accepted'] == 'True',]
 
-xcol = scan(sprintf('tree_metric_list.txt', channel), what='', sep='\n')
+xcol = scan(sprintf('%s_metric_list.txt', channel), what='', sep='\n')
 formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
 
 # balance data between the target subset and the other category
@@ -51,6 +51,6 @@ prp(tree.pruned, faclen = 0, cex = 0.8, extra = 1)
 
 library(randomForest)
 fit <- randomForest(formula, data=df, importance=TRUE)
-varImpPlot(fit)
+varImpPlot(fit, main='')
 print(fit)
 importance(fit)
