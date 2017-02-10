@@ -2,7 +2,7 @@ library(earth)
 #library('plyr')
 library('ROSE')
 
-channel = 'aurora'
+channel = 'release'
 doVIF = 'NO'
 
 # load data into data frames
@@ -19,7 +19,7 @@ df = merge(df, df.code, by='bug_id')
 # only take uplifted issues into account
 df = df[df['uplift_accepted'] == 'True',]
 
-xcol = scan(sprintf('mars_metric_list.txt', channel), what='', sep='\n')
+xcol = scan(sprintf('%s_mars_metric_list.txt', channel), what='', sep='\n')
 
 #	VIF analysis
 if(doVIF == 'YES') {
