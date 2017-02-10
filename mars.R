@@ -2,8 +2,8 @@ library(earth)
 #library('plyr')
 library('ROSE')
 
-channel = 'aurora'
-doVIF = 'YES'
+channel = 'beta'
+doVIF = 'NO'
 
 # load data into data frames
 df.basic = as.data.frame(read.csv(sprintf('independent_metrics/basic_%s.csv', channel)))
@@ -47,7 +47,7 @@ if(doVIF == 'YES') {
 	# balance data between the target subset and the other category
 	df = ovun.sample(formula, data=df, p=0.5, seed=1, method='both')$data
 	# model building
-	mars.model = earth(formula, data=df, ncross=3, nfold=10)
+	mars.model = earth(formula, data=df)
 	print(summary(mars.model))
 	print(evimp(mars.model))
 }

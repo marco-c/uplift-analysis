@@ -2,7 +2,7 @@ library('rpart.plot')
 library('plyr')
 library('ROSE')
 
-channel = 'aurora'
+channel = 'release'
 doVIF = 'YES'
 
 # load data into data frames
@@ -49,10 +49,8 @@ rownames(conf.matrix) <- paste("Actual", rownames(conf.matrix), sep = ":")
 colnames(conf.matrix) <- paste("Pred", colnames(conf.matrix), sep = ":")
 print(conf.matrix)
 
-rsq.rpart(tree.fit)
 prp(tree.fit, extra=106, varlen=0, under=TRUE)
 prp(tree.pruned, faclen = 0, cex = 0.8, extra = 1)
-
 
 #library(randomForest)
 #fit <- randomForest(formula, data=df, importance=TRUE)
