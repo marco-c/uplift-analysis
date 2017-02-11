@@ -2,8 +2,8 @@ library('rpart.plot')
 library('plyr')
 library('ROSE')
 
-channel = 'release'
-doVIF = 'YES'
+channel = 'Beta'
+doVIF = 'NO'
 
 # load data into data frames
 df.basic = as.data.frame(read.csv(sprintf('independent_metrics/basic_%s.csv', channel)))
@@ -36,8 +36,13 @@ if(doVIF == 'YES') {
 
 # balance data between the target subset and the other category
 df = ovun.sample(formula, data=df, p=0.5, seed=123, method='both')$data
-
 tree.fit = rpart(formula, data=df)
+summary(tree.fit)
+prp(tree.fit, extra=106, varlen=0, under=TRUE)
+
+tmp <- printcp(tree.fit)
+rsq.val <- 1-tmp[,c(3,4)] 
+rsq.val
 
 if(F){
 print(tree.fit)

@@ -2,7 +2,7 @@ library(earth)
 #library('plyr')
 library('ROSE')
 
-channel = 'beta'
+channel = 'release'
 doVIF = 'NO'
 
 # load data into data frames
