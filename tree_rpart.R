@@ -10,7 +10,7 @@ df.basic = as.data.frame(read.csv(sprintf('independent_metrics/basic_%s.csv', ch
 df.review = as.data.frame(read.csv('independent_metrics/review_metrics.csv'))
 df.senti = as.data.frame(read.csv('independent_metrics/senti_metrics.csv'))
 df.code = as.data.frame(read.csv('independent_metrics/src_code_metrics.csv'))
-df.inducing = as.data.frame(read.csv('independent_metrics/bug_inducing.csv'))
+df.inducing = as.data.frame(read.csv('independent_metrics/bug_inducing_tree.csv'))
 # merge data frames into one
 df = merge(df.inducing, df.basic, by='bug_id')
 df = merge(df, df.review, by='bug_id')
