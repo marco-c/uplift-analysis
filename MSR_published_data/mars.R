@@ -1,5 +1,5 @@
 library(earth)
-#library('plyr')
+library('plyr')
 library('ROSE')
 
 channel = 'release'
@@ -18,6 +18,8 @@ df = merge(df, df.senti, by='bug_id')
 df = merge(df, df.code, by='bug_id')
 # only take uplifted issues into account
 df = df[df['uplift_accepted'] == 'True',]
+
+df <- rename(df, c('min_neg_senti'='developer_sentiment','owner_neg_senti'='owner_sentiment'))
 
 xcol = scan(sprintf('vif/%s_metric_list.txt', channel), what='', sep='\n')
 formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
