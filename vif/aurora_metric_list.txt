@@ -1,6 +1,6 @@
 code_churn
 test_code_churn
-code_churn_overall
+prior_changes
 avg_cyclomatic
 cnt_func
 ratio_comment
@@ -8,11 +8,11 @@ closeness
 betweenness
 page_rank
 release_delta
-comments
+comment_number
 developer_experience
 review_duration
 min_neg
-owner_neg
+owner_sentiment
 LOC
 maxnesting
 comment_words
