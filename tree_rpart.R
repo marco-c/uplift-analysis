@@ -2,7 +2,7 @@ library('rpart.plot')
 library('plyr')
 library('ROSE')
 
-channel = 'Beta'
+channel = 'aurora'
 doVIF = 'NO'
 
 # load data into data frames
@@ -19,7 +19,10 @@ df = merge(df, df.code, by='bug_id')
 # only take uplifted issues into account
 df = df[df['uplift_accepted'] == 'True',]
 
-xcol = scan(sprintf('%s_metric_list.txt', channel), what='', sep='\n')
+df <- rename(df, c('changes_size'='code_churn','test_changes_size'='test_code_churn', 
+				'developer_familiarity_overall'='developer_experience'))
+
+xcol = scan(sprintf('vif/%s_metric_list.txt', channel), what='', sep='\n')
 formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
 
 #	VIF analysis
@@ -36,9 +39,12 @@ if(doVIF == 'YES') {
 
 # balance data between the target subset and the other category
 df = ovun.sample(formula, data=df, p=0.5, seed=123, method='both')$data
+
+
+
 tree.fit = rpart(formula, data=df)
 summary(tree.fit)
-prp(tree.fit, extra=106, varlen=0, under=TRUE)
+prp(tree.fit, extra=0, varlen=0, under=TRUE)
 
 tmp <- printcp(tree.fit)
 rsq.val <- 1-tmp[,c(3,4)] 
