@@ -3,14 +3,14 @@ library('plyr')
 library('ROSE')
 
 channel = 'release'
-doVIF = 'YES'
+doVIF = 'NO'
 
 # load data into data frames
 df.basic = as.data.frame(read.csv(sprintf('independent_metrics/basic_%s.csv', channel)))
 df.review = as.data.frame(read.csv('independent_metrics/review_metrics.csv'))
 df.senti = as.data.frame(read.csv('independent_metrics/senti_metrics.csv'))
 df.code = as.data.frame(read.csv('independent_metrics/src_code_metrics.csv'))
-df.inducing = as.data.frame(read.csv('independent_metrics/bug_inducing.csv'))
+df.inducing = as.data.frame(read.csv('independent_metrics/bug_inducing_tree.csv'))
 # merge data frames into one
 df = merge(df.inducing, df.basic, by='bug_id')
 df = merge(df, df.review, by='bug_id')
@@ -19,7 +19,11 @@ df = merge(df, df.code, by='bug_id')
 # only take uplifted issues into account
 df = df[df['uplift_accepted'] == 'True',]
 
-xcol = scan(sprintf('%s_metric_list.txt', channel), what='', sep='\n')
+df <- rename(df, c('changes_size'='code_churn','test_changes_size'='test_code_churn', 
+				'developer_familiarity_overall'='developer_experience','owner_neg'='owner_sentiment',
+				'comments'='comment_number', 'code_churn_overall'='prior_changes'))
+
+xcol = scan(sprintf('vif/%s_metric_list.txt', channel), what='', sep='\n')
 formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
 
 #	VIF analysis
@@ -37,7 +41,17 @@ if(doVIF == 'YES') {
 # balance data between the target subset and the other category
 df = ovun.sample(formula, data=df, p=0.5, seed=123, method='both')$data
 
+
+
 tree.fit = rpart(formula, data=df)
+summary(tree.fit)
+prp(tree.fit, extra=0, varlen=0, under=TRUE)
+
+tmp <- printcp(tree.fit)
+rsq.val <- 1-tmp[,c(3,4)] 
+rsq.val
+
+if(F){
 print(tree.fit)
 printcp(tree.fit)
 bestcp <- tree.fit$cptable[which.min(tree.fit$cptable[,"xerror"]),"CP"]
@@ -57,3 +71,4 @@ prp(tree.pruned, faclen = 0, cex = 0.8, extra = 1)
 #varImpPlot(fit, main='')
 #print(fit)
 #importance(fit)
+}
