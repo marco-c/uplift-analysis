@@ -1,5 +1,5 @@
 library(earth)
-#library('plyr')
+library('plyr')
 library('ROSE')
 
 channel = 'release'
