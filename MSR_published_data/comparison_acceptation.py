@@ -16,7 +16,7 @@ def effectSize(series1, series2, rcliff):
     return effect_size
 
 def loadMetrics():
-    with open('metric_list.txt') as f:
+    with open('independent_metrics/metric_list.txt') as f:
         return [line.rstrip('\n') for line in f]
 
 def loadData(channel):
@@ -55,9 +55,9 @@ def print_results(channel, df_res, columns, metric_list):
     print('\\emph{' + channel.capitalize() + '}')
 
     metric_names = {
-        'changes_size': 'Code churn',
-        'test_changes_size': 'Test churn',
-        'code_churn_overall': 'Prior changes',
+        'code_churn': 'Code churn',
+        'test_code_churn': 'Test churn',
+        'prior_changes': 'Prior changes',
         'LOC': 'LOC',
         'avg_cyclomatic': 'Average cyclomatic',
         'cnt_func': 'Number of functions',
@@ -67,13 +67,13 @@ def print_results(channel, df_res, columns, metric_list):
         'page_rank': 'PageRank',
         'betweenness': 'Betweenness',
         'closeness': 'Closeness',
-        'developer_familiarity_overall': 'Developer exp.',
-        'reviewer_familiarity_overall': 'Reviewer exp.',
-        'comments': '\\# of comments',
+        'developer_experience': 'Developer exp.',
+        'reviewer_experience': 'Reviewer exp.',
+        'comment_num': '\\# of comments',
         'comment_words': 'Comment words',
         'review_duration': 'Review duration',
-        'min_neg': 'Developer sentiment',
-        'owner_neg': 'Owner sentiment',
+        'min_neg_senti': 'Developer sentiment',
+        'owner_neg_senti': 'Owner sentiment',
         'landing_delta': 'Landing delta',
         'response_delta': 'Response delta',
         'release_delta': 'Release delta',

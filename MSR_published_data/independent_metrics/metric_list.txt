@@ -5,13 +5,15 @@ avg_cyclomatic
 cnt_func
 ratio_comment
 closeness
+betweenness
 page_rank
 release_delta
 comment_num
 developer_experience
+reviewer_experience
 review_duration
-developer_sentiment
-owner_sentiment
+min_neg_senti
+owner_neg_senti
 LOC
 maxnesting
 comment_words
