@@ -1,4 +1,4 @@
-bug_id,max_pos_senti,min_neg_senti,overall_senti,owner_pos_senti,owner_neg_senti,manager_pos_senti,manager_neg_senti
+bug_id,max_pos,min_neg,overall,owner_pos,owner_neg,manager_pos,manager_neg
 1044233,2,-2,1,2,-2,0,0
 1042098,2,-2,0,0,0,0,0
 1045886,3,-4,-1,3,-3,2,-2

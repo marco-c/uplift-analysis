@@ -7,11 +7,11 @@ ratio_comment
 closeness
 page_rank
 release_delta
-comment_num
+comment_number
 developer_experience
-reviewer_experience
+reviewer_familiarity_overall
 review_duration
-developer_sentiment
+min_neg
 owner_sentiment
 maxnesting
 comment_words

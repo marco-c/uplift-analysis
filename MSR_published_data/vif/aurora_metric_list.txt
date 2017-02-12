@@ -8,10 +8,10 @@ closeness
 betweenness
 page_rank
 release_delta
-comment_num
+comment_number
 developer_experience
 review_duration
-developer_sentiment
+min_neg
 owner_sentiment
 LOC
 maxnesting

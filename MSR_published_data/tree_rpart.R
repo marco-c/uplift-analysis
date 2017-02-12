@@ -19,7 +19,9 @@ df = merge(df, df.code, by='bug_id')
 # only take uplifted issues into account
 df = df[df['uplift_accepted'] == 'True',]
 
-df <- rename(df, c('min_neg_senti'='developer_sentiment','owner_neg_senti'='owner_sentiment'))
+df <- rename(df, c('changes_size'='code_churn','test_changes_size'='test_code_churn', 
+				'developer_familiarity_overall'='developer_experience','owner_neg'='owner_sentiment',
+				'comments'='comment_number', 'code_churn_overall'='prior_changes'))
 
 xcol = scan(sprintf('vif/%s_metric_list.txt', channel), what='', sep='\n')
 formula = as.formula(sprintf('error_inducing ~ %s', paste(xcol, collapse= '+')))
