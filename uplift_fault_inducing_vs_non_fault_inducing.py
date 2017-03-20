@@ -83,7 +83,7 @@ for channel in channels:
 
     with open('uplift_fault_inducing_vs_non_fault_inducing_' + channel + '.csv', 'w') as output_file:
         csv_writer = csv.writer(output_file)
-        csv_writer.writerow(['Uplift ID', 'Fault IDs', 'Reason for uplift', 'Reason for failure'])
+        csv_writer.writerow(['Uplift ID', 'Fault IDs', 'Reason for uplift', 'Reason for failure', 'Evaluation of risks'])
 
         fault_inducing = list(uplifts_per_channel[channel]['fault'])
         fault_inducing = random.sample(fault_inducing, sample_per_channel[channel]['fault'])
