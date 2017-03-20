@@ -10,11 +10,10 @@
 - RQ2: What are the characteristics of uplifted patches that introduced faults in the system?
 - RQ3: Can we improve the patch uplift process?
 
-###Data minning scripts
-- **analyze_bugs.py**: _Marco, could you describe it?_
-- **get_bugs.py**:  _Marco, could you describe it?_
+###Data mining scripts
 - **bug_inducing.py**: identifies fault-inducing patches based on the SZZ algorithm.
 - **complexity_sna** folder: compute source code metrics againt the Understand and igraph tools. The results will then be extracted and pretty outputted by **src_code_metrics.py**.
+- **analyze_bugs.py**: extract some metrics about review and uplift process, developer/reviewer familiarity, etc..
 - **senti_metrics.py**: extract sentiment metrics from the comments in the issue reports.
 - **review_metrics.py**: extract code review-related metrics from comments and patch flags in the issue reports.
 
@@ -30,7 +29,7 @@
 - **decision_tree_figures** folder contains the output of Decision trees on the fault-proneness in respectively the _Aurora_, _Beta_, and _Release_ channels.
  
 ###How to user the analytic scripts
-1. Consecutively execute the data minning scripts to extract data for statistical analyses.
+1. Consecutively execute the data mining scripts to extract data for statistical analyses.
 2. Execute the data analysis scripts to compare characteristics between accepted vs. rejected patches (RQ1), and between fault-inducing vs. clean patches (RQ2). Then build models to explore the most important variables affecting the fault-proneness of the uplifted patches (RQ3).
 
 ###Data source
