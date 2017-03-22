@@ -233,11 +233,11 @@ if __name__ == '__main__':
 
             if 'uplift_date' in info[channel + '_uplift_info']:
                 uplift_date = datetime.strptime(info[channel + '_uplift_info']['uplift_date'], '%Y-%m-%d')
-                if uplift_date < datetime(2014, 9, 1) or uplift_date >= datetime(2016, 9, 1):
+                if uplift_date < datetime(2014, 9, 1) or uplift_date >= datetime(2016, 8, 24):
                     continue
             elif 'uplift_reject_date' in info[channel + '_uplift_info']:
                 uplift_reject_date = datetime.strptime(info[channel + '_uplift_info']['uplift_reject_date'], '%Y-%m-%d')
-                if uplift_reject_date < datetime(2014, 9, 1) or uplift_reject_date >= datetime(2016, 9, 1):
+                if uplift_reject_date < datetime(2014, 9, 1) or uplift_reject_date > datetime(2016, 8, 24):
                     continue
 
             row_per_channel = info_before.copy()
