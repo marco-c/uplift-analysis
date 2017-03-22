@@ -60,8 +60,8 @@ for channel in channels:
     }
 
 sample_per_channel['release'] = {
-    'fault': 18,
-    'nonfault': 151,
+    'fault': 17,
+    'nonfault': 137,
 }
 sample_per_channel['beta'] = {
     'fault': 133,
@@ -73,6 +73,9 @@ sample_per_channel['aurora'] = {
 }
 
 for bug in bugs:
+    if bug['component'] == 'Pocket':
+        continue
+
     for channel in utils.uplift_channels(bug):
         uplift_date = utils.get_uplift_date(bug, channel)
 
