@@ -1,6 +1,5 @@
 Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
 1205456,1209843,crash,,Very low
-1160407,1167756,feature,,Very low
 1198435,1266926,security,,Very low
 1063048,1137716,crash,,Very low
 1160295,1195844,crash,,?
@@ -17,7 +16,6 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
 1205083,1273691^1257028,crash,,Medium-High ?
 1159973,1195578,crash^security,,Low
 1151821,1161642,broken_rendering,,Low
-1161793,,feature,,?
 1120673,,crash,,Minimal
 1149842,,hang,,Low
 1209464,,hang,,Low
@@ -35,15 +33,11 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
 1178058,,security,,Medium-Low
 1113121,,crash,,Very low
 1243942,,func^compat,,Low
-1160678,,feature,,?
 1157766,,func,,Very low
-1164161,,feature,,?
 1100501,,test,,Low
 1075620,,perf,,Low
-1164302,,func,,Low
 1151721,,func,,Low
 1187613,,compile,,None
-1164940,,perf,,Very low
 1115227,,feature,,Low
 1158627,,crash,,Low
 1278605,,crash,,Low
@@ -52,23 +46,17 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
 1209124,,crash,,Low
 1178601,,crash,,None
 1203577,,feature,,Low
-1166240,,func,,Very low
 1162198,,func,,Zero
-1164407,,feature,,?
 1158568,,crash^security,,Low
 1127925,,leak^perf,,Very low
-1155521,,feature,,?
 1194733,,func^compat,,Low
 1244069,,compile,,?
 1104748,,func,,?
 1143878,,func,,Very low
 1129287,,func,,Low
-1159410,,feature,,?
-1162147,,feature,,?
 1163651,,feature,,?
 1258354,,crash,,Low
 1134606,,func,,?
-1161796,,feature,,?
 1255731,,crash^security,,Minimal
 1136616,,func,,Low
 1117140,,security,,Medium-High ?
@@ -76,7 +64,6 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
 1062479,,test,,Very low
 1290469,,crash,,Low
 1088729,,security,,Low
-1159744,,feature,,?
 1140890,,func,,Low
 1137716,,crash,,Medium-High ?
 1189593,,func^compat,,Very low
@@ -88,20 +75,15 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
 1137251,,leak^perf,,Low
 1167096,,func,,Medium-Low
 1145844,,func^compat,,Very low
-1163360,,feature,,?
 1162412,,func^compat,,Low
 1255139,,func^compat,,Very low
 1162251,,func^compat,,Very low
-1165416,,func,,Low
 1148328,,security,,None
-1163319,,feature,,?
-1161881,,feature,,Medium
 1189709,,func^compat,,Low
 1093694,,func^crash^perf,,Very low
 1063971,,func^compat,,Low
 1111330,,compile,,None
 1152016,,func,,Very low
-1164208,,feature,,?
 1149761,,crash,,?
 1258562,,crash,,None
 1240559,,func^compat,,Very low
@@ -111,20 +93,16 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
 1155608,,func^compat,,Very low
 1160663,,feature,,Low
 1292721,,feature,,?
-1163111,,feature,,?
 1130061,,crash,,Medium-Low
 1255735,,func,,None
 1207665,,crash,,None
 1161810,,func,,Low
 1218157,,perf^func,,Low
-1164253,,feature,,?
 1139831,,func,,Low
 1126918,,crash,,Low
 1157784,,broken_rendering,,Medium
 1141642,,compile,,Low
 1104823,,func,,Very low
-1163265,,feature,,?
-1163349,,feature,,?
 1137580,,crash,,Medium
 1255605,,func,,Medium
 1103375,,crash,,Low
@@ -148,7 +126,6 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
 1265815,,crash,,very low
 1246956,,security,,low
 1080319,,func,,low
-1162283,,feature,,?
 1083071,,broken_rendering,,low
 1295296,,func,,very low
 1241100,,security,,low
@@ -158,7 +135,6 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
 1165732,,perf,,low
 1165135,,func,,very low
 1108971,,func^compat,,none
-1156878,,feature,,?
 1244505,,func^compat,,very low
 1277522,,func,,none
 1089413,,crash,,very low
@@ -168,3 +144,12 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
 1152354,,func,,low
 1240607,,crash,,low
 1087565,,security,,Medium-low
+1144257,,,
+1159814,,,
+1082051,,,
+1158343,,,
+1144199,,,
+1262312,,,
+1042889,,,
+1151506,,,
+1153403,,,

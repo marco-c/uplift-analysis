@@ -1,13 +1,12 @@
 Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Remarks
 1205456,1209843,crash,CtrlFlow,uplifted again
-1160407,1167756,UI,MLK,uplifted again
 1198435,1266926,security,CtrlFlow,uplifted again
 1063048,1137716,crash,driver,uplifted again
 1160295,1195844,crash,driver,uplifted again
 1185115,1216748,crash,CtrlFlow,uplifted again
 1185639,1189709,hang,plugin+CtrlFlow,uplifted again
-1154683,1158568,overflow,overflow,uplifted again ("Turned out, bug 1154683 was incorrectly fixed")
-1147857,1153056,crash,CtrlFlow,uplifted again ("Since the crash-fix was uplifted to release, so is this regression")
+1154683,1158568,overflow,overflow,"uplifted again (""Turned out"," bug 1154683 was incorrectly fixed"")"
+1147857,1153056,crash,CtrlFlow,"uplifted again (""Since the crash-fix was uplifted to release"," so is this regression"")"
 1149605,1275853,overflow+security,CornerC,flash media problem
 1141081,1235573,security+crash,plugin,
 1151309,1180105,perf of UI,MLK,
@@ -17,7 +16,6 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Remarks
 1205083,1273691^1257028,crash,CornerC^CornerC,uplifted again
 1159973,1195578,crash,op,
 1151821,1161642,UI,alloc,
-1161793,,func,,
 1120673,,crash,,
 1149842,,hang,,
 1209464,,hang,,
@@ -35,15 +33,11 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Remarks
 1178058,,security,,
 1113121,,crash,,
 1243942,,func,,
-1160678,,func,,
 1157766,,func,,
-1164161,,func,,
 1100501,,crash,,
 1075620,,func,,
-1164302,,UI+func,,
 1151721,,func,,
 1187613,,compile,,
-1164940,,perf,,
 1115227,,func,,
 1158627,,crash,,
 1278605,,crash,,
@@ -52,23 +46,17 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Remarks
 1209124,,crash,,
 1178601,,crash,,
 1203577,,refact,,
-1166240,,UI,,
 1162198,,func,,
-1164407,,func+env,,
 1158568,,overflow,,
 1127925,,perf,,
-1155521,,UI,,
 1194733,,func,,
 1244069,,feature,,
 1104748,,UI+func,,
 1143878,,func,,
 1129287,,func,,
-1159410,,UI+feature,,
-1162147,,UI,,
 1163651,,UI+func,,
 1258354,,crash,,
 1134606,,security,,
-1161796,,refact,,
 1255731,,feature,,
 1136616,,func,,
 1117140,,security,,
@@ -76,7 +64,6 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Remarks
 1062479,,crash,,potential crash due to memory leaks
 1290469,,crash,,
 1088729,,security,,
-1159744,,feature,,
 1140890,,func,,
 1137716,,crash,,
 1189593,,UI+func,,
@@ -88,20 +75,15 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Remarks
 1137251,,crash,,
 1167096,,func,,
 1145844,,compat,,
-1163360,,,,pocket
 1162412,,compat,,
 1255139,,func,,
 1162251,,func,,
-1165416,,UI,,
 1148328,,security,,
-1163319,,UI+func,,
-1161881,,,,pocket
 1189709,,func,,siverlight
 1093694,,crash,,
 1063971,,crash,,
 1111330,,compile,,
 1152016,,feature,,
-1164208,,,,pocket
 1149761,,crash,,
 1258562,,crash,,
 1240559,,func,,
@@ -111,20 +93,16 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Remarks
 1155608,,func,,
 1160663,,UI+func,,related to pocket
 1292721,,feature,,
-1163111,,,,pocket
 1130061,,crash,,
 1255735,,corrupt,,
 1207665,,crash,,
 1161810,,feature,,related to pocket
 1218157,,perf,,
-1164253,,,,pocket
 1139831,,func,,
 1126918,,crash,,
 1157784,,func,,
 1141642,,compile,,
 1104823,,func,,
-1163265,,,,pocket
-1163349,,,,pocket
 1137580,,crash,,
 1255605,,func,,
 1103375,,crash,,
@@ -148,7 +126,6 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Remarks
 1265815,,crash,,
 1246956,,security,,
 1080319,,func+feature,,
-1162283,,,,pocket
 1083071,,func,,
 1295296,,func,,
 1241100,,security,,
@@ -158,7 +135,6 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Remarks
 1165732,,perf,,
 1165135,,func,,
 1108971,,func,,
-1156878,,,,pocket
 1244505,,func,,
 1277522,,func,,
 1089413,,crash,,
@@ -168,3 +144,12 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Remarks
 1152354,,func+UI,,
 1240607,,crash,,
 1087565,,security,,
+1144257,,,
+1159814,,,
+1082051,,,
+1158343,,,
+1144199,,,
+1262312,,,
+1042889,,,
+1151506,,,
+1153403,,,
