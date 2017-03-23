@@ -3,9 +3,9 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
 1198435,1266926,security,,Very low
 1063048,1137716,crash,,Very low
 1160295,1195844,crash,,?
-1185115,1216748,crash^security,,Very low
+1185115,1216748,crash^security,overflow,Very low
 1185639,1189709,Hang,,Low
-1154683,1158568,security,,Low
+1154683,1158568,security,overflow,Low
 1147857,1153056,crash,,Low
 1149605,1275853,security,,Low
 1141081,1235573,crash^security,,Low
@@ -144,12 +144,12 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
 1152354,,func,,low
 1240607,,crash,,low
 1087565,,security,,Medium-low
-1144257,,,
-1159814,,,
-1082051,,,
-1158343,,,
-1144199,,,
-1262312,,,
-1042889,,,
-1151506,,,
-1153403,,,
+1144257,,crash,,very low
+1159814,,func,,very low
+1082051,,feature,,low
+1158343,,func,,very low
+1144199,,func,,low
+1262312,,func,,low
+1042889,,compat^func,,very low
+1151506,,crash,,low
+1153403,,func,,very low
