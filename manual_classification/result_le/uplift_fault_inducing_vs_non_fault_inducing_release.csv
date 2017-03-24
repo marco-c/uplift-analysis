@@ -1,8 +1,8 @@
 Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Remarks
 1205456,1209843,crash,CtrlFlow,uplifted again
 1198435,1266926,security,CtrlFlow,uplifted again
-1063048,1137716,crash,driver,uplifted again
-1160295,1195844,crash,driver,uplifted again
+1063048,1137716,crash,compat,uplifted again
+1160295,1195844,crash,compat,uplifted again
 1185115,1216748,crash,CtrlFlow,uplifted again
 1185639,1189709,hang,plugin^CtrlFlow,uplifted again
 1154683,1158568,crash,crash,"uplifted again (""Turned out"," bug 1154683 was incorrectly fixed"")"
@@ -13,7 +13,7 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Remarks
 1133119,1224976,crash,CtrlFlow,
 1083079,1130681,rendering,CornerC,
 1044975,1087270^1251894,crash,CtrlFlow^range,uplifted again
-1205083,1273691^1257028,crash,CornerC^CornerC,uplifted again
+1205083,1273691^1257028,crash,CornerC,uplifted again
 1159973,1195578,crash,op,
 1151821,1161642,rendering,alloc,
 1120673,,crash,,
