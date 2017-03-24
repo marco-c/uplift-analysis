@@ -1,4 +1,4 @@
-Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
+Uplift ID,Fault IDs,Reason for uplift,Reason for fault,Evaluation of risks
 1205456,1209843,crash,,Very low
 1198435,1266926,security,,Very low
 1063048,1137716,crash,,Very low

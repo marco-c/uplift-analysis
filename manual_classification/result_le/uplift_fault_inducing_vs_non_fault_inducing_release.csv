@@ -1,4 +1,4 @@
-Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Remarks
+Uplift ID,Fault IDs,Reason for uplift,Reason for fault,Remarks
 1205456,1209843,crash,CtrlFlow,uplifted again
 1198435,1266926,security,CtrlFlow,uplifted again
 1063048,1137716,crash,compat,uplifted again
