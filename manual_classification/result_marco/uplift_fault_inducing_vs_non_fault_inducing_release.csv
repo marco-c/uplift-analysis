@@ -1,21 +1,21 @@
-Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
+Uplift ID,Fault IDs,Reason for uplift,Reason for fault,Evaluation of risks
 1205456,1209843,crash,CtrlFlow,Very low
 1198435,1266926,security,CtrlFlow,Very low
 1063048,1137716,crash,driver,Very low
 1160295,1195844,crash,driver,?
 1185115,1216748,crash^security,overflow,Very low
-1185639,1189709,Hang,CtrlFlow,Low
+1185639,1189709,hang,CtrlFlow,Low
 1154683,1158568,security,overflow,Low
 1147857,1153056,crash,CtrlFlow^CornerC,Low
 1149605,1275853,security,CornerC^CtrlFlow,Low
 1141081,1235573,crash^security,plugin^CtrlFlow,Low
 1151309,1180105,perf^feature,MLK,Medium-Low
 1133119,1224976,crash,CtrlFlow,?
-1083079,1130681,broken_rendering,CtrlFlow,Low
+1083079,1130681,rendering,CtrlFlow,Low
 1044975,1087270^1251894,crash,CornerC^CtrlFlow,Low
 1205083,1273691^1257028,crash,driver^CtrlFlow,Medium-High ?
 1159973,1195578,crash^security,CtrlFlow,Low
-1151821,1161642,broken_rendering,CtrlFlow,Low
+1151821,1161642,rendering,CtrlFlow,Low
 1120673,,crash,,Minimal
 1149842,,hang,,Low
 1209464,,hang,,Low
@@ -100,13 +100,13 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
 1218157,,perf^func,,Low
 1139831,,func,,Low
 1126918,,crash,,Low
-1157784,,broken_rendering,,Medium
+1157784,,rendering,,Medium
 1141642,,compile,,Low
 1104823,,func,,Very low
 1137580,,crash,,Medium
 1255605,,func,,Medium
 1103375,,crash,,Low
-1153381,,broken_rendering,,Very low
+1153381,,rendering,,Very low
 1164766,,crash^security,,Low
 1046645,,func,,Low
 1265928,,ui,,Very low
@@ -126,7 +126,7 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
 1265815,,crash,,very low
 1246956,,security,,low
 1080319,,func,,low
-1083071,,broken_rendering,,low
+1083071,,rendering,,low
 1295296,,func,,very low
 1241100,,security,,low
 1254694,,corrupt,,very low
