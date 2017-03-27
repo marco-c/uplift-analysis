@@ -12,7 +12,7 @@ import utils
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Mine commit metrics')
-    parser.add_argument('type', action='store', choices=['generate', 'diff'])
+    parser.add_argument('type', action='store', choices=['generate', 'diff', 'same'])
     args = parser.parse_args()
 
     channels = ['release', 'beta', 'aurora']
