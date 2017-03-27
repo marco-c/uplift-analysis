@@ -152,4 +152,4 @@ if __name__ == '__main__':
                         reasons_for_uplift_1 = row_1[2].split('^')
                         reasons_for_uplift_2 = row_2[2].split('^')
                         if set(reasons_for_uplift_1) == set(reasons_for_uplift_2):
-                            print(row_1[0], reasons_for_uplift_1)
+                            print('{},{}'.format(row_1[0], '+'.join(reasons_for_uplift_1)))
