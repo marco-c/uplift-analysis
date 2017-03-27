@@ -140,3 +140,16 @@ if __name__ == '__main__':
                             print('Difference for bug ' + row_1[0])
                             print(reasons_for_failure_1)
                             print(reasons_for_failure_2)
+    elif args.type == 'same':
+        for channel in channels:
+            with open('manual_classification/result_le/uplift_fault_inducing_vs_non_fault_inducing_' + channel + '.csv', 'r') as input_file_1:
+                with open('manual_classification/result_marco/uplift_fault_inducing_vs_non_fault_inducing_' + channel + '.csv', 'r') as input_file_2:
+                    csv_reader_1 = csv.reader(input_file_1)
+                    csv_reader_2 = csv.reader(input_file_2)
+                    results = zip(csv_reader_1, csv_reader_2)
+                    print('Uplift categorization')
+                    for (row_1, row_2) in results:
+                        reasons_for_uplift_1 = row_1[2].split('^')
+                        reasons_for_uplift_2 = row_2[2].split('^')
+                        if set(reasons_for_uplift_1) == set(reasons_for_uplift_2):
+                            print(row_1[0], reasons_for_uplift_1)
