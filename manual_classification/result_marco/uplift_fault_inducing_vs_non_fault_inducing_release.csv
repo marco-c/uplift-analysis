@@ -1,119 +1,119 @@
 Uplift ID,Fault IDs,Reason for uplift,Reason for fault,Evaluation of risks
-1205456,1209843,crash,CtrlFlow,Very low
-1198435,1266926,security,CtrlFlow,Very low
-1063048,1137716,crash,driver,Very low
+1205456,1209843,crash,CtrlFlow,very low
+1198435,1266926,security,CtrlFlow,very low
+1063048,1137716,crash,driver,very low
 1160295,1195844,crash,driver,?
-1185115,1216748,crash^security,overflow,Very low
-1185639,1189709,hang,CtrlFlow,Low
-1154683,1158568,security,overflow,Low
-1147857,1153056,crash,CtrlFlow^CornerC,Low
-1149605,1275853,security,CornerC^CtrlFlow,Low
-1141081,1235573,crash^security,plugin^CtrlFlow,Low
-1151309,1180105,perf^feature,MLK,Medium-Low
+1185115,1216748,crash^security,overflow,very low
+1185639,1189709,hang,CtrlFlow,low
+1154683,1158568,security,overflow,low
+1147857,1153056,crash,CtrlFlow^CornerC,low
+1149605,1275853,security,CornerC^CtrlFlow,low
+1141081,1235573,crash^security,plugin^CtrlFlow,low
+1151309,1180105,perf^feature,MLK,medium-low
 1133119,1224976,crash,CtrlFlow,?
-1083079,1130681,rendering,CtrlFlow,Low
-1044975,1087270^1251894,crash,CornerC^CtrlFlow,Low
-1205083,1273691^1257028,crash,driver^CtrlFlow,Medium-High ?
-1159973,1195578,crash^security,CtrlFlow,Low
-1151821,1161642,rendering,CtrlFlow,Low
-1120673,,crash,,Minimal
-1149842,,hang,,Low
-1209464,,hang,,Low
-1254980,,feature,,Low
-1236975,,feature^compat,,Minimal
-1160076,,func,,Low
-1159300,,func,,Very low
-1233434,,func,,Low
-1156560,,func^perf,,Low
-1123732,,crash,,Zero
-1154703,,crash,,Low
-1257861,,compat^func,,Low
-1222171,,crash,,Very low
-1058812,,func^compat,,Low
-1178058,,security,,Medium-Low
-1113121,,crash,,Very low
-1243942,,func^compat,,Low
-1157766,,func,,Very low
-1100501,,test,,Low
-1075620,,perf,,Low
-1151721,,func,,Low
-1187613,,compile,,None
-1115227,,feature,,Low
-1158627,,crash,,Low
-1278605,,crash,,Low
-1233970,,func^compat,,"Hard to assess, Low"
-1159495,,compat^func,,Low
-1209124,,crash,,Low
-1178601,,crash,,None
-1203577,,feature,,Low
+1083079,1130681,rendering,CtrlFlow,low
+1044975,1087270^1251894,crash,CornerC^CtrlFlow,low
+1205083,1273691^1257028,crash,driver^CtrlFlow,medium-high
+1159973,1195578,crash^security,CtrlFlow,low
+1151821,1161642,rendering,CtrlFlow,low
+1120673,,crash,,very low
+1149842,,hang,,low
+1209464,,hang,,low
+1254980,,feature,,low
+1236975,,feature^compat,,very low
+1160076,,func,,low
+1159300,,func,,very low
+1233434,,func,,low
+1156560,,func^perf,,low
+1123732,,crash,,none
+1154703,,crash,,low
+1257861,,compat^func,,low
+1222171,,crash,,very low
+1058812,,func^compat,,low
+1178058,,security,,medium-low
+1113121,,crash,,very low
+1243942,,func^compat,,low
+1157766,,func,,very low
+1100501,,test,,low
+1075620,,perf,,low
+1151721,,func,,low
+1187613,,compile,,none
+1115227,,feature,,low
+1158627,,crash,,low
+1278605,,crash,,low
+1233970,,func^compat,,low
+1159495,,compat^func,,low
+1209124,,crash,,low
+1178601,,crash,,none
+1203577,,feature,,low
 1162198,,func,,Zero
-1158568,,crash^security,,Low
-1127925,,leak^perf,,Very low
-1194733,,func^compat,,Low
+1158568,,crash^security,,low
+1127925,,leak^perf,,very low
+1194733,,func^compat,,low
 1244069,,compile,,?
 1104748,,func,,?
-1143878,,func,,Very low
-1129287,,func,,Low
+1143878,,func,,very low
+1129287,,func,,low
 1163651,,feature,,?
-1258354,,crash,,Low
+1258354,,crash,,low
 1134606,,func,,?
-1255731,,crash^security,,Minimal
-1136616,,func,,Low
-1117140,,security,,Medium-High ?
-1144988,,security,,Medium
-1062479,,test,,Very low
-1290469,,crash,,Low
-1088729,,security,,Low
-1140890,,func,,Low
-1137716,,crash,,Medium-High ?
-1189593,,func^compat,,Very low
-1151628,,func,,Very low
-1137050,,crash,,Low
+1255731,,crash^security,,very-low
+1136616,,func,,low
+1117140,,security,,medium
+1144988,,security,,medium
+1062479,,test,,very low
+1290469,,crash,,low
+1088729,,security,,low
+1140890,,func,,low
+1137716,,crash,,medium
+1189593,,func^compat,,very low
+1151628,,func,,very low
+1137050,,crash,,low
 1164419,,feature,,?
-1081157,,func,,Low
-1259482,,func^compat,,Low
-1137251,,leak^perf,,Low
-1167096,,func,,Medium-Low
-1145844,,func^compat,,Very low
-1162412,,func^compat,,Low
-1255139,,func^compat,,Very low
-1162251,,func^compat,,Very low
-1148328,,security,,None
-1189709,,func^compat,,Low
-1093694,,func^crash^perf,,Very low
-1063971,,func^compat,,Low
-1111330,,compile,,None
-1152016,,func,,Very low
+1081157,,func,,low
+1259482,,func^compat,,low
+1137251,,leak^perf,,low
+1167096,,func,,medium-low
+1145844,,func^compat,,very low
+1162412,,func^compat,,low
+1255139,,func^compat,,very low
+1162251,,func^compat,,very low
+1148328,,security,,none
+1189709,,func^compat,,low
+1093694,,func^crash^perf,,very low
+1063971,,func^compat,,low
+1111330,,compile,,none
+1152016,,func,,very low
 1149761,,crash,,?
-1258562,,crash,,None
-1240559,,func^compat,,Very low
-1276110,,,,Low
-1138740,,func,,Very low
-1166771,,func,,Low
-1155608,,func^compat,,Very low
-1160663,,feature,,Low
+1258562,,crash,,none
+1240559,,func^compat,,very low
+1276110,,,,low
+1138740,,func,,very low
+1166771,,func,,low
+1155608,,func^compat,,very low
+1160663,,feature,,low
 1292721,,feature,,?
-1130061,,crash,,Medium-Low
-1255735,,func,,None
-1207665,,crash,,None
-1161810,,func,,Low
-1218157,,perf^func,,Low
-1139831,,func,,Low
-1126918,,crash,,Low
-1157784,,rendering,,Medium
-1141642,,compile,,Low
-1104823,,func,,Very low
-1137580,,crash,,Medium
-1255605,,func,,Medium
-1103375,,crash,,Low
-1153381,,rendering,,Very low
-1164766,,crash^security,,Low
-1046645,,func,,Low
-1265928,,ui,,Very low
+1130061,,crash,,medium-low
+1255735,,func,,none
+1207665,,crash,,none
+1161810,,func,,low
+1218157,,perf^func,,low
+1139831,,func,,low
+1126918,,crash,,low
+1157784,,rendering,,medium
+1141642,,compile,,low
+1104823,,func,,very low
+1137580,,crash,,medium
+1255605,,func,,medium
+1103375,,crash,,low
+1153381,,rendering,,very low
+1164766,,crash^security,,low
+1046645,,func,,low
+1265928,,ui,,very low
 1162205,,func,,low
-1212669,,security,,Medium
+1212669,,security,,medium
 1155518,,feature,,?
-1254856,,func,,Medium
+1254856,,func,,medium
 1276920,,hang,,low
 1244076,,crash,,very low
 1149864,,func^crash,,very low
@@ -143,7 +143,7 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for fault,Evaluation of risks
 1058131,,crash,,very low
 1152354,,func,,low
 1240607,,crash,,low
-1087565,,security,,Medium-low
+1087565,,security,,medium-low
 1144257,,crash,,very low
 1159814,,func,,very low
 1082051,,feature,,low
