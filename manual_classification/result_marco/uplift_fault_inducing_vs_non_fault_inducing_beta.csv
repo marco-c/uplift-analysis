@@ -1,25 +1,25 @@
 Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
-1269325,1271847,func,,low
-1082178,1162218,func,,low
-1173634,1185392,hang,,low
-1206211,1216748,security^crash,,very low
-1108035,1123966,feature,,?
-1225003,1230692,crash,,very low
-1059797,1239789,hang^test,,medium
-1167248,1236619,crash,,?
-1120023,1296453,perf,,low
-1151495,1200004,crash,,low
-1253379,1263028,func,,low
-1113062,1125940,leak^crash,,very low
-1199224,1224994,func,,medium^low
-1216658,1272332,func^compat,,low
-1160295,1195844,crash,,?
-1102642,1195073^1175058^1259916^1186257,crash,,medium
-1219330,1293772,crash^security,,low
-1257242,1275040^1275039,feature,,medium
-1072044,1172785^1136871,crash^security,,low
-1249312,1249659,rendering,,low
-1065909,1147497^1125503,security,,low
+1269325,1271847,func,cornerc,low
+1082178,1162218,func,?,low
+1173634,1185392,hang,concurrency,low
+1206211,1216748,security^crash,overflow,very low
+1108035,1123966,feature,plugin,?
+1225003,1230692,crash,ctrlflow,very low
+1059797,1239789,hang^test,cornerc^concurrency,medium
+1167248,1236619,crash,compile,?
+1120023,1296453,perf,leak,low
+1151495,1200004,crash,dangling,low
+1253379,1263028,func,othermem,low
+1113062,1125940,leak^crash,othermem,very low
+1199224,1224994,func,missc,medium^low
+1216658,1272332,func^compat,missc,low
+1160295,1195844,crash,driver,?
+1102642,1195073^1175058^1259916^1186257,crash,process^compile^ctrlflow^funcimpl,medium
+1219330,1293772,crash^security,addon,low
+1257242,1275040^1275039,feature,other,medium
+1072044,1172785^1136871,crash^security,missf^funcimpl,low
+1249312,1249659,rendering,driver,low
+1065909,1147497^1125503,security,overflow^funcimpl,low
 1081911,1153724,crash,,low
 1211000,1243453,security,,very low
 1107684,1174486^1147215,func,,very low
