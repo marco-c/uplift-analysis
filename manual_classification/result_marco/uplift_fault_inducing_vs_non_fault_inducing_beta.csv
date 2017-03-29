@@ -1,0 +1,461 @@
+Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
+1269325,1271847,func,,low
+1082178,1162218,func,,low
+1173634,1185392,hang,,low
+1206211,1216748,security^crash,,very low
+1108035,1123966,feature,,?
+1225003,1230692,crash,,very low
+1059797,1239789,hang^test,,medium
+1167248,1236619,crash,,?
+1120023,1296453,perf,,low
+1151495,1200004,crash,,low
+1253379,1263028,func,,low
+1113062,1125940,leak^crash,,very low
+1199224,1224994,func,,medium^low
+1216658,1272332,func^compat,,low
+1160295,1195844,crash,,?
+1102642,1195073^1175058^1259916^1186257,crash,,medium
+1219330,1293772,crash^security,,low
+1257242,1275040^1275039,feature,,medium
+1072044,1172785^1136871,crash^security,,low
+1249312,1249659,rendering,,low
+1065909,1147497^1125503,security,,low
+1081911,1153724,crash,,low
+1211000,1243453,security,,very low
+1107684,1174486^1147215,func,,very low
+1200021,1230740,crash,,?
+1163239,1183433,crash,,low
+1129369,1197943,security,,medium-low
+1139271,1148203^1149278^1271847,perf,,low
+1089833,1177013,leak,,low
+1141081,1235573,security^crash,,low
+1051822,1201051^1212349,test,,low
+1112410,1122586,func,,low
+1182411,1284939^1222662^1257759,security,,medium
+1063848,1065880,func,,very low
+1085266,1124880,crash,,low
+1128769,1209751,func,,low
+1271847,1278005,func^compat,,none
+1063733,1069369^1067018^1078211,security,,low
+1131638,1161416^1145101^1143575,rendering,,very low
+1085175,1138072^1096721,security,,very low
+1212499,1253386,rendering,,low
+1232268,1239066,func^feature,,low
+1150277,1268984,func^security,,very low
+1203616,1276483,func^compat,,none
+1126723,1136827,perf,,low
+1234422,1237582^1257759,perf^func,,very low
+1196696,1267637,crash,,very low
+1196398,1229339^1253471,func^crash,,low
+1054972,1070955^1062612,perf,,medium
+1187067,1264622,crash^security,,none
+1205456,1209843,crash,,very low
+1055904,1134064^1133625,perf,,medium
+1151361,1179051,crash,,very low
+1123498,1269408,perf,,medium
+1064481,1074963,func^compat,,none
+1108838,1147226^1116676^1240478,compat^func^test,,medium
+1180101,1244523,func,,low
+1073345,1173195,crash^security,,very low
+1073825,1240025,crash,,medium-low
+1170211,1197296,crash,,low
+1060114,1138934,rendering,,?
+1121692,1143575^1129247,rendering,,medium
+1126465,1128576^1129877^1129247,rendering,,medium
+1120629,1126088,rendering,,medium
+1160321,1208349,func,,low
+1147521,1153145^1155241,func,,medium-low
+1093316,1174450,compat,,low
+1172226,1215694,security,,low
+1268569,1276869,hang,,low
+1243538,1266013,func^rendering,,low
+1213646,1269254,addon_compat,,very low
+1233819,1283594,func,,low
+1120128,1171094,func^rendering,,low
+1127213,1136360^1143968^1136107^1133190,crash,,?
+1200059,1207439,crash,,low
+1123452,1283724,perf,,medium
+1219134,1236746^1239066,rendering^func,,low
+1135408,1144900^1279063,feature,,very low
+1102538,1155618^1115847^1243754^1148661^1138391^1249493,refact,,very low
+1079729,1155059,crash^security,,medium-low
+1138253,1143575,func,,?
+1121876,1123269,crash,,low
+1290365,1293206,func,,very low
+1125503,1147497,crash^security,,low
+1208043,1224994,func^compat,,medium
+1194817,1198730,func,,very low
+1183433,1185392,other,,very low
+1173725,1186886,improve,,medium
+1194576,1221825,feature,,low
+1062920,1162218,func,,low
+1146201,1288976^1268984^1278198^1207439,func,,very low
+1092842,1226904,rendering^compat,,low
+1111160,1173634^1133583,feature,,?
+1167883,1274922,func^compat,,low
+1121332,1289942,feature,,?
+1185820,1251697,crash^security,,low
+1193387,1200656^1200187,feature,,low
+1060738,1181896^1103188^1154389^1224766^1213517,func^hang,,low
+1175783,1183433,other,,very low
+1074765,1074765,func^security,,low
+1259042,1263572,crash^security,,low
+1061327,1088984^1091296,perf,,low
+1062876,1181896^1257950,security^func,,low
+1112972,1200413^1151309,perf^rendering,,very low
+1141931,1230408^1181890^1274443^1229437^1156222,func,,none
+1137614,1159840,crash,,low
+1148071,1183433^1163239,func,,low
+1124031,1237842,feature,,?
+1223193,1239504,crash,,low
+1111971,1171716^1164567,crash^security,,none
+1089364,1147728^1104008^1135271,crash^rendering,,very low
+1244523,1251184^1254731,feature,,low
+1264187,1272160,crash,,low
+1170143,1179051,crash,,low
+1175104,1179051,crash,,low
+1143299,1153695,crash^security,,low
+1232069,1253471,security,,very low
+1212328,1277267^1290422,crash^security,,low
+1240985,1240985^1257314,crash,,very low
+1064320,1191936^1200341,security^crash,,low
+1267980,1276930,hang,,very low
+1177505,1216096,func,,none
+1257234,1259699,func^compat,,low
+1123535,1161416^1173657,perf^crash,,medium
+1132468,1176551,security,,low
+1105194,1227136,security^crash,,medium
+1190257,1256547,rendering,,low
+1075199,1137489^1160914,feature,,?
+1262731,1264403,crash,,low
+1146874,1256992,crash,,medium-low
+1119033,1125776,crash,,low
+1119803,1121148,test,,very low
+1185115,1216748,security^crash,,very low
+1154599,,compile,,none
+1174971,,security,,low
+1127122,,crash,,low
+1245476,,feature,,very low
+1280644,,other,,low
+1275591,,feature,,medium
+1101122,,perf^improve,,?
+1290343,,func,,low
+1132358,,crash^security,,none
+1265815,,rendering^func,,very low
+1259482,,func^compat,,?
+1146101,,security,,low
+1201874,,rendering,,low
+1141031,,func,,medium-low
+1181097,,crash,,low
+1170913,,compile,,low
+1091709,,func,,low
+1254122,,crash^security,,medium-low
+1178601,,crash,,none
+1280965,,func,,low
+1285928,,func,,low
+1149230,,improve,,none
+1236058,,func,,very low
+1254980,,func,,low
+1186687,,improve,,very low
+1099345,,compile,,none
+1085509,,other,,low
+1260944,,func,,low
+1217170,,feature^compat,,medium
+1225970,,crash^security,,low
+1164942,,perf,,low
+1245074,,feature,,medium
+1205109,,func^compat,,low
+1233152,,crash^security,,low
+1185653,,func^compat,,low
+1168481,,feature,,none
+1248580,,crash^security,,low
+1257870,,compile,,low
+1232229,,crash,,low
+1238753,,rendering,,low
+1238440,,crash^security,,none
+1131370,,crash,,very low
+1198547,,improve,,low
+1273701,,crash^security,,low
+1248049,,perf^hang,,very low
+1148286,,crash,,low
+1086936,,other,,none
+1208665,,security,,low
+1244330,,crash,,very low
+1095575,,feature,,very low
+1089000,,func,,very low
+1256500,,crash,,low
+1084513,,crash,,none
+1154923,,crash^security,,?
+1198724,,func,,low
+1142455,,perf,,very low
+1244250,,crash^security,,very low
+1266142,,improve,,none
+1111771,,func,,?
+1287476,,func,,low
+1234170,,crash,,none
+1285409,,improve^compat,,low
+1180417,,hang^perf,,none
+1147919,,compat,,very low
+1277156,,crash,,low
+1221855,,crash,,very low
+1061712,,crash,,low
+1105045,,security,,very low
+1144991,,security,,very low
+1188822,,func^compat,,very low
+1272652,,func,,medium
+1243843,,crash^security,,low
+1290749,,crash^hang,,very low
+1056251,,func,,low
+1149649,,improve,,low
+1254025,,func^addon_compat,,low
+1225044,,rendering,,very low
+1196437,,func,,very low
+1173730,,improve,,low
+1198302,,hang,,low
+1263439,,func,,very low
+1238592,,crash^security,,low
+1189702,,func,,low
+1053565,,compile,,none
+1207376,,func^compat,,low
+1208349,,func^compat,,low
+1210099,,crash^security,,low
+1133862,,other,,low
+1270607,,crash,,none
+1192226,,crash^security,,low
+1239015,,func,,low
+1116626,,crash,,low
+1166867,,feature,,very low
+1279413,,crash^security,,?
+1103119,,func,,?
+1151506,,crash,,?
+1161892,,hang,,low
+1142835,,crash,,very low
+1147447,,crash,,low
+1159659,,feature,,very low
+1255526,,func,,very low
+1136055,,func,,low
+1264780,,func,,none
+1165054,,test^crash,,low
+1271160,,other,,low
+1088910,,other,,?
+1283072,,improve,,low
+1243335,,crash^security,,low
+1097587,,other,,low
+1222783,,crash^addon_compat,,very low
+1065977,,func,,very low
+1124106,,func,,low
+1195098,,crash,,low
+1147026,,func^compat,,low
+1211269,,func,,low
+1086842,,security,,low
+1189058,,func^security,,low
+1172076,,security^crash,,low
+1270985,,func,,low
+1162205,,func,,low
+1243178,,security,,low
+1266286,,other,,low
+1216130,,func^security,,low
+1181042,,feature,,low
+1259729,,func,,medium
+1188344,,func^rendering,,very low
+1294649,,improve,,very low
+1053725,,func,,low
+1193015,,crash,,none
+1103375,,crash,,low
+1128564,,feature,,low
+1245246,,crash,,low
+1113925,,func^security,,low
+1211016,,feature,,medium
+1106238,,improve,,very low
+1253928,,perf^func,,low
+1059807,,crash,,low
+1088635,,crash^security,,low
+1152026,,security^crash,,low
+1285987,,func,,none
+1068218,,crash^security,,none
+1259169,,addon_compat,,low
+1266878,,crash,,none
+1246011,,func,,very low
+1106942,,func,,very low
+1283573,,other,,very low
+1274726,,rendering,,low
+1282476,,other,,none
+1116812,,crash,,low
+1230668,,security^crash,,low
+1169867,,crash^security,,low
+1065478,,func^compat,,none
+1145295,,test,,none
+1246854,,test,,low
+1166323,,other,,none
+1080165,,test^func,,very low
+1188378,,func^compat,,very low
+1176730,,other,,very low
+1096632,,crash,,low
+1268922,,hang^func,,none
+1060675,,func,,very low
+1265795,,func^compat,,medium
+1088637,,improve,,very low
+1129039,,feature^crash,,none
+1089159,,func,,low
+1177136,,improve,,low
+1148328,,security,,none
+1243612,,func,,very low
+1115616,,func,,low
+1170304,,other,,none
+1148418,,rendering,,low
+1152280,,security,,very low
+1126490,,rendering,,low
+1065604,,crash,,none
+1163645,,feature,,?
+1102612,,crash,,very low
+1237160,,compat,,low
+1180688,,rendering,,very low
+1063730,,security,,none
+1119302,,other,,very low
+1211871,,security,,very low
+1289634,,feature,,low
+1211586,,security,,?
+1164208,,feature,,?
+1165416,,feature,,?
+1216611,,crash^security,,very low
+1218111,,func^compat,,low
+1128389,,feature,,?
+1196403,,func,,very low
+1162411,,security,,none
+1100482,,crash,,low
+1139132,,rendering,,very low
+1134561,,security,,very low
+1093368,,addon_compat,,low
+1249845,,other,,?
+1215948,,feature,,very low
+1060888,,func^corrupt,,low
+1089413,,crash,,very low
+1187420,,security,,very low
+1151360,,func,,very low
+1192539,,crash,,low
+1207571,,security^crash,,low
+1071822,,improve,,low
+1146213,,crash^security,,low
+1262661,,perf,,none
+1086937,,crash^rendering^func,,low
+1162364,,hang,,low
+1276467,,improve^compat,,low
+1176073,,crash,,none
+1127246,,security^crash,,low
+1195844,,crash,,?
+1143278,,test,,none
+1261048,,func,,low
+1214425,,crash,,low
+1066459,,rendering,,low
+1182278,,addon_compat,,?
+1090967,,func,,medium
+1236372,,improve,,very low
+1163422,,security,,?
+1167197,,func^perf,,very low
+1293128,,other,,very low
+1044077,,security,,very low
+1130978,,crash,,none
+1163559,,improve,,low
+1104036,,func,,very low
+1151412,,func,,very low
+1208289,,other,,low
+1153529,,improve,,none
+1082323,,compile,,low
+1238892,,feature,,very low
+1228230,,compile,,low
+1122101,,func,,none
+1170141,,crash,,low
+1232258,,improve,,none
+1263525,,func,,low
+1270218,,func,,low
+1150520,,improve,,very low
+1136140,,crash,,very low
+1080319,,func^feature,,low
+1093863,,rendering,,?
+1246061,,security,,low
+1259600,,func^compat,,very low
+1162316,,improve,,none
+1242909,,crash,,very low
+1153693,,crash,,low
+1202287,,improve,,low
+1254721,,crash^security,,low
+1234120,,func,,low
+1135764,,func^compat,,very low
+1122445,,func^compat,,very low
+1268130,,crash,,very low
+1200698,,other,,none
+1281168,,crash,,low
+1063856,,func^compat,,none
+1092939,,improve,,none
+1135883,,crash,,none
+1218027,,compile,,low
+1256065,,crash^security,,very low
+1151139,,crash^security,,very low
+1124542,,crash,,none
+1112565,,feature,,?
+1245264,,security,,very low
+1229971,,other,,none
+1244995,,crash^security,,low
+1110931,,other,,none
+1245260,,hang^compat,,low
+1282334,,perf,,low
+1209464,,hang,,low
+1163109,,,,
+1228950,,,,
+1084672,,,,
+1156131,,,,
+1181651,,,,
+1209140,,,,
+1279494,,,,
+1073502,,,,
+1148032,,,,
+1108998,,,,
+1249849,,,,
+1127507,,,,
+1062612,,,,
+1149526,,,,
+1089380,,,,
+1275189,,,,
+1252058,,,,
+1251919,,,,
+1208234,,,,
+1120086,,,,
+1181582,,,,
+1279467,,,,
+1116404,,,,
+1270381,,,,
+1169314,,,,
+1108841,,,,
+1156566,,,,
+1056410,,,,
+1194265,,,,
+1121826,,,,
+1184974,,,,
+1254167,,,,
+1232887,,,,
+1122750,,,,
+1134387,,,,
+1235427,,,,
+1211708,,,,
+1275739,,,,
+1290633,,,,
+1279135,,,,
+1133909,,,,
+1179945,,,,
+1171094,,,,
+1255908,,,,
+1207946,,,,
+1068290,,,,
+1194488,,,,
+1255270,,,,
+1169911,,,,
+1179262,,,,
+1083167,,,,
+1166048,,,,
+1257821,,,,
+1085092,,,,
+1232527,,,,
+1289506,,,,
+1184737,,,,
+1276869,,,,
+1178984,,,,
