@@ -179,7 +179,7 @@ if __name__ == '__main__':
                     csv_reader_1 = csv.reader(input_file_1)
                     csv_reader_2 = csv.reader(input_file_2)
                     results = zip(csv_reader_1, csv_reader_2)
-                    print('Uplift categorization')
+                    print('Uplift categorization for ' + channel)
                     for (row_1, row_2) in results:
                         reasons_for_uplift_1 = row_1[2].split('^')
                         reasons_for_uplift_2 = row_2[2].split('^')
@@ -188,7 +188,7 @@ if __name__ == '__main__':
                             print(reasons_for_uplift_1)
                             print(reasons_for_uplift_2)
 
-                    print('Failure categorization')
+                    print('Failure categorization ' + channel)
                     for (row_1, row_2) in results:
                         reasons_for_failure_1 = row_1[3].split('^')
                         reasons_for_failure_2 = row_2[3].split('^')
@@ -203,7 +203,7 @@ if __name__ == '__main__':
                     csv_reader_1 = csv.reader(input_file_1)
                     csv_reader_2 = csv.reader(input_file_2)
                     results = zip(csv_reader_1, csv_reader_2)
-                    print('Uplift categorization')
+                    print('Uplift categorization for ' + channel)
                     for (row_1, row_2) in results:
                         reasons_for_uplift_1 = row_1[2].split('^')
                         reasons_for_uplift_2 = row_2[2].split('^')
