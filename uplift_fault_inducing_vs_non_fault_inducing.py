@@ -3,6 +3,7 @@ import re
 import random
 import json
 import argparse
+import os
 from collections import defaultdict
 from datetime import datetime
 from libmozdata import hgmozilla
@@ -12,7 +13,9 @@ import utils
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Mine commit metrics')
-    parser.add_argument('type', action='store', choices=['generate', 'diff', 'same'])
+    parser.add_argument('type', action='store', choices=['generate', 'validate', 'diff', 'same'])
+    parser.add_argument('-c', '--channel', action='store', choices=['release', 'beta', 'aurora'])
+    parser.add_argument('-w', '--who', action='store', choices=['marco', 'le'])
     args = parser.parse_args()
 
     channels = ['release', 'beta', 'aurora']
@@ -116,6 +119,59 @@ if __name__ == '__main__':
                 non_fault_inducing = random.sample(non_fault_inducing, sample_per_channel[channel]['nonfault'])
                 for bug_id in non_fault_inducing:
                     csv_writer.writerow([bug_id, '', '', ''])
+    elif args.type == 'validate':
+        if args.channel is None:
+            parser.print_help()
+            raise Exception('Missing \'channel\' argument.')
+        if args.who is None:
+            parser.print_help()
+            raise Exception('Missing \'who\' argument.')
+
+        with open('manual_classification/result_' + args.who + '/uplift_fault_inducing_vs_non_fault_inducing_' + args.channel + '.csv', 'r') as input_file:
+            csv_reader = csv.reader(input_file)
+            rows = [row for row in csv_reader]
+
+        for row in [r for r in rows if r[2] == '' or (r[1] != '' and r[3] == '') or r[4] == '']:
+            os.system('firefox https://bugzilla.mozilla.org/show_bug.cgi?id=' + str(row[0]))
+
+            progress = str(len([e for e in rows if e[2] != '' or (r[1] != '' and r[3] == '') or r[4] == ''])) + ' / ' + str(len(rows))
+
+            if row[2] == '':
+                v = raw_input(progress + ' - Insert uplift reason for ' + str(row[0]) + ': ')
+
+                if v in ['e', 'exit']:
+                    break
+
+                row[2] = v
+
+            if row[1] != '' and row[3] == '':
+                fault_reasons = set()
+                do_exit = False
+                for bug in row[1].split('^'):
+                    v = raw_input(progress + ' - Insert fault root cause for ' + str(bug) + ' (uplift ' + str(row[0]) + '): ')
+
+                    if v in ['e', 'exit']:
+                        do_exit = True
+                        break
+
+                    fault_reasons.add(v)
+
+                if do_exit:
+                    break
+
+                row[3] = '^'.join(fault_reasons)
+
+            if row[4] == '':
+                v = raw_input(progress + ' - Insert risk evaluation for ' + str(row[0]) + ': ')
+
+                if v in ['e', 'exit']:
+                    break
+
+                row[4] = v
+
+        with open('manual_classification/result_' + args.who + '/uplift_fault_inducing_vs_non_fault_inducing_' + args.channel + '.csv', 'w') as output_file:
+            csv_writer = csv.writer(output_file)
+            csv_writer.writerows(rows)
     elif args.type == 'diff':
         for channel in channels:
             with open('manual_classification/result_le/uplift_fault_inducing_vs_non_fault_inducing_' + channel + '.csv', 'r') as input_file_1:
