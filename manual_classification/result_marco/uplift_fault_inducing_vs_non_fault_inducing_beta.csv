@@ -400,62 +400,62 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
 1245260,,hang^compat,,low
 1282334,,perf,,low
 1209464,,hang,,low
-1163109,,,,
-1228950,,,,
-1084672,,,,
-1156131,,,,
-1181651,,,,
-1209140,,,,
-1279494,,,,
-1073502,,,,
-1148032,,,,
-1108998,,,,
-1249849,,,,
-1127507,,,,
-1062612,,,,
-1149526,,,,
-1089380,,,,
-1275189,,,,
-1252058,,,,
-1251919,,,,
-1208234,,,,
-1120086,,,,
-1181582,,,,
-1279467,,,,
-1116404,,,,
-1270381,,,,
-1169314,,,,
-1108841,,,,
-1156566,,,,
-1056410,,,,
-1194265,,,,
-1121826,,,,
-1184974,,,,
-1254167,,,,
-1232887,,,,
-1122750,,,,
-1134387,,,,
-1235427,,,,
-1211708,,,,
-1275739,,,,
-1290633,,,,
-1279135,,,,
-1133909,,,,
-1179945,,,,
-1171094,,,,
-1255908,,,,
-1207946,,,,
-1068290,,,,
-1194488,,,,
-1255270,,,,
-1169911,,,,
-1179262,,,,
-1083167,,,,
-1166048,,,,
-1257821,,,,
-1085092,,,,
-1232527,,,,
-1289506,,,,
-1184737,,,,
-1276869,,,,
-1178984,,,,
+1163109,,func^compat^security,,medium
+1228950,,security,,very low
+1084672,,perf,,very low
+1156131,,func^crash,,low
+1181651,,crash^security,,low
+1209140,,feature,,low
+1279494,,crash,,low
+1073502,,func,,low
+1148032,,security,,low
+1108998,,improve,,low
+1249849,,crash,,very low
+1127507,,rendering^func,,low
+1062612,,crash,,very low
+1149526,,crash^security,,low
+1089380,,rendering,,medium
+1275189,,crash,,low
+1252058,,hang,,low
+1251919,,crash,,low
+1208234,,crash,,low
+1120086,,compat,,low
+1181582,,improve,,none
+1279467,,func,,very low
+1116404,,?,,low
+1270381,,crash^security,,low
+1169314,,improve,,none
+1108841,,improve,,very low
+1156566,,func,,low
+1056410,,security,,?
+1194265,,feature,,very low
+1121826,,func^compat,,very low
+1184974,,security,,low
+1254167,,crash^security,,very low
+1232887,,compile,,?
+1122750,,crash^security,,very low
+1134387,,feature^crash,,?
+1235427,,func,,low
+1211708,,rendering,,low
+1275739,,crash,,low
+1290633,,other,,low
+1279135,,func,,low
+1133909,,crash^security,,very low
+1179945,,compile,,?
+1171094,,crash,,very low
+1255908,,func,,medium
+1207946,,func^perf,,low
+1068290,,feature,,?
+1194488,,func,,low
+1255270,,security,,low
+1169911,,improve,,low
+1179262,,?,,?
+1083167,,func,,low
+1166048,,func^compat,,medium
+1257821,,func^compat,,medium-low
+1085092,,rendering,,low
+1232527,,test,,low
+1289506,,improve,,low
+1184737,,feature,,very low
+1276869,,crash^hang,,low
+1178984,,crash,,low
