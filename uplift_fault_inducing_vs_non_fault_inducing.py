@@ -132,11 +132,11 @@ if __name__ == '__main__':
             rows = [row for row in csv_reader]
 
         for row in [r for r in rows if r[2] == '' or (r[1] != '' and r[3] == '') or r[4] == '']:
-            os.system('firefox https://bugzilla.mozilla.org/show_bug.cgi?id=' + str(row[0]))
-
-            progress = str(len([e for e in rows if e[2] != '' or (r[1] != '' and r[3] == '') or r[4] == ''])) + ' / ' + str(len(rows))
+            progress = str(len([e for e in rows if e[2] != '' and (e[1] == '' or e[3] != '') and e[4] != ''])) + ' / ' + str(len(rows))
 
             if row[2] == '':
+                os.system('firefox https://bugzilla.mozilla.org/show_bug.cgi?id=' + str(row[0]))
+
                 v = raw_input(progress + ' - Insert uplift reason for ' + str(row[0]) + ': ')
 
                 if v in ['e', 'exit']:
@@ -144,30 +144,32 @@ if __name__ == '__main__':
 
                 row[2] = v
 
-            if row[1] != '' and row[3] == '':
-                fault_reasons = set()
-                do_exit = False
-                for bug in row[1].split('^'):
-                    v = raw_input(progress + ' - Insert fault root cause for ' + str(bug) + ' (uplift ' + str(row[0]) + '): ')
-
-                    if v in ['e', 'exit']:
-                        do_exit = True
-                        break
-
-                    fault_reasons.add(v)
-
-                if do_exit:
-                    break
-
-                row[3] = '^'.join(fault_reasons)
-
-            if row[4] == '':
                 v = raw_input(progress + ' - Insert risk evaluation for ' + str(row[0]) + ': ')
 
                 if v in ['e', 'exit']:
                     break
 
                 row[4] = v
+
+            if row[1] != '' and row[3] == '':
+                fault_reasons = set()
+                do_exit = False
+                for bug in row[1].split('^'):
+                    os.system('firefox https://bugzilla.mozilla.org/show_bug.cgi?id=' + str(bug))
+
+                    v = raw_input(progress + ' - Insert fault root cause for ' + str(bug) + ' (uplift ' + str(row[0]) + '): ')
+
+                    if v in ['e', 'exit']:
+                        do_exit = True
+                        break
+
+                    for reason in v.split('^'):
+                        fault_reasons.add(reason)
+
+                if do_exit:
+                    break
+
+                row[3] = '^'.join(fault_reasons)
 
         with open('manual_classification/result_' + args.who + '/uplift_fault_inducing_vs_non_fault_inducing_' + args.channel + '.csv', 'w') as output_file:
             csv_writer = csv.writer(output_file)
