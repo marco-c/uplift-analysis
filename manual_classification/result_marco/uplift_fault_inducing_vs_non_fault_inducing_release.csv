@@ -1,10 +1,10 @@
 Uplift ID,Fault IDs,Reason for uplift,Reason for fault,Evaluation of risks
 1205456,1209843,crash,CtrlFlow,very low
-1198435,1266926,security,CtrlFlow,very low
+1198435,1266926,security,dangling,very low
 1063048,1137716,crash,driver,very low
 1160295,1195844,crash,driver,?
 1185115,1216748,crash^security,overflow,very low
-1185639,1189709,hang,CtrlFlow,low
+1185639,1189709,hang,plugin^CtrlFlow,low
 1154683,1158568,security,overflow,low
 1147857,1153056,crash,CtrlFlow^CornerC,low
 1149605,1275853,security,CornerC^CtrlFlow,low
