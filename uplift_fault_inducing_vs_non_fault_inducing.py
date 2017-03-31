@@ -75,7 +75,7 @@ if __name__ == '__main__':
             'nonfault': 137,
         }
         sample_per_channel['beta'] = {
-            'fault': 133,
+            'fault': 132,
             'nonfault': 327,
         }
         sample_per_channel['aurora'] = {
