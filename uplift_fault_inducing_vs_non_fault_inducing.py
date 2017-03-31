@@ -186,7 +186,7 @@ if __name__ == '__main__':
                         reasons_for_uplift_1 = row_1[2].split('^')
                         reasons_for_uplift_2 = row_2[2].split('^')
                         if set(reasons_for_uplift_1) != set(reasons_for_uplift_2):
-                            print('Difference for bug ' + row_1[0])
+                            print('Difference for ' + row_1[0])
                             print(reasons_for_uplift_1)
                             print(reasons_for_uplift_2)
 
@@ -195,7 +195,7 @@ if __name__ == '__main__':
                         reasons_for_failure_1 = row_1[3].split('^')
                         reasons_for_failure_2 = row_2[3].split('^')
                         if set(reasons_for_failure_1) != set(reasons_for_failure_2):
-                            print('Difference for bug ' + row_1[0])
+                            print('Difference for ' + row_1[1])
                             print(reasons_for_failure_1)
                             print(reasons_for_failure_2)
     elif args.type == 'same':
