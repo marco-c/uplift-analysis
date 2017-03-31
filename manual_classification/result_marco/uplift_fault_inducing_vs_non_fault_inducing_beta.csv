@@ -452,9 +452,9 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
 1184737,,feature,,very low
 1276869,,crash^hang,,low
 1178984,,crash,,low
-1154366,,,,
-1263951,,,,
-1096089,,,,
-1166924,,,,
-1262807,,,,
-1242904,,,,
+1154366,,func^compat,,very low
+1263951,,crash,,medium
+1096089,,func,,medium
+1166924,,security^crash,,none
+1262807,,perf,,low
+1242904,,security,,?
