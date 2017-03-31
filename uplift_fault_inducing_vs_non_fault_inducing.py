@@ -106,7 +106,7 @@ if __name__ == '__main__':
             print("Sample fault-inducing uplifts: " + str(sample_per_channel[channel]['fault']))
             print("Sample non-fault-inducing uplifts: " + str(sample_per_channel[channel]['nonfault']))
 
-            with open('uplift_fault_inducing_vs_non_fault_inducing_' + channel + '.csv', 'w') as output_file:
+            with open('manual_classification/raw_tables/uplift_fault_inducing_vs_non_fault_inducing_' + channel + '.csv', 'w') as output_file:
                 csv_writer = csv.writer(output_file)
                 csv_writer.writerow(['Uplift ID', 'Fault IDs', 'Reason for uplift', 'Reason for failure', 'Evaluation of risks'])
 
