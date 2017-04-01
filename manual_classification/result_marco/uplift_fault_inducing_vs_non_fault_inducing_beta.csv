@@ -20,36 +20,36 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
 1072044,1172785^1136871,crash^security,missf^funcimpl,low
 1249312,1249659,rendering,driver,low
 1065909,1147497^1125503,security,overflow^funcimpl,low
-1081911,1153724,crash,,low
-1211000,1243453,security,,very low
-1107684,1174486^1147215,func,,very low
-1200021,1230740,crash,,?
-1163239,1183433,crash,,low
-1129369,1197943,security,,medium-low
-1139271,1148203^1149278^1271847,perf,,low
-1089833,1177013,leak,,low
-1141081,1235573,security^crash,,low
-1051822,1201051^1212349,test,,low
-1112410,1122586,func,,low
-1182411,1284939^1222662^1257759,security,,medium
-1063848,1065880,func,,very low
-1085266,1124880,crash,,low
-1128769,1209751,func,,low
-1271847,1278005,func^compat,,none
-1063733,1069369^1067018^1078211,security,,low
-1131638,1161416^1145101^1143575,rendering,,very low
-1085175,1138072^1096721,security,,very low
-1212499,1253386,rendering,,low
-1232268,1239066,func^feature,,low
-1150277,1268984,func^security,,very low
-1203616,1276483,func^compat,,none
-1126723,1136827,perf,,low
-1234422,1237582^1257759,perf^func,,very low
-1196696,1267637,crash,,very low
-1196398,1229339^1253471,func^crash,,low
-1054972,1070955^1062612,perf,,medium
-1187067,1264622,crash^security,,none
-1205456,1209843,crash,,very low
+1081911,1153724,crash,funcimpl,low
+1211000,1243453,security,ctrlflow,very low
+1107684,1174486^1147215,func,null^funcimpl,very low
+1200021,1230740,crash,null,?
+1163239,1183433,crash,funcimpl,low
+1129369,1197943,security,plugin,medium-low
+1139271,1148203^1149278^1271847,perf,compile^cornerc^funcimpl,low
+1089833,1177013,leak,funcimpl,low
+1141081,1235573,security^crash,plugin,low
+1051822,1201051^1212349,test,funcimpl^concurrency,low
+1112410,1122586,func,compile,low
+1182411,1284939^1222662^1257759,security,notaregression^funcimpl^plugin,medium
+1063848,1065880,func,notaregression,very low
+1085266,1124880,crash,funcimpl^concurrency,low
+1128769,1209751,func,funcimpl,low
+1271847,1278005,func^compat,process,none
+1063733,1069369^1067018^1078211,security,null^funcimpl^umr,low
+1131638,1161416^1145101^1143575,rendering,notaregression^funcimpl^except^concurrency^othermem,very low
+1085175,1138072^1096721,security,notaregression^concurrenc,very low
+1212499,1253386,rendering,concurrency,low
+1232268,1239066,func^feature,missc,low
+1150277,1268984,func^security,funcimpl,very low
+1203616,1276483,func^compat,funcimpl,none
+1126723,1136827,perf,concurrency,low
+1234422,1237582^1257759,perf^func,notaregression^funcimpl,very low
+1196696,1267637,crash,except,very low
+1196398,1229339^1253471,func^crash,notaregression^cornerc,low
+1054972,1070955^1062612,perf,null^funcimpl,medium
+1187067,1264622,crash^security,missc,none
+1205456,1209843,crash,funcimpl,very low
 1055904,1134064^1133625,perf,,medium
 1151361,1179051,crash,,very low
 1123498,1269408,perf,,medium
