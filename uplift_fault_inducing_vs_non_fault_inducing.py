@@ -190,7 +190,7 @@ if __name__ == '__main__':
                             print(reasons_for_uplift_1)
                             print(reasons_for_uplift_2)
 
-                    print('Failure categorization ' + channel)
+                    print('\nFailure categorization ' + channel)
                     for (row_1, row_2) in results:
                         reasons_for_failure_1 = row_1[3].split('^')
                         reasons_for_failure_2 = row_2[3].split('^')
@@ -198,6 +198,7 @@ if __name__ == '__main__':
                             print('Difference for ' + row_1[1])
                             print(reasons_for_failure_1)
                             print(reasons_for_failure_2)
+                    print('')
     elif args.type == 'same':
         for channel in channels:
             with open('manual_classification/result_le/uplift_fault_inducing_vs_non_fault_inducing_' + channel + '.csv', 'r') as input_file_1:
@@ -211,4 +212,10 @@ if __name__ == '__main__':
                         reasons_for_uplift_2 = row_2[2].split('^')
                         if set(reasons_for_uplift_1) == set(reasons_for_uplift_2):
                             print('{},{}'.format(row_1[0], '+'.join(reasons_for_uplift_1)))
+                    print('\nFailure categorization for' + channel)
+                    for (row_1, row_2) in results:
+                        reasons_for_failure_1 = row_1[3].split('^')
+                        reasons_for_failure_2 = row_2[3].split('^')
+                        if set(reasons_for_failure_1) == set(reasons_for_failure_2):
+                            print('{},{}'.format(row_1[1], '+'.join(reasons_for_uplift_1)))
                     print('')
