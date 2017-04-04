@@ -212,10 +212,4 @@ if __name__ == '__main__':
                         reasons_for_uplift_2 = row_2[2].split('^')
                         if set(reasons_for_uplift_1) == set(reasons_for_uplift_2):
                             print('{},{}'.format(row_1[0], '+'.join(reasons_for_uplift_1)))
-                    print('\nFailure categorization for' + channel)
-                    for (row_1, row_2) in results:
-                        reasons_for_failure_1 = row_1[3].split('^')
-                        reasons_for_failure_2 = row_2[3].split('^')
-                        if set(reasons_for_failure_1) == set(reasons_for_failure_2):
-                            print('{},{}'.format(row_1[1], '+'.join(reasons_for_uplift_1)))
                     print('')
