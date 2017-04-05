@@ -50,87 +50,87 @@ Uplift ID,Fault IDs,Reason for uplift,Reason for failure,Evaluation of risks
 1054972,1070955^1062612,perf,null^funcimpl,medium
 1187067,1264622,crash^security,missc,none
 1205456,1209843,crash,funcimpl,very low
-1055904,1134064^1133625,perf,,medium
-1151361,1179051,crash,,very low
-1123498,1269408,perf,,medium
-1064481,1074963,func^compat,,none
-1108838,1147226^1116676^1240478,compat^func^test,,medium
-1180101,1244523,func,,low
-1073345,1173195,crash^security,,very low
-1073825,1240025,crash,,medium-low
-1170211,1197296,crash,,low
-1060114,1138934,rendering,,?
-1121692,1143575^1129247,rendering,,medium
-1126465,1128576^1129877^1129247,rendering,,medium
-1120629,1126088,rendering,,medium
-1160321,1208349,func,,low
-1147521,1153145^1155241,func,,medium-low
-1093316,1174450,compat,,low
-1268569,1276869,hang,,low
-1243538,1266013,func^rendering,,low
-1213646,1269254,addon_compat,,very low
-1233819,1283594,func,,low
-1120128,1171094,func^rendering,,low
-1127213,1136360^1143968^1136107^1133190,crash,,?
-1200059,1207439,crash,,low
-1123452,1283724,perf,,medium
-1219134,1236746^1239066,rendering^func,,low
-1135408,1144900^1279063,feature,,very low
-1102538,1155618^1115847^1243754^1148661^1138391^1249493,refact,,very low
-1079729,1155059,crash^security,,medium-low
-1138253,1143575,func,,?
-1121876,1123269,crash,,low
-1290365,1293206,func,,very low
-1125503,1147497,crash^security,,low
-1208043,1224994,func^compat,,medium
-1194817,1198730,func,,very low
-1183433,1185392,other,,very low
-1173725,1186886,improve,,medium
-1194576,1221825,feature,,low
-1062920,1162218,func,,low
-1146201,1288976^1268984^1278198^1207439,func,,very low
-1092842,1226904,rendering^compat,,low
-1111160,1173634^1133583,feature,,?
-1167883,1274922,func^compat,,low
-1121332,1289942,feature,,?
-1185820,1251697,crash^security,,low
-1193387,1200656^1200187,feature,,low
-1060738,1181896^1103188^1154389^1224766^1213517,func^hang,,low
-1175783,1183433,other,,very low
-1074765,1074765,func^security,,low
-1259042,1263572,crash^security,,low
-1061327,1088984^1091296,perf,,low
-1062876,1181896^1257950,security^func,,low
-1112972,1200413^1151309,perf^rendering,,very low
-1141931,1230408^1181890^1274443^1229437^1156222,func,,none
-1137614,1159840,crash,,low
-1148071,1183433^1163239,func,,low
-1124031,1237842,feature,,?
-1223193,1239504,crash,,low
-1111971,1171716^1164567,crash^security,,none
-1089364,1147728^1104008^1135271,crash^rendering,,very low
-1244523,1251184^1254731,feature,,low
-1264187,1272160,crash,,low
-1170143,1179051,crash,,low
-1175104,1179051,crash,,low
-1143299,1153695,crash^security,,low
-1232069,1253471,security,,very low
-1212328,1277267^1290422,crash^security,,low
-1240985,1240985^1257314,crash,,very low
-1064320,1191936^1200341,security^crash,,low
-1267980,1276930,hang,,very low
-1177505,1216096,func,,none
-1257234,1259699,func^compat,,low
-1123535,1161416^1173657,perf^crash,,medium
-1132468,1176551,security,,low
-1105194,1227136,security^crash,,medium
-1190257,1256547,rendering,,low
-1075199,1137489^1160914,feature,,?
-1262731,1264403,crash,,low
-1146874,1256992,crash,,medium-low
-1119033,1125776,crash,,low
-1119803,1121148,test,,very low
-1185115,1216748,security^crash,,very low
+1055904,1134064^1133625,perf,notaregression^otherfunc,medium
+1151361,1179051,crash,otherfunc,very low
+1123498,1269408,perf,otherfunc,medium
+1064481,1074963,func^compat,cornerc,none
+1108838,1147226^1116676^1240478,compat^func^test,ctrlflow^otherfunc^concurrency,medium
+1180101,1244523,func,missc,low
+1073345,1173195,crash^security,notaregression,very low
+1073825,1240025,crash,missc,medium-low
+1170211,1197296,crash,null,low
+1060114,1138934,rendering,otherfunc,?
+1121692,1143575^1129247,rendering,notaregression,medium
+1126465,1128576^1129877^1129247,rendering,notaregression^otherfunc,medium
+1120629,1126088,rendering,othermem,medium
+1160321,1208349,func,otherfunc,low
+1147521,1153145^1155241,func,null^plugin,medium-low
+1093316,1174450,compat,otherfunc,low
+1268569,1276869,hang,otherfunc,low
+1243538,1266013,func^rendering,compile,low
+1213646,1269254,addon_compat,otherfunc,very low
+1233819,1283594,func,otherfunc,low
+1120128,1171094,func^rendering,driver,low
+1127213,1136360^1143968^1136107^1133190,crash,otherfunc^concurrency,?
+1200059,1207439,crash,plugin,low
+1123452,1283724,perf,otherfunc,medium
+1219134,1236746^1239066,rendering^func,othermem^missc,low
+1135408,1144900^1279063,feature,otherfunc^missc,very low
+1102538,1155618^1115847^1243754^1148661^1138391^1249493,refact,otherfunc^leak^except^othermem,very low
+1079729,1155059,crash^security,leak^othermem,medium-low
+1138253,1143575,func,notaregression,?
+1121876,1123269,crash,notaregression,low
+1290365,1293206,func,otherfunc,very low
+1125503,1147497,crash^security,otherfunc,low
+1208043,1224994,func^compat,missc,medium
+1194817,1198730,func,process,very low
+1183433,1185392,other,concurrency,very low
+1173725,1186886,improve,otherfunc,medium
+1194576,1221825,feature,null,low
+1062920,1162218,func,?,low
+1146201,1288976^1268984^1278198^1207439,func,otherfunc^plugin,very low
+1092842,1226904,rendering^compat,otherfunc,low
+1111160,1173634^1133583,feature,notaregression^otherfunc,?
+1167883,1274922,func^compat,notaregression,low
+1121332,1289942,feature,otherfunc,?
+1185820,1251697,crash^security,otherfunc,low
+1193387,1200656^1200187,feature,compile^leak,low
+1060738,1181896^1103188^1154389^1224766^1213517,func^hang,notaregression^otherfunc^leak,low
+1175783,1183433,other,otherfunc,very low
+1074765,1074765,func^security,otherfunc,low
+1259042,1263572,crash^security,dangling,low
+1061327,1088984^1091296,perf,process^otherfunc,low
+1062876,1181896^1257950,security^func,notaregression,low
+1112972,1200413^1151309,perf^rendering,notaregression^otherfunc,very low
+1141931,1230408^1181890^1274443^1229437^1156222,func,otherfunc^othermem,none
+1137614,1159840,crash,otherfunc,low
+1148071,1183433^1163239,func,null^otherfunc,low
+1124031,1237842,feature,concurrency,?
+1223193,1239504,crash,leak,low
+1111971,1171716^1164567,crash^security,dangling^2free^othermem^concurrency,none
+1089364,1147728^1104008^1135271,crash^rendering,otherfunc,very low
+1244523,1251184^1254731,feature,overflow^null^plugin,low
+1264187,1272160,crash,otherfunc,low
+1170143,1179051,crash,otherfunc,low
+1175104,1179051,crash,otherfunc,low
+1143299,1153695,crash^security,otherfunc,low
+1232069,1253471,security,cornerc,very low
+1212328,1277267^1290422,crash^security,dangling^notaregression,low
+1240985,1240985^1257314,crash,concurrency,very low
+1064320,1191936^1200341,security^crash,notaregression,low
+1267980,1276930,hang,otherfunc^concurrency,very low
+1177505,1216096,func,otherfunc,none
+1257234,1259699,func^compat,othermem,low
+1123535,1161416^1173657,perf^crash,otherfunc^concurrency,medium
+1132468,1176551,security,otherfunc,low
+1105194,1227136,security^crash,otherfunc,medium
+1190257,1256547,rendering,otherfunc,low
+1075199,1137489^1160914,feature,compile^dangling^concurrency,?
+1262731,1264403,crash,notaregression,low
+1146874,1256992,crash,null^concurrency,medium-low
+1119033,1125776,crash,concurrency,low
+1119803,1121148,test,otherfunc,very low
+1185115,1216748,security^crash,overflow,very low
 1154599,,compile,,none
 1174971,,security,,low
 1127122,,crash,,low
