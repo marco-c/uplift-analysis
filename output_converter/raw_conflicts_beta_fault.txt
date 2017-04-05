@@ -1,0 +1,139 @@
+Failure categorization beta
+Difference for 1271847
+['ctrl']
+['cornerc']
+Difference for 1162218
+['ctrl']
+['?']
+Difference for 1123966
+['MissC']
+['plugin']
+Difference for 1230692
+['except']
+['ctrlflow']
+Difference for 1239789
+['alloc']
+['cornerc', 'concurrency']
+Difference for 1236619
+['ctrl']
+['compile']
+Difference for 1296453
+['overflow']
+['leak']
+Difference for 1200004
+['OtherMem']
+['dangling']
+Difference for 1263028
+['overflow']
+['othermem']
+Difference for 1125940
+['corner']
+['othermem']
+Difference for 1224994
+['']
+['missc']
+Difference for 1272332
+['ctrl']
+['missc']
+Difference for 1195844
+['API']
+['driver']
+Difference for 1195073^1175058^1259916^1186257
+['OtherMem', 'exception', 'ctrl']
+['process', 'compile', 'ctrlflow', 'funcimpl']
+Difference for 1293772
+['corner']
+['addon']
+Difference for 1275040^1275039
+['']
+['other']
+Difference for 1172785^1136871
+['API']
+['missf', 'funcimpl']
+Difference for 1249659
+['corner']
+['driver']
+Difference for 1147497^1125503
+['corner', 'ctrl']
+['overflow', 'funcimpl']
+Difference for 1153724
+['ctrl']
+['funcimpl']
+Difference for 1243453
+['corner']
+['ctrlflow']
+Difference for 1174486^1147215
+['']
+['null', 'funcimpl']
+Difference for 1230740
+['driver']
+['null']
+Difference for 1183433
+['ctrl']
+['funcimpl']
+Difference for 1148203^1149278^1271847
+['compile', 'corner']
+['compile', 'cornerc', 'funcimpl']
+Difference for 1177013
+['corner']
+['funcimpl']
+Difference for 1201051^1212349
+['ctrl', 'dangling']
+['funcimpl', 'concurrency']
+Difference for 1122586
+['ctrl']
+['compile']
+Difference for 1284939^1222662^1257759
+['ctrl']
+['notaregression', 'funcimpl', 'plugin']
+Difference for 1065880
+['missf']
+['notaregression']
+Difference for 1124880
+['']
+['funcimpl', 'concurrency']
+Difference for 1209751
+['ctrl']
+['funcimpl']
+Difference for 1278005
+['corner']
+['process']
+Difference for 1069369^1067018^1078211
+['ctrl', 'null', 'umr']
+['null', 'funcimpl', 'umr']
+Difference for 1161416^1145101^1143575
+['ctrl', 'otherfunc']
+['notaregression', 'funcimpl', 'except', 'concurrency', 'othermem']
+Difference for 1138072^1096721
+['ctrl', 'otherfunc']
+['notaregression', 'concurrenc']
+Difference for 1253386
+['overflow']
+['concurrency']
+Difference for 1268984
+['plugin']
+['funcimpl']
+Difference for 1276483
+['ctrl']
+['funcimpl']
+Difference for 1136827
+['ctrl']
+['concurrency']
+Difference for 1237582^1257759
+['corner']
+['notaregression', 'funcimpl']
+Difference for 1267637
+['ctrl']
+['except']
+Difference for 1229339^1253471
+['otherfunc', 'overflow']
+['notaregression', 'cornerc']
+Difference for 1070955^1062612
+['ctrl', 'null']
+['null', 'funcimpl']
+Difference for 1264622
+['corner']
+['missc']
+Difference for 1209843
+['ctrl']
+['funcimpl']
