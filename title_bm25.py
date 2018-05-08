@@ -84,10 +84,10 @@ if __name__ == "__main__":
                     relevance_scores = scorer.score(corpus[id_pair[0]], corpus[id_pair[1]])
                     if relevance_scores['bm25'] > 0:
     #                    print bug_ids[i], bug_ids[j], '%.2f' %relevance_scores['bm25']
-                        result_list.append([corpus[id_pair[0]], corpus[id_pair[1]], relevance_scores['bm25']])
+                        result_list.append([id_pair[0], id_pair[1], relevance_scores['bm25']])
     shellCommand('sudo sysctl -w vm.drop_caches=3')
     print 'Outputing results ...'
     df = pd.DataFrame(result_list, columns=['bug1', 'bug2', 'bm25'])
-    sorted_df = df.sort_values(by='bm25', ascending=False).round({bm25:2})
+    sorted_df = df.sort_values(by='bm25', ascending=False).round({'bm25':2})
 #    print sorted_df
     sorted_df.to_csv('title_relevance.csv', index=False)
