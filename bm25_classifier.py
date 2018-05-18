@@ -77,12 +77,16 @@ with open('manual_classification/bm25_results_initial_after_auto.csv', 'w') as f
             auto_classification = ''
 
             if bug1['id'] in cloned_bug_map:
-                if bug2['id'] in cloned_bug_map[bug1['id']]:
-                    auto_classification = 'y'
+                for bug in cloned_bug_map[bug1['id']]:
+                    if bug2['id'] == bug['id']:
+                        auto_classification = 'y'
+                        break
 
             if bug2['id'] in cloned_bug_map:
-                if bug1['id'] in cloned_bug_map[bug2['id']]:
-                    auto_classification = 'y'
+                for bug in cloned_bug_map[bug2['id']]:
+                    if bug1['id'] == bug['id']:
+                        auto_classification = 'y'
+                        break
 
             if not auto_classification and not are_bugs_linked(bug1, bug2):
                 auto_classification = 'n'
