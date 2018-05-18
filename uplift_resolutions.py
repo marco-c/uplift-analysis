@@ -8,9 +8,6 @@ import get_bugs
 import utils
 
 
-cloned_bug_map = defaultdict(list)
-
-
 def is_reopened(bug, uplift_date):
     for history in bug['history']:
         history_date = get_date_ymd(history['when'])
@@ -21,7 +18,7 @@ def is_reopened(bug, uplift_date):
     return False
 
 
-def is_cloned(bug, uplift_date):
+def is_cloned(cloned_bug_map, bug, uplift_date):
     if bug['id'] in cloned_bug_map:
         for cloned_bug in cloned_bug_map[bug['id']]:
             creation_date = get_date_ymd(cloned_bug['creation_time'])
@@ -44,15 +41,7 @@ if __name__ == '__main__':
     bugs = get_bugs.get_all()
     uplifts = utils.get_uplifts(bugs)
 
-    clone_regex = re.compile('\+\+\+ This bug was initially created as a clone of Bug #*([0-9]+) \+\+\+')
-
-    for bug in bugs:
-        matches = re.findall(clone_regex, bug['comments'][0]['text'])
-        if len(matches) == 0:
-            continue
-
-        for match in matches:
-            cloned_bug_map[int(match)].append(bug)
+    cloned_bug_map = utils.get_cloned_map(bugs)
 
     uplift_num = defaultdict(int)
     reopened = defaultdict(int)
@@ -78,7 +67,7 @@ if __name__ == '__main__':
                 reopened[channel] += 1
                 continue
 
-            if is_cloned(uplift, uplift_date):
+            if is_cloned(cloned_bug_map, uplift, uplift_date):
                 cloned[channel] += 1
                 continue
 

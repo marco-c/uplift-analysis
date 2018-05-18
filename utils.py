@@ -1,3 +1,5 @@
+import re
+from collections import defaultdict
 from libmozdata import bugzilla
 from libmozdata.utils import get_date_ymd
 
@@ -113,3 +115,19 @@ def get_bug_types(bug):
         types.append('performance')
 
     return types
+
+
+def get_cloned_map(bugs):
+    cloned_bug_map = defaultdict(list)
+
+    clone_regex = re.compile('\+\+\+ This bug was initially created as a clone of Bug #*([0-9]+) \+\+\+')
+
+    for bug in bugs:
+        matches = re.findall(clone_regex, bug['comments'][0]['text'])
+        if len(matches) == 0:
+            continue
+
+        for match in matches:
+            cloned_bug_map[int(match)].append(bug)
+
+    return cloned_bug_map
