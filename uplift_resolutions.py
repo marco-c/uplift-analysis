@@ -60,6 +60,9 @@ if __name__ == '__main__':
     additionally_uplifted = defaultdict(int)
 
     for uplift in uplifts:
+        if uplift['component'] == 'Pocket':
+            continue
+
         for channel in utils.uplift_approved_channels(uplift):
             uplift_dates = utils.get_uplift_dates(uplift, channel)
             if len(uplift_dates) == 0:
