@@ -33,7 +33,7 @@ for commit in bug_inducing_commits:
         print(meta)
         print('')
 
-bug_inducing_bugs = list(set(bug_inducing_bugs))
+bug_inducing_bugs = set(bug_inducing_bugs)
 
 all_bugs = [bug['id'] for bug in get_bugs.get_all()]
 
