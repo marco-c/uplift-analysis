@@ -18,7 +18,8 @@ uplift_num = defaultdict(int)
 reopened = defaultdict(int)
 cloned = defaultdict(int)
 additionally_uplifted = defaultdict(int)
-bm25_dupes = defaultdict(int)
+bm25_dupes_opened_after = defaultdict(int)
+bm25_dupes_resolved_after = defaultdict(int)
 
 
 def get_bug_from_id(bug_id):
@@ -75,7 +76,7 @@ def is_additional_uplifts(uplift_dates):
             return True
 
 
-def is_bm25(bug, uplift_date):
+def is_bm25_opened_after(bug, uplift_date):
     if bug['id'] in bm25_data:
         dupes = bm25_data[bug['id']]
         for dupe in dupes:
@@ -84,6 +85,18 @@ def is_bm25(bug, uplift_date):
                 return True
 
     return False
+
+
+def is_bm25_resolved_after(bug, uplift_date):
+    if bug['id'] in bm25_data:
+        dupes = bm25_data[bug['id']]
+        for dupe in dupes:
+            data = get_bug_from_id(dupe)
+            if get_date_ymd(data['cf_last_resolved']) > uplift_date:
+                return True
+
+    return False
+
 
 
 for uplift in uplifts:
@@ -113,8 +126,12 @@ for uplift in uplifts:
             additionally_uplifted[channel] += 1
             continue
 
-        if is_bm25(uplift, uplift_date):
-            bm25_dupes[channel] += 1
+        if is_bm25_opened_after(uplift, uplift_date):
+            bm25_dupes_opened_after[channel] += 1
+            continue
+
+        if is_bm25_resolved_after(uplift, uplift_date):
+            bm25_dupes_resolved_after[channel] += 1
             continue
 
 for channel in ['release', 'beta', 'aurora']:
@@ -123,6 +140,7 @@ for channel in ['release', 'beta', 'aurora']:
     print('{} uplift bugs were reopened after being uplifted'.format(reopened[channel]))
     print('{} uplift bugs were cloned after being uplifted'.format(cloned[channel]))
     print('{} uplift bugs were fixed by multiple uplifts with a distance between them of at least 3 days'.format(additionally_uplifted[channel]))
-    print('{} uplift bugs were found via bm25 data'.format(bm25_dupes[channel]))
+    print('{} uplift bugs were found as duplicate via bm25 data, opened after the uplift'.format(bm25_dupes_opened_after[channel]))
+    print('{} uplift bugs were found as duplicate via bm25 data, resolved after the uplift'.format(bm25_dupes_resolved_after[channel]))
     print('\n')
     print('\n')
