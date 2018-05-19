@@ -120,7 +120,7 @@ def get_bug_types(bug):
 def get_cloned_map(bugs):
     cloned_bug_map = defaultdict(list)
 
-    clone_regex = re.compile('\+\+\+ This bug was initially created as a clone of Bug #*([0-9]+) \+\+\+')
+    clone_regex = re.compile('\+\+\+ This bug was initially created as a clone of Bug #*([0-9]+)')
 
     for bug in bugs:
         matches = re.findall(clone_regex, bug['comments'][0]['text'])
