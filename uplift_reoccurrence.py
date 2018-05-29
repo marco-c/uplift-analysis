@@ -1,9 +1,12 @@
 import csv
+import json
 from collections import defaultdict
 from datetime import datetime, timedelta
 import re
 
+from libmozdata.bugzilla import Bugzilla
 from libmozdata.utils import as_utc, get_date_ymd
+import requests
 
 import get_bugs
 import utils
@@ -44,7 +47,46 @@ with open('manual_classification/bm25_results_initial_after_auto.csv', 'r') as f
             bm25_data[bug2_id].add(bug1_id)
 
 
-print(unclassified)
+try:
+    with open('all_bugs/uplift_revs_data.json', 'r') as f:
+        uplift_revs_data = json.load(f)
+except IOError:
+    uplift_revs_data = {
+        'aurora': {},
+        'beta': {},
+        'release': {},
+    }
+
+
+def get_uplift_rev_data(channel, rev):
+    if rev not in uplift_revs_data[channel]:
+        r = requests.get('https://hg.mozilla.org/releases/mozilla-{}/json-rev/{}'.format(channel, rev))
+        obj = r.json()
+        assert obj['desc']
+        uplift_revs_data[channel][rev] = obj
+
+        with open('all_bugs/uplift_revs_data.json', 'w') as f:
+            json.dump(uplift_revs_data, f)
+
+    return uplift_revs_data[channel][rev]
+
+
+def get_landed_uplift_dates(bug, channel):
+    landing_comments = Bugzilla.get_landing_comments(bug['comments'], [channel])
+    dates = []
+
+    for lc in landing_comments:
+        obj = get_uplift_rev_data(channel, lc['revision'])
+
+        if 'a=test-only' in obj['desc']:
+            continue
+
+        if not 'bug {}'.format(bug['id']) in obj['desc'].lower():
+            continue
+
+        dates.append(get_date_ymd(lc['comment']['time']))
+
+    return dates
 
 
 def is_reopened(bug, uplift_date):
@@ -104,21 +146,23 @@ for uplift in uplifts:
         continue
 
     for channel in utils.uplift_approved_channels(uplift):
-        uplift_dates = utils.get_uplift_dates(uplift, channel)
-        if len(uplift_dates) == 0:
-            continue
-
-        uplift_date = uplift_dates[0]
-        if uplift_date is None or uplift_date < as_utc(datetime(2014, 9, 1)) or uplift_date >= as_utc(datetime(2016, 8, 24)):
+        uplift_request_date = utils.get_uplift_date(uplift, channel)
+        if uplift_request_date is None or uplift_request_date < as_utc(datetime(2014, 9, 1)) or uplift_request_date >= as_utc(datetime(2016, 8, 24)):
             continue
 
         uplift_num[channel] += 1
 
-        if is_reopened(uplift, uplift_date):
+        uplift_dates = get_landed_uplift_dates(uplift, channel)
+        if len(uplift_dates) == 0:
+            # print(uplift['id'])
+            continue
+        first_uplift_date = uplift_dates[0]
+
+        if is_reopened(uplift, first_uplift_date):
             reopened[channel] += 1
             continue
 
-        if is_cloned(cloned_bug_map, uplift, uplift_date):
+        if is_cloned(cloned_bug_map, uplift, first_uplift_date):
             cloned[channel] += 1
             continue
 
@@ -126,11 +170,11 @@ for uplift in uplifts:
             additionally_uplifted[channel] += 1
             continue
 
-        if is_bm25_opened_after(uplift, uplift_date):
+        if is_bm25_opened_after(uplift, first_uplift_date):
             bm25_dupes_opened_after[channel] += 1
             continue
 
-        if is_bm25_resolved_after(uplift, uplift_date):
+        if is_bm25_resolved_after(uplift, first_uplift_date):
             bm25_dupes_resolved_after[channel] += 1
             continue
 
