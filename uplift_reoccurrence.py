@@ -205,33 +205,33 @@ with open('manual_classification/reoccurrence/reopened.csv', 'w') as f:
     csv_writer = csv.writer(f)
     csv_writer.writerow(['uplift_id', 'why'])
 
-    for bug in reopened_bugs:
+    for bug in sorted(list(reopened_bugs)):
         csv_writer.writerow([bug, ''])
 
 with open('manual_classification/reoccurrence/cloned.csv', 'w') as f:
     csv_writer = csv.writer(f)
     csv_writer.writerow(['uplift_id', 'cloned_id', 'why'])
 
-    for bug1, bug2 in cloned_bugs:
+    for bug1, bug2 in sorted(list(cloned_bugs)):
         csv_writer.writerow([bug1, bug2, ''])
 
 with open('manual_classification/reoccurrence/additionally_uplifted.csv', 'w') as f:
     csv_writer = csv.writer(f)
     csv_writer.writerow(['uplift_id', 'why'])
 
-    for bug in additionally_uplifted_bugs:
+    for bug in sorted(list(additionally_uplifted_bugs)):
         csv_writer.writerow([bug, ''])
 
 with open('manual_classification/reoccurrence/bm25_opened_after.csv', 'w') as f:
     csv_writer = csv.writer(f)
     csv_writer.writerow(['uplift_id', 'dupe_id', 'why'])
 
-    for bug1, bug2 in bm25_dupes_opened_after_bugs:
+    for bug1, bug2 in sorted(list(bm25_dupes_opened_after_bugs)):
         csv_writer.writerow([bug1, bug2, ''])
 
 with open('manual_classification/reoccurrence/bm25_resolved_after.csv', 'w') as f:
     csv_writer = csv.writer(f)
     csv_writer.writerow(['uplift_id', 'dupe_id', 'why'])
 
-    for bug1, bug2 in bm25_dupes_resolved_after_bugs:
+    for bug1, bug2 in sorted(list(bm25_dupes_resolved_after_bugs)):
         csv_writer.writerow([bug1, bug2, ''])
