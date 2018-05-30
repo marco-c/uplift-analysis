@@ -14,8 +14,8 @@ uplift_id,why
 1090633,not fixed
 1092606,partially fixed
 1096089,partially fixed
-1099345,
-1104306,
+1099345,not fixed
+1104306,not fixed
 1104623,need more tests
 1104748,INVALID
 1106559,not fixed
@@ -28,8 +28,8 @@ uplift_id,why
 1125848,not fixed
 1128953,regressions
 1130411,not fixed
-1133939,
-1136360,
+1133939,INVALID
+1136360,regressions
 1137009,regressions
 1137229,not fixed
 1137716,not fixed
@@ -52,7 +52,7 @@ uplift_id,why
 1183725,not fixed
 1184009,partially fixed
 1185960,partially fixed
-1188822,
+1188822,other
 1189715,diagnostics
 1194488,partially fixed
 1194859,not fixed
