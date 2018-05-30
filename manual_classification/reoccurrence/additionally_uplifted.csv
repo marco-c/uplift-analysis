@@ -1,109 +1,109 @@
 uplift_id,why
-1044975,
-1054959,
+1044975,regressions
+1054959,regressions
 1062256,partially fixed
-1063052,
-1068189,
+1063052,diagnostics
+1068189,regressions^test failures
 1069300,other
-1072100,
-1073607,
-1074272,
+1072100,INVALID
+1073607,INVALID
+1074272,INVALID
 1083071,partially fixed^regressions
 1085203,INVALID
-1088247,
-1101122,
-1101147,
-1101669,
-1101670,
-1105045,
+1088247,other^regressions^test failures
+1101122,regressions^test failures
+1101147,IGNORE
+1101669,INVALID
+1101670,INVALID
+1105045,other
 1107666,other
-1111947,
-1116812,
+1111947,regressions^test failures
+1116812,partially fixed
 1120149,INVALID
 1122322,regressions
-1123498,
+1123498,need more tests
 1123535,regressions^test failure
-1123983,
-1128027,
-1128069,
+1123983,other
+1128027,regressions^test failures
+1128069,other^regressions^test failures
 1128454,diagnostics
-1130231,
-1131433,
+1130231,other^regressions^test failures
+1131433,regressions^test failures
 1133633,diagnostics
-1134064,
-1134501,
+1134064,INVALID
+1134501,other
 1137470,other
-1144055,
-1146663,
-1149377,
+1144055,other
+1146663,INVALID
+1149377,INVALID
 1150297,other
-1151804,
-1155608,
-1156131,
-1156182,
-1158761,
-1160890,
-1162662,
-1162860,
-1162863,
-1163814,
-1166031,
-1166886,
+1151804,regressions^test failures
+1155608,not fixed
+1156131,regressions
+1156182,partially fixed
+1158761,regressions^test failures
+1160890,regressions
+1162662,INVALID
+1162860,other^regressions^test failures
+1162863,INVALID
+1163814,INVALID
+1166031,other
+1166886,INVALID
 1170143,partially fixed
-1170809,
-1175783,
-1181130,
-1181735,
-1182197,
+1170809,regressions^test failures
+1175783,regressions
+1181130,INVALID
+1181735,not fixed
+1182197,other
 1185115,partially fixed
-1189030,
+1189030,other^regressions
 1192505,INVALID
-1198107,
-1200021,
-1200698,
-1201796,
-1202421,
-1207665,
-1211360,
-1211849,
-1217156,
-1218799,
-1220010,
-1220033,
-1221855,
-1222617,
-1224433,
-1225645,
-1226487,
-1227024,
+1198107,INVALID
+1200021,INVALID
+1200698,INVALID
+1201796,INVALID
+1202421,INVALID
+1207665,partially fixed
+1211360,INVALID
+1211849,regressions
+1217156,INVALID
+1218799,regressions
+1220010,INVALID
+1220033,INVALID
+1221855,regressions^test failures
+1222617,regressions^test failures
+1224433,other^regressions^test failures
+1225645,regressions
+1226487,partially fixed
+1227024,INVALID
 1234054,other
 1234280,regressions
-1236754,
+1236754,INVALID
 1240985,partially fixed
-1242176,
-1243549,
-1243607,
-1244650,
-1246854,
+1242176,INVALID
+1243549,other
+1243607,regressions^test failures
+1244650,regressions
+1246854,partially fixed
 1246956,regressions
-1247327,
+1247327,regressions^build failures
 1247977,diagnostics
-1248948,
-1249849,
-1257234,
-1258317,
-1258375,
-1260908,
+1248948,regressions^build failures
+1249849,regressions^build failures
+1257234,regressions^test failures
+1258317,diagnostics
+1258375,regressions
+1260908,regressions^build failures
 1262661,partially fixed
-1264694,
-1265815,
-1266440,
+1264694,other^regressions^build failures
+1265815,INVALID
+1266440,INVALID
 1266889,regressions^test failure
 1268559,partially fixed
-1268922,
-1270664,
-1274096,
-1274516,
-1285052,
-1290086,
-1290365,
+1268922,not fixed^regressions
+1270664,regressions^test failures
+1274096,other
+1274516,regressions^build failures
+1285052,regressions^build failures
+1290086,other
+1290365,other^regressions^test failures
