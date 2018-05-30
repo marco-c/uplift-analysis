@@ -1,93 +1,93 @@
 uplift_id,why
-1049138,
-1059797,
-1062920,
-1063808,
-1064515,
-1068571,
-1074378,
-1078539,
-1079621,
-1085330,
-1086958,
-1090415,
-1090633,
-1092606,
-1096089,
+1049138,partially fixed
+1059797,not fixed
+1062920,partially fixed
+1063808,regressions^test failure
+1064515,INVALID
+1068571,INVALID
+1074378,regressions
+1078539,not fixed
+1079621,not fixed
+1085330,partially fixed
+1086958,regressions
+1090415,partially fixed
+1090633,not fixed
+1092606,partially fixed
+1096089,partially fixed
 1099345,
 1104306,
-1104623,
-1104748,
-1106559,
-1112709,
-1121406,
-1121857,
-1123202,
-1124018,
-1124880,
-1125848,
-1128953,
-1130411,
+1104623,need more tests
+1104748,INVALID
+1106559,not fixed
+1112709,not fixed
+1121406,regressions
+1121857,need more tests
+1123202,partially fixed
+1124018,not fixed
+1124880,partially fixed
+1125848,not fixed
+1128953,regressions
+1130411,not fixed
 1133939,
 1136360,
-1137009,
-1137229,
-1137716,
-1138967,
-1139860,
-1140440,
-1141081,
-1151506,
-1152145,
-1154003,
-1154703,
-1158343,
-1159321,
-1160295,
-1167230,
-1169867,
-1170531,
-1181595,
-1182097,
-1183725,
-1184009,
-1185960,
+1137009,regressions
+1137229,not fixed
+1137716,not fixed
+1138967,regressions
+1139860,partially fixed
+1140440,partially fixed
+1141081,partially fixed
+1151506,not fixed
+1152145,INVALID
+1154003,partially fixed
+1154703,not fixed
+1158343,need more QA
+1159321,INVALID
+1160295,not fixed
+1167230,INVALID
+1169867,not fixed
+1170531,partially fixed
+1181595,partially fixed
+1182097,regressions
+1183725,not fixed
+1184009,partially fixed
+1185960,partially fixed
 1188822,
-1189715,
-1194488,
-1194859,
-1195844,
-1198586,
-1207784,
-1211344,
-1211615,
-1219832,
-1220531,
-1228287,
-1230774,
-1232150,
-1233237,
-1234673,
-1235605,
-1236329,
-1241171,
-1242450,
-1245870,
-1247432,
-1249600,
-1252414,
-1253507,
-1256992,
-1265468,
-1266309,
-1268749,
-1268922,
-1270689,
-1273252,
-1274913,
-1275040,
-1275694,
-1276403,
-1277272,
-1277358,
-1280110,
+1189715,diagnostics
+1194488,partially fixed
+1194859,not fixed
+1195844,not fixed^regressions
+1198586,partially fixed
+1207784,partially fixed
+1211344,INVALID
+1211615,partially fixed
+1219832,partially fixed
+1220531,INVALID
+1228287,INVALID
+1230774,partially fixed
+1232150,INVALID
+1233237,regressions
+1234673,partially fixed
+1235605,INVALID
+1236329,INVALID
+1241171,other
+1242450,regressions
+1245870,INVALID
+1247432,regressions
+1249600,not fixed
+1252414,need more tests
+1253507,regressions^test failure
+1256992,regressions
+1265468,partially fixed
+1266309,INVALID
+1268749,regressions^test failure
+1268922,not fixed
+1270689,partially fixed
+1273252,INVALID
+1274913,partially fixed
+1275040,partially fixed
+1275694,partially fixed
+1276403,regressions
+1277272,need more tests
+1277358,partially fixed
+1280110,partially fixed
