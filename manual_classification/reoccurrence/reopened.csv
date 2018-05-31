@@ -44,7 +44,7 @@ uplift_id,why
 1158343,need more QA
 1159321,INVALID
 1160295,not fixed
-1167230,INVALID
+1167230,other
 1169867,not fixed
 1170531,partially fixed
 1181595,partially fixed
@@ -56,7 +56,7 @@ uplift_id,why
 1189715,diagnostics
 1194488,partially fixed
 1194859,not fixed
-1195844,not fixed^regressions
+1195844,not fixed
 1198586,partially fixed
 1207784,partially fixed
 1211344,INVALID

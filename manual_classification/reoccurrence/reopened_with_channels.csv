@@ -44,7 +44,7 @@ uplift_id,why,channels
 1158343,need more QA,release
 1159321,INVALID,beta
 1160295,not fixed,release^aurora^beta
-1167230,INVALID,aurora
+1167230,other,aurora
 1169867,not fixed,aurora^beta
 1170531,partially fixed,aurora
 1181595,partially fixed,aurora
@@ -56,7 +56,7 @@ uplift_id,why,channels
 1189715,diagnostics,aurora^beta
 1194488,partially fixed,aurora^beta
 1194859,not fixed,aurora^beta
-1195844,not fixed^regressions,release^aurora^beta
+1195844,not fixed,release^aurora^beta
 1198586,partially fixed,aurora
 1207784,partially fixed,aurora^beta
 1211344,INVALID,aurora
