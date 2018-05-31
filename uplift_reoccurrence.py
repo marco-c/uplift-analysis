@@ -179,23 +179,15 @@ for uplift in uplifts:
 
         if is_reopened(channel, uplift, first_uplift_date):
             reopened[channel] += 1
-            continue
+        elif is_additional_uplifts(channel, uplift, uplift_dates):
+            additionally_uplifted[channel] += 1
 
         if is_cloned(channel, cloned_bug_map, uplift, first_uplift_date):
             cloned[channel] += 1
-            continue
-
-        if is_additional_uplifts(channel, uplift, uplift_dates):
-            additionally_uplifted[channel] += 1
-            continue
-
-        if is_bm25_opened_after(channel, uplift, first_uplift_date):
+        elif is_bm25_opened_after(channel, uplift, first_uplift_date):
             bm25_dupes_opened_after[channel] += 1
-            continue
-
-        if is_bm25_resolved_after(channel, uplift, first_uplift_date):
+        elif is_bm25_resolved_after(channel, uplift, first_uplift_date):
             bm25_dupes_resolved_after[channel] += 1
-            continue
 
 for channel in ['release', 'beta', 'aurora']:
     print(channel)
@@ -209,7 +201,7 @@ for channel in ['release', 'beta', 'aurora']:
     print('\n')
 
 
-def save_csv(path, typ):
+def save_csv(path, new_bugs, typ):
     bugs = {}
 
     with open('manual_classification/reoccurrence/{}.csv'.format(path), 'r') as f:
@@ -218,10 +210,14 @@ def save_csv(path, typ):
 
         if typ == 1:
             for bug, classification in csv_reader:
-                bugs[bug] = classification
+                bugs[int(bug)] = classification
         elif typ == 2:
             for bug1, bug2, classification in csv_reader:
-                bugs[(bug1, bug2)] = classification
+                bugs[(int(bug1), int(bug2))] = classification
+
+    for entry in new_bugs:
+        if entry not in bugs:
+            bugs[entry] = ''
 
     with open('manual_classification/reoccurrence/{}.csv'.format(path), 'w') as f:
         csv_writer = csv.writer(f)
@@ -247,9 +243,8 @@ def save_csv(path, typ):
             for (bug1, bug2), classification in sorted(list(bugs.items())):
                 csv_writer.writerow([bug1, bug2, classification, '^'.join(id_to_channels[int(bug1)])])
 
-
-save_csv('reopened', 1)
-save_csv('cloned', 2)
-save_csv('additionally_uplifted', 1)
-save_csv('bm25_opened_after', 2)
-save_csv('bm25_resolved_after', 2)
+save_csv('reopened', reopened_bugs, 1)
+save_csv('cloned', cloned_bugs, 2)
+save_csv('additionally_uplifted', additionally_uplifted_bugs, 1)
+save_csv('bm25_opened_after', bm25_dupes_opened_after_bugs, 2)
+save_csv('bm25_resolved_after', bm25_dupes_resolved_after_bugs, 2)
