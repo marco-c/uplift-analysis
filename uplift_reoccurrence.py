@@ -139,9 +139,10 @@ def is_bm25_opened_after(channel, bug, uplift_date):
         for dupe in dupes:
             data = get_bug_from_id(dupe)
             if get_date_ymd(data['creation_time']) > uplift_date:
-                bm25_dupes_opened_after_bugs.add((bug['id'], dupe))
-                id_to_channels[bug['id']].add(channel)
-                ret = True
+                if (bug['id'], dupe) not in cloned_bugs:
+                    bm25_dupes_opened_after_bugs.add((bug['id'], dupe))
+                    id_to_channels[bug['id']].add(channel)
+                    ret = True
 
     return ret
 
@@ -153,9 +154,10 @@ def is_bm25_resolved_after(channel, bug, uplift_date):
         for dupe in dupes:
             data = get_bug_from_id(dupe)
             if get_date_ymd(data['cf_last_resolved']) > uplift_date:
-                bm25_dupes_resolved_after_bugs.add((bug['id'], dupe))
-                id_to_channels[bug['id']].add(channel)
-                ret = True
+                if (bug['id'], dupe) not in cloned_bugs and (bug['id'], dupe) not in bm25_dupes_opened_after_bugs:
+                    bm25_dupes_resolved_after_bugs.add((bug['id'], dupe))
+                    id_to_channels[bug['id']].add(channel)
+                    ret = True
 
     return ret
 
@@ -184,9 +186,11 @@ for uplift in uplifts:
 
         if is_cloned(channel, cloned_bug_map, uplift, first_uplift_date):
             cloned[channel] += 1
-        elif is_bm25_opened_after(channel, uplift, first_uplift_date):
+
+        if is_bm25_opened_after(channel, uplift, first_uplift_date):
             bm25_dupes_opened_after[channel] += 1
-        elif is_bm25_resolved_after(channel, uplift, first_uplift_date):
+
+        if is_bm25_resolved_after(channel, uplift, first_uplift_date):
             bm25_dupes_resolved_after[channel] += 1
 
 for channel in ['release', 'beta', 'aurora']:
