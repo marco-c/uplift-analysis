@@ -104,6 +104,7 @@ uplift_id,why,channels
 1270664,regressions^test failures,aurora
 1274096,other,aurora
 1274516,regressions^build failures,aurora
+1279208,,aurora^beta
 1285052,regressions^build failures,beta
 1290086,other,aurora
 1290365,other^regressions^test failures,aurora^beta

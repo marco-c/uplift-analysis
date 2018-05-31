@@ -3,8 +3,10 @@ uplift_id,cloned_id,why,channels
 1104846,1102911,partially fixed,release^beta
 1166066,1114299,INVALID,aurora^beta
 1173930,1183019,INVALID,aurora
+1195844,1160295,,release^aurora^beta
 1202279,1202280,partially fixed,aurora
 1216699,1217165,partially fixed,aurora
 1218297,1233774,partially fixed,aurora
 1233666,1113930,partially fixed,aurora
+1264694,1268332,,aurora
 1272757,1273137,partially fixed,aurora
