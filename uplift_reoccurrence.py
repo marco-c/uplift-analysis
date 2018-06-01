@@ -10,6 +10,7 @@ import requests
 
 import get_bugs
 import utils
+import versions
 
 
 bugs = get_bugs.get_all()
@@ -252,3 +253,45 @@ save_csv('cloned', cloned_bugs, 2)
 save_csv('additionally_uplifted', additionally_uplifted_bugs, 1)
 save_csv('bm25_opened_after', bm25_dupes_opened_after_bugs, 2)
 save_csv('bm25_resolved_after', bm25_dupes_resolved_after_bugs, 2)
+
+fixed_same = 0
+fixed_after = 0
+fixed_before = 0
+for path in ['cloned', 'bm25_opened_after', 'bm25_resolved_after']:
+    with open('manual_classification/reoccurrence/{}.csv'.format(path), 'r') as f:
+        csv_reader = csv.reader(f)
+        next(csv_reader)
+
+        for uplift, dupe, classification in csv_reader:
+            if classification == 'INVALID':
+                continue
+
+            if dupe == '1264271':  # https://bugzilla.mozilla.org/show_bug.cgi?id=1264271#c1
+                dupe = 1253979
+            elif dupe == '1127173':  # https://bugzilla.mozilla.org/show_bug.cgi?id=1127173#c10
+                dupe = 1128410
+            elif dupe == '1263533':  # https://bugzilla.mozilla.org/show_bug.cgi?id=1263533#c13
+                fixed_same += 1
+                continue
+
+            uplift_versions = versions.get_versions(uplift)
+            dupe_versions = versions.get_versions(dupe)
+
+            if len(uplift_versions) == 0:
+                print('No versions for uplift: {}'.format(uplift))
+                continue
+
+            if len(dupe_versions) == 0:
+                print('No versions for dupe: {}'.format(dupe))
+                continue
+
+            if min(uplift_versions) == min(dupe_versions):
+                fixed_same += 1
+            elif min(uplift_versions) < min(dupe_versions):
+                fixed_after += 1
+            elif min(uplift_versions) > min(dupe_versions):
+                fixed_before += 1
+
+print('cloned or found as duplicated fixed in the same version as the uplift: {}'.format(fixed_same))
+print('cloned or found as duplicated fixed in a version after the uplift: {}'.format(fixed_after))
+print('cloned or found as duplicated fixed in a version before the uplift: {}'.format(fixed_before))

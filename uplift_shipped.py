@@ -10,40 +10,8 @@ from libmozdata.utils import as_utc, get_date_ymd
 
 import get_bugs
 import utils
+import versions
 
-
-def get_versions(bug):
-    try:
-        versions = set()
-
-        data = requests.get('https://bugzilla.mozilla.org/rest/bug/{}'.format(bug['id'])).json()
-
-        data = data['bugs'][0]
-
-        for key, val in data.items():
-            if not key.startswith('cf_status_firefox'):
-                continue
-
-            if key.startswith('cf_status_firefox_esr'):
-                continue
-
-            version = key[len('cf_status_firefox'):]
-
-            if version == '38_0_5':
-                version = '38.5'
-
-            if val in ['fixed', 'verified']:
-                versions.add(float(version))
-
-        target_milestone = data['target_milestone']
-        if target_milestone != '---' and not any(target_milestone.startswith(s) for s in ['FxOS', '2.2']):
-            versions.add(float(target_milestone[len('mozilla'):]))
-
-        return list(versions)
-    except:
-        print('Error with {}'.format(bug['id']))
-        print(data)
-        raise
 
 bugs = get_bugs.get_all()
 uplifts = utils.get_uplifts(bugs)
@@ -82,7 +50,7 @@ for uplift in uplifts:
     if to_ignore:
         continue
 
-    uplift_versions = get_versions(uplift)
+    uplift_versions = versions.get_versions(uplift)
     if len(uplift_versions) == 0:
         print(uplift['id'])
         continue
@@ -90,12 +58,12 @@ for uplift in uplifts:
 
     shipped_to_users = set()
     for regression in regressions:
-        regression_fix_versions = get_versions(regression)
+        regression_fix_versions = versions.get_versions(regression)
         if len(regression_fix_versions) == 0:
             print(regression['id'])
             continue
 
-        regression_fix_version = min(get_versions(regression))
+        regression_fix_version = min(regression_fix_versions)
         if uplift_version < regression_fix_version:
             shipped_to_users.add(regression['id'])
 
