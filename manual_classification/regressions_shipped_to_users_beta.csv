@@ -1,0 +1,253 @@
+uplift_id,regression_id,reproducible,how_found
+1116056,1204580,reproducible,found by fuzzing
+1116056,1186149,reproducible,found by user (a Firefox developer) on a widespread website
+1116056,1149278,reproducible,found by user (a Firefox developer) on a rare website
+1116056,1271847,INVALID,
+1108035,1123966,reproducible,found by user (a volunteer) on a widely used feature
+1220037,1223520,reproducible,found by fuzzing
+1196882,1269055,INVALID,
+1146201,1288976,reproducible,found by developer
+1146201,1268984,INVALID,
+1146201,1278198,INVALID,
+1146201,1207439,INVALID,
+1111788,1173634,INVALID,
+1171629,1186149,reproducible,found by user (a Firefox developer) on a widespread website
+1120017,1162381,INVALID,
+1175104,1179051,INVALID,
+1124031,1237842,unknown,found via crash reports
+1232069,1253471,reproducible,found by user (a website developer)
+1064481,1074963,INVALID,
+1232268,1239066,INVALID,
+1132468,1176551,reproducible,found by user (a volunteer) on a rarely used feature
+1112972,1200413,INVALID,
+1112972,1151309,reproducible,found by user (a website developer)
+1131638,1161416,INVALID,
+1131638,1145101,reproducible,found by user (a Firefox developer) on a widespread website
+1131638,1143575,INVALID,
+1170211,1197296,INVALID,
+1159973,1195578,reproducible,found by fuzzing
+1177505,1216096,reproducible,found by user (a volunteer) on a widely used feature
+1123245,1146873,INVALID,
+1244500,1265173,not reproducible (except by reporter),found by user (a end user) on a rare configuration
+1125848,1180688,reproducible (but not by everyone),found by user (a Firefox developer) on a rare configuration
+1125848,1153939,not reproducible,found via crash reports
+1167248,1236619,INVALID,NOT A USER FACING REGRESSION
+1277882,1279608,INVALID,
+1146874,1256992,not reproducible,found via crash reports
+1258768,1265282,INVALID,
+1258768,1270075,INVALID,
+1079729,1155059,INVALID,
+1151495,1200004,reproducible,found by external security researcher
+1212328,1277267,INVALID,
+1212328,1290422,INVALID,
+1121332,1289942,reproducible,found by developer by running spec compliance tests
+1267980,1276930,not reproducible,found via crash reports
+1249578,1285867,INVALID,
+1063733,1069369,INVALID,
+1063733,1078211,reproducible,found by developer using Valgrind
+1141931,1230408,reproducible,found by fuzzing
+1141931,1181890,reproducible,found by user (a Firefox developer) on a widespread website
+1141931,1274443,INVALID,
+1141931,1229437,reproducible,found by fuzzing
+1141931,1156222,reproducible,found by fuzzing
+1126164,1159273,INVALID,
+1131433,1142336,INVALID,
+1131433,1195073,INVALID,
+1131433,1182287,INVALID,
+1131433,1186257,INVALID,
+1131433,1175058,INVALID,
+1131433,1194197,INVALID,
+1131433,1163227,INVALID,
+1131433,1154782,INVALID,
+1138253,1143575,INVALID,
+1093316,1174450,INVALID,
+1066726,1123920,reproducible,found by user (a website developer)
+1138391,1207571,reproducible,found by fuzzing
+1102538,1243754,INVALID,
+1102538,1138391,INVALID,
+1102538,1249493,INVALID,
+1102538,1148661,INVALID,
+1102538,1115847,INVALID,
+1105066,1143575,INVALID,
+1180101,1244523,reproducible,found by user (a end-user) on a widely used feature
+1182411,1284939,INVALID,
+1182411,1222662,INVALID,WRONG REGRESSOR
+1182411,1257759,reproducible,found by developer (code inspection?)
+1127203,1182287,INVALID,WRONG REGRESSOR
+1147857,1153056,reproducible,found by user (a Firefox developer) on a not widely used feature
+1085266,1124880,not reproducible,found via crash reports
+1257242,1275040,INVALID,NOT A REGRESSION
+1257242,1275039,INVALID,NOT A REGRESSION
+1073345,1173195,reproducible,found by developer (code inspection?)
+1244523,1251184,reproducible,found by QA on a widely used feature
+1244523,1254731,INVALID,WRONG REGRESSOR
+1123498,1269408,INVALID,WRONG REGRESSOR
+1116376,1150639,unknown,found by developer (running debug build)
+1238558,1292505,unknown,found by developer (code inspection?)
+1125503,1147497,reproducible,found by developer (code inpection?)
+1143194,1149510,reproducible,found by fuzzing
+1208043,1224994,,
+1170522,1187178,INVALID,NOT A USER FACING REGRESSION
+1105194,1227136,reproducible,found via crash reports
+1194576,1221825,reproducible,found by developer (running debug build)
+1062876,1181896,INVALID,NOT A REGRESSION
+1062876,1257950,INVALID,NOT A REGRESSION
+1064320,1191936,INVALID,NOT A REGRESSION
+1064320,1200341,INVALID,NOT A REGRESSION
+1258317,1266440,INVALID,
+1092842,1226904,INVALID,WRONG REGRESSOR
+1073805,1098400,INVALID,NOT A USER FACING REGRESSION
+1073805,1096764,reproducible,found by user (a volunteer) on a widespread feature
+1264187,1272160,INVALID,WRONG REGRESSOR
+1078354,1190676,reproducible,found by fuzzing
+1116473,1251163,INVALID,NOT A REGRESSION
+1065909,1147497,reproducible,found by developer (code inpection?)
+1153123,1179051,INVALID,NOT A REGRESSION
+1153123,1221348,reproducible (but not by everyone),found via crash reports
+1234422,1237582,not reproducible (except by reporter),found by user (a end-user) on a widespread feature
+1234422,1257759,reproducible,found by developer (code inspection?)
+1128765,1236112,INVALID,WRONG REGRESSOR
+1128769,1209751,reproducible,found by developer (from failures of newly introduced tests)
+1060738,1181896,INVALID,NOT A REGRESSION
+1060738,1103188,INVALID,NOT A REGRESSION
+1060738,1154389,reproducible,found by static analysis
+1060738,1224766,INVALID,WRONG REGRESSOR
+1060738,1213517,INVALID,NOT A REGRESSION
+1212499,1253386,reproducible,found by user (a volunteer) on a widespread website
+1225003,1230692,reproducible,found by fuzzing
+1089364,1147728,reproducible,found by developer (code inspection?)
+1089364,1104008,not reproducible,found via crash reports
+1089364,1135271,reproducible,found by user (a Firefox developer) on a rare website
+1137614,1159840,INVALID,
+1049138,1117338,not reproducible (except by reporter),found by user (a end-user) on a rare website
+1054972,1070955,reproducible,found by fuzzing
+1082734,1183450,reproducible,found by fuzzing
+1082734,1093611,reproducible,found by user (a website developer)
+1068189,1094409,INVALID,FEATURE NOT SHIPPED TO USERS
+1072044,1172785,INVALID,NOT A REGRESSION
+1072044,1136871,INVALID,WRONG REGRESSOR
+1097437,1123019,reproducible,found by user (a Firefox developer) on a widespread website
+1107684,1174486,INVALID,NOT A REGRESSION
+1107684,1147215,INVALID,WRONG REGRESSOR
+1242904,1261318,unknown,found via crash reports
+1213646,1269254,INVALID,WRONG REGRESSOR
+1111971,1171716,INVALID,WRONG REGRESSOR
+1111971,1164567,unknown,found by developer (code inspection?)
+1170143,1179051,INVALID,NOT A REGRESSION
+1253379,1263028,unknown,found via telemetry
+1211000,1243453,reproducible,found by user (a website developer)
+1129369,1197943,INVALID,DISABLED ON RELEASE
+1123535,1161416,,
+1123535,1173657,,
+1209774,1285561,,
+1132757,1264925,,
+1226148,1257759,reproducible,found by developer (code inspection?)
+1190257,1256547,,
+1207424,1269029,,
+1112956,1200413,,
+1185115,1216748,,
+1130784,1136897,,
+1187067,1264622,,
+1085175,1138072,,
+1085175,1096721,,
+1148071,1183433,,
+1148071,1163239,,
+1240985,1257314,,
+1219134,1236746,,
+1219134,1239066,,
+1193387,1200656,reproducible,found by developer (code inspection)
+1193387,1200187,INVALID,NOT A USER FACING REGRESSION
+1074223,1227058,,
+1270161,1273070,,
+1073825,1240025,,
+1150277,1268984,,
+1233819,1283594,,
+1127213,1143968,,
+1127213,1136360,,
+1127213,1136107,,
+1257028,1271525,,
+1223193,1239504,,
+1219330,1293772,,
+1154366,1156662,reproducible,found by developer (static analysis)
+1120023,1296453,,
+1204922,1239861,,
+1051822,1201051,,
+1051822,1212349,,
+1062920,1162218,,
+1108838,1147226,,
+1108838,1240478,,
+1154536,1210232,,
+1246319,1249438,INVALID,
+1126465,1128576,INVALID,NOT A USER FACING REGRESSION
+1126465,1129877,,
+1126465,1129247,,
+1119033,1125776,,
+1196398,1229339,,
+1196398,1253471,,
+1147521,1153145,reproducible,found by user (a website developer)
+1147521,1155241,,
+1149605,1275853,,
+1107666,1272858,,
+1248913,1275026,,
+1121692,1143575,INVALID,
+1121692,1129247,,
+1082178,1162218,,
+1147728,1192058,,
+1063048,1137716,,
+1185820,1251697,,
+1096089,1125776,reproducible,found by developer (running spec compliance tests)
+1096089,1128397,,
+1096089,1129247,,
+1143299,1153695,,
+1203616,1276483,,
+1145143,1204922,,
+1102642,1195073,,
+1102642,1175058,,
+1102642,1259916,,
+1102642,1186257,,
+1113062,1125940,,
+1135408,1144900,,
+1135408,1279063,,
+1123452,1283724,,
+1060114,1138934,,
+1121148,1188643,,
+1243538,1266013,reproducible,found by developer (compiling)
+1272916,1276184,,
+1137511,1244639,,
+1167189,1266831,,
+1081911,1153724,,
+1111160,1173634,,
+1120128,1171094,,
+1196696,1267637,,
+1165851,1236258,,
+1211970,1249652,,
+1139271,1148203,,
+1139271,1149278,,
+1139271,1271847,,
+1069401,1193414,,
+1205456,1209843,not reproducible,found via crash reports
+1059797,1239789,,
+1262731,1264403,reproducible,found by user (developers embedding JS engine)
+1061327,1088984,reproducible,found by user (a Firefox developer) on a widely used feature
+1061327,1091296,,
+1216658,1272332,,
+1120655,1280132,,
+1126723,1136827,,
+1061696,1068613,,
+1160321,1208349,,
+1213567,1240607,reproducible (but not by everyone),found via crash reports
+1200021,1230740,reproducible (but not by everyone),found via crash reports
+1075199,1160914,,
+1055904,1134064,,
+1055904,1133625,,
+1170809,1255597,,
+1136397,1294013,,
+1151361,1179051,,
+1120945,1276920,,
+1167883,1274922,,
+1141081,1235573,,
+1089833,1177013,,
+1092859,1133386,,
+1199224,1224994,,
+1160890,1249652,,
+1160890,1229071,,
