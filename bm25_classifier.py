@@ -4,9 +4,6 @@ import get_bugs
 import utils
 
 
-bugs = get_bugs.get_all()
-cloned_bug_map = utils.get_cloned_map(bugs)
-
 def removeCharacter(word):
     cleaned_word = ''
     unwanted_ch = ["'", '"', '|']
@@ -24,10 +21,6 @@ def removePunctuation(word):
         if word[-1] in '!*+,-.:;?_':
             return word[:-1]
     return word
-
-
-def get_bug_from_id(bug_id):
-    return [bug for bug in bugs if bug['id'] == int(bug_id)][0]
 
 
 def are_bugs_linked(bug1, bug2):
@@ -61,37 +54,46 @@ def are_bugs_linked(bug1, bug2):
            in_history
 
 
-with open('manual_classification/bm25_results_initial_after_auto.csv', 'w') as f:
-    csv_writer = csv.writer(f)
-    csv_writer.writerow(['bug1', 'bug2', '', 'title1', 'title2'])
+if __name__ == '__main__':
+    bugs = get_bugs.get_all()
+    cloned_bug_map = utils.get_cloned_map(bugs)
 
-    with open('manual_classification/bm25_results_initial.csv', 'r') as f:
-        csv_reader = csv.reader(f)
-        next(csv_reader)  # skip header
-        for bug1_link, bug2_link, classification, title1, title2 in csv_reader:
-            bug1_id = bug1_link[len('https://bugzilla.mozilla.org/show_bug.cgi?id='):]
-            bug1 = get_bug_from_id(bug1_id)
-            bug2_id = bug2_link[len('https://bugzilla.mozilla.org/show_bug.cgi?id='):]
-            bug2 = get_bug_from_id(bug2_id)
 
-            auto_classification = ''
+    def get_bug_from_id(bug_id):
+        return [bug for bug in bugs if bug['id'] == int(bug_id)][0]
 
-            if bug1['id'] in cloned_bug_map:
-                for bug in cloned_bug_map[bug1['id']]:
-                    if bug2['id'] == bug['id']:
-                        auto_classification = 'y'
-                        break
 
-            if bug2['id'] in cloned_bug_map:
-                for bug in cloned_bug_map[bug2['id']]:
-                    if bug1['id'] == bug['id']:
-                        auto_classification = 'y'
-                        break
+    with open('manual_classification/bm25_results_initial_after_auto.csv', 'w') as f:
+        csv_writer = csv.writer(f)
+        csv_writer.writerow(['bug1', 'bug2', '', 'title1', 'title2'])
 
-            if not auto_classification and not are_bugs_linked(bug1, bug2):
-                auto_classification = 'n'
+        with open('manual_classification/bm25_results_initial.csv', 'r') as f:
+            csv_reader = csv.reader(f)
+            next(csv_reader)  # skip header
+            for bug1_link, bug2_link, classification, title1, title2 in csv_reader:
+                bug1_id = bug1_link[len('https://bugzilla.mozilla.org/show_bug.cgi?id='):]
+                bug1 = get_bug_from_id(bug1_id)
+                bug2_id = bug2_link[len('https://bugzilla.mozilla.org/show_bug.cgi?id='):]
+                bug2 = get_bug_from_id(bug2_id)
 
-            if not classification:
-                classification = auto_classification
+                auto_classification = ''
 
-            csv_writer.writerow([bug1_link, bug2_link, classification, title1, title2])
+                if bug1['id'] in cloned_bug_map:
+                    for bug in cloned_bug_map[bug1['id']]:
+                        if bug2['id'] == bug['id']:
+                            auto_classification = 'y'
+                            break
+
+                if bug2['id'] in cloned_bug_map:
+                    for bug in cloned_bug_map[bug2['id']]:
+                        if bug1['id'] == bug['id']:
+                            auto_classification = 'y'
+                            break
+
+                if not auto_classification and not are_bugs_linked(bug1, bug2):
+                    auto_classification = 'n'
+
+                if not classification:
+                    classification = auto_classification
+
+                csv_writer.writerow([bug1_link, bug2_link, classification, title1, title2])
