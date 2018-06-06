@@ -1,0 +1,13 @@
+uplift_id,regression_id,reproducible,how_found
+1132468,1176551,reproducible,found on a rarely used feature/website/config
+1159973,1195578,reproducible,found by tooling
+1151495,1200004,reproducible,found by developers
+1147857,1153056,reproducible,found on a widely used feature/website/config
+1185115,1216748,reproducible,found by developers
+1149605,1275853,reproducible,found on a rarely used feature/website/config
+1147728,1192058,reproducible,found by developers
+1063048,1137716,reproducible (but not by everyone),found via telemetry
+1151821,1161642,reproducible,found on a widely used feature/website/config
+1198435,1266926,reproducible,found by developers
+1044975,1251894,not reproducible (except by reporter),found on a widely used feature/website/config
+1205456,1209843,not reproducible,found via telemetry
