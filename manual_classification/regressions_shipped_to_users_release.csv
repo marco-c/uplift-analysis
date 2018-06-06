@@ -6,7 +6,7 @@ uplift_id,regression_id,reproducible,how_found
 1151495,1200004,reproducible,found by external security researcher
 1147857,1153056,reproducible,found by user (a Firefox developer) on a not widely used feature
 1133119,1224976,INVALID,
-1185115,1216748,reproducible,found by a developer (from the changeset history of a library Firefox uses)
+1185115,1216748,reproducible,found by developer (from the changeset history of a library Firefox uses)
 1205083,1273691,INVALID,
 1205083,1257028,INVALID,
 1149605,1275853,reproducible,found by user (a end-user) on a rare website
