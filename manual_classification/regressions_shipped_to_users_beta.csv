@@ -6,7 +6,7 @@ uplift_id,regression_id,reproducible,how_found
 1108035,1123966,reproducible,found by user (a volunteer) on a widely used feature
 1220037,1223520,reproducible,found by fuzzing
 1196882,1269055,INVALID,
-1146201,1288976,reproducible,found by developer
+1146201,1288976,reproducible,found by developer (code inspection?)
 1146201,1268984,INVALID,
 1146201,1278198,INVALID,
 1146201,1207439,INVALID,
@@ -40,11 +40,11 @@ uplift_id,regression_id,reproducible,how_found
 1151495,1200004,reproducible,found by external security researcher
 1212328,1277267,INVALID,
 1212328,1290422,INVALID,
-1121332,1289942,reproducible,found by developer by running spec compliance tests
+1121332,1289942,reproducible,found by developer (running spec compliance tests)
 1267980,1276930,not reproducible,found via crash reports
 1249578,1285867,INVALID,
 1063733,1069369,INVALID,
-1063733,1078211,reproducible,found by developer using Valgrind
+1063733,1078211,reproducible,found by developer (using Valgrind)
 1141931,1230408,reproducible,found by fuzzing
 1141931,1181890,reproducible,found by user (a Firefox developer) on a widespread website
 1141931,1274443,INVALID,
@@ -84,7 +84,7 @@ uplift_id,regression_id,reproducible,how_found
 1123498,1269408,INVALID,WRONG REGRESSOR
 1116376,1150639,unknown,found by developer (running debug build)
 1238558,1292505,unknown,found by developer (code inspection?)
-1125503,1147497,reproducible,found by developer (code inpection?)
+1125503,1147497,reproducible,found by developer (code inspection?)
 1143194,1149510,reproducible,found by fuzzing
 1208043,1224994,,
 1170522,1187178,INVALID,NOT A USER FACING REGRESSION
@@ -101,7 +101,7 @@ uplift_id,regression_id,reproducible,how_found
 1264187,1272160,INVALID,WRONG REGRESSOR
 1078354,1190676,reproducible,found by fuzzing
 1116473,1251163,INVALID,NOT A REGRESSION
-1065909,1147497,reproducible,found by developer (code inpection?)
+1065909,1147497,reproducible,found by developer (code inspection?)
 1153123,1179051,INVALID,NOT A REGRESSION
 1153123,1221348,reproducible (but not by everyone),found via crash reports
 1234422,1237582,not reproducible (except by reporter),found by user (a end-user) on a widespread feature
