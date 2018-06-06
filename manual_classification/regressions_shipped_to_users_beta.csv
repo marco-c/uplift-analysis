@@ -168,7 +168,7 @@ uplift_id,regression_id,reproducible,how_found
 1257028,1271525,,
 1223193,1239504,,
 1219330,1293772,,
-1154366,1156662,reproducible,found by developer (static analysis)
+1154366,1156662,reproducible,found by static analysis
 1120023,1296453,,
 1204922,1239861,,
 1051822,1201051,,
