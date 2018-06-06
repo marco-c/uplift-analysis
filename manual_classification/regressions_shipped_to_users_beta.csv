@@ -15,12 +15,12 @@ uplift_id,regression_id,reproducible,how_found
 1120017,1162381,INVALID,
 1175104,1179051,INVALID,
 1124031,1237842,unknown,found via crash reports
-1232069,1253471,reproducible,found by user (a website developer)
+1232069,1253471,reproducible,found by user (a website developer) on a rarely used feature
 1064481,1074963,INVALID,
 1232268,1239066,INVALID,
 1132468,1176551,reproducible,found by user (a volunteer) on a rarely used feature
 1112972,1200413,INVALID,
-1112972,1151309,reproducible,found by user (a website developer)
+1112972,1151309,reproducible,found by user (a website developer) on a widely used feature
 1131638,1161416,INVALID,
 1131638,1145101,reproducible,found by user (a Firefox developer) on a widespread website
 1131638,1143575,INVALID,
@@ -61,7 +61,7 @@ uplift_id,regression_id,reproducible,how_found
 1131433,1154782,INVALID,
 1138253,1143575,INVALID,
 1093316,1174450,INVALID,
-1066726,1123920,reproducible,found by user (a website developer)
+1066726,1123920,reproducible,found by user (a website developer) on a rarely used feature
 1138391,1207571,reproducible,found by fuzzing
 1102538,1243754,INVALID,
 1102538,1138391,INVALID,
@@ -122,7 +122,7 @@ uplift_id,regression_id,reproducible,how_found
 1049138,1117338,not reproducible (except by reporter),found by user (a end-user) on a rare website
 1054972,1070955,reproducible,found by fuzzing
 1082734,1183450,reproducible,found by fuzzing
-1082734,1093611,reproducible,found by user (a website developer)
+1082734,1093611,reproducible,found by user (a website developer) on a widely used website
 1068189,1094409,INVALID,FEATURE NOT SHIPPED TO USERS
 1072044,1172785,INVALID,NOT A REGRESSION
 1072044,1136871,INVALID,WRONG REGRESSOR
@@ -135,7 +135,7 @@ uplift_id,regression_id,reproducible,how_found
 1111971,1164567,unknown,found by developer (code inspection?)
 1170143,1179051,INVALID,NOT A REGRESSION
 1253379,1263028,unknown,found via telemetry
-1211000,1243453,reproducible,found by user (a website developer)
+1211000,1243453,reproducible,found by user (a website developer) on a widely used feature
 1129369,1197943,INVALID,DISABLED ON RELEASE
 1123535,1161416,,
 1123535,1173657,,
@@ -184,7 +184,7 @@ uplift_id,regression_id,reproducible,how_found
 1119033,1125776,,
 1196398,1229339,,
 1196398,1253471,,
-1147521,1153145,reproducible,found by user (a website developer)
+1147521,1153145,reproducible,found by user (a website developer) on a rarely used feature
 1147521,1155241,,
 1149605,1275853,,
 1107666,1272858,,
