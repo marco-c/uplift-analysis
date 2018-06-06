@@ -93,8 +93,8 @@ for channel in ['aurora', 'beta', 'release']:
             csv_writer.writerow([uplift['id'], '^'.join([str(i) for i in regression_ids])])
 
     with open('manual_classification/regressions_shipped_to_users_{}.csv'.format(channel), 'w') as output_file:
-        csv_writer = csv.writer(output_file, ['uplift_id', 'regression_id', 'reproducible'])
-        csv_writer.writerow(['uplift_id', 'regression_id', 'reproducible'])
+        csv_writer = csv.writer(output_file, ['uplift_id', 'regression_id', 'reproducible', 'how_found'])
+        csv_writer.writerow(['uplift_id', 'regression_id', 'reproducible', 'how_found'])
 
         for uplift in uplifts:
             if str(uplift['id']) not in regressions_shipped_to_users:
