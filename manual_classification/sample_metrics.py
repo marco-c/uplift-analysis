@@ -43,7 +43,7 @@ def loadData():
     df_basic = df_beta
     df = pd.merge(df_basic, df_review, on='bug_id')
     df = pd.merge(df, df_senti, on='bug_id')
-    df = pd.merge(df, df_src, on='bug_id')
+    df = pd.merge(df, df_src, on='bug_id')    
     # Convert deltas from seconds to days.
     df.landing_delta = df.landing_delta / 86400
     df.response_delta = df.response_delta / 86400
@@ -104,6 +104,8 @@ easily_preventable_beta2 = df_beta[
 df_input = pd.concat([easily_preventable_beta1,easily_preventable_beta2])
 df_input.rename(columns={'uplift_id':'bug_id'}, inplace=True)
 df_sub1, df_sub2 = subCategories(df, df_input, 'reproducible', 'reproducible')
+df_sub1[metric_list].rename(columns=metric_names).to_csv('plot_preventable_1.csv', index=False)
+df_sub2[metric_list].rename(columns=metric_names).to_csv('plot_preventable_2.csv', index=False)
 
 # partially fixed vs. others
 def partiallyFixed(filename):
@@ -122,4 +124,7 @@ partially_fixed_bugs |= partiallyFixed('reopened_with_channels.csv')
 
 df_sub1 = df[df['bug_id'].isin(partially_fixed_bugs)]
 df_sub2 = df[~df['bug_id'].isin(partially_fixed_bugs)]
+df_sub1[metric_list].rename(columns=metric_names).to_csv('plot_recurring_1.csv', index=False)
+df_sub2[metric_list].rename(columns=metric_names).to_csv('plot_recurring_2.csv', index=False)
+
 
