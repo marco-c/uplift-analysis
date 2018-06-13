@@ -63,6 +63,9 @@ if __name__ == '__main__':
         return [bug for bug in bugs if bug['id'] == int(bug_id)][0]
 
 
+    total_count = 0
+    unlinked_count = 0
+
     with open('manual_classification/bm25_results_initial_after_auto.csv', 'w') as f:
         csv_writer = csv.writer(f)
         csv_writer.writerow(['bug1', 'bug2', '', 'title1', 'title2'])
@@ -75,6 +78,12 @@ if __name__ == '__main__':
                 bug1 = get_bug_from_id(bug1_id)
                 bug2_id = bug2_link[len('https://bugzilla.mozilla.org/show_bug.cgi?id='):]
                 bug2 = get_bug_from_id(bug2_id)
+
+                linked = are_bugs_linked(bug1, bug2)
+
+                total_count += 1
+                if not linked:
+                    unlinked_count += 1
 
                 auto_classification = ''
 
@@ -90,10 +99,13 @@ if __name__ == '__main__':
                             auto_classification = 'y'
                             break
 
-                if not auto_classification and not are_bugs_linked(bug1, bug2):
+                if not auto_classification and not linked:
                     auto_classification = 'n'
 
                 if not classification:
                     classification = auto_classification
 
                 csv_writer.writerow([bug1_link, bug2_link, classification, title1, title2])
+
+
+print('{} out of {} are unlinked'.format(unlinked_count, total_count))
