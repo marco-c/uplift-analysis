@@ -33,7 +33,7 @@ def are_bugs_linked(bug1, bug2):
                 break
 
     for comment in bug1['comments']:
-        if unicode(bug2['id']) in [removePunctuation(w) for w in comment['text'].split(' ')]:
+        if unicode(bug2['id']) in [removePunctuation(w) for w in comment['text'].split()]:
             in_history = True
             break
 
@@ -44,7 +44,7 @@ def are_bugs_linked(bug1, bug2):
                 break
 
     for comment in bug2['comments']:
-        if unicode(bug1['id']) in [removePunctuation(w) for w in comment['text'].split(' ')]:
+        if unicode(bug1['id']) in [removePunctuation(w) for w in comment['text'].split()]:
             in_history = True
             break
 
