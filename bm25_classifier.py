@@ -65,6 +65,7 @@ if __name__ == '__main__':
 
     total_count = 0
     unlinked_count = 0
+    wrongly_classified_count = 0
 
     with open('manual_classification/bm25_results_initial_after_auto.csv', 'w') as f:
         csv_writer = csv.writer(f)
@@ -102,6 +103,9 @@ if __name__ == '__main__':
                 if not auto_classification and not linked:
                     auto_classification = 'n'
 
+                if classification and auto_classification and auto_classification != classification:
+                    wrongly_classified_count += 1
+
                 if not classification:
                     classification = auto_classification
 
@@ -109,3 +113,4 @@ if __name__ == '__main__':
 
 
 print('{} out of {} are unlinked'.format(unlinked_count, total_count))
+print('{} out of {} are wrongly classified by the heuristic'.format(wrongly_classified_count, total_count))
