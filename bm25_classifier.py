@@ -89,6 +89,12 @@ if __name__ == '__main__':
 
                 auto_classification = ''
 
+                if not auto_classification and not linked:
+                    auto_classification = 'n'
+
+                if classification and auto_classification and auto_classification != classification:
+                    wrongly_classified_count += 1
+
                 if bug1['id'] in cloned_bug_map:
                     for bug in cloned_bug_map[bug1['id']]:
                         if bug2['id'] == bug['id']:
@@ -100,12 +106,6 @@ if __name__ == '__main__':
                         if bug1['id'] == bug['id']:
                             auto_classification = 'y'
                             break
-
-                if not auto_classification and not linked:
-                    auto_classification = 'n'
-
-                if classification and auto_classification and auto_classification != classification:
-                    wrongly_classified_count += 1
 
                 if not classification:
                     classification = auto_classification
